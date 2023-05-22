@@ -1,0 +1,343 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb, mathtools, dsfont, xcolor, amsthm}
+\usepackage{graphics}
+\DeclareGraphicsExtensions{.pdf,.png,.gif,.jpg}
+\usepackage{caption}
+\usepackage{subcaption}
+\newcommand{\SOtwo}{\mathbb{SO}(2)}
+\newcommand{\sotwo}{\mathfrak{so}(2)}
+\newcommand{\R}[1]{\mathbb{R}^{#1}}
+\newcommand{\dotR}{\dot{R}}
+\newcommand{\Omegay}{\Omega^y}
+\newcommand{\vex}[1]{\text{vex}\left(#1\right)}
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newcommand{\trace}[1]{\text{tr}\left(#1\right)}
+\newcommand{\brackets}[1]{\left(#1\right)}
+\newcommand{\adjoint}[2]{\text{Ad}_{#1}#2}
+\newcommand{\textblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\Rtilde}{\tilde{R}}
+\newcommand{\etabound}{\Bar{\eta}_w}
+
+
+\title{\textcolor{blue}{Hybrid Globally Asymptotically Stable Observer for $\SOtwo$}}
+\author{Piyush Jirwankar}
+\date{December 2022}
+
+\begin{document}
+
+\maketitle
+
+The purpose of this work is to design a globally asymptotically stable observer for a system evolving on $\SOtwo$. \textblue{This article works on a nominal case where measurements are not corrupted with any noise.}
+
+\section{Preliminaries}
+
+Let the state of this system be $\textcolor{blue}{R\in\SOtwo}$, which can be parameterized with $\theta\in\mathbb{S}^1$ as \[\textcolor{blue}{R = \begin{bmatrix}
+    \cos(\theta) && -\sin(\theta)\\
+    \sin(\theta) && \cos(\theta)
+\end{bmatrix}}\]
+Let the Lie algebra of $\SOtwo$ be represented by $\sotwo$. We define the cross map as $(\cdot)_\times : \R{} \to \sotwo$, \[\textcolor{blue}{ \R{} \ni\omega\mapsto \omega_\times \coloneqq \begin{bmatrix} 0 && -\omega \\ \omega && 0\end{bmatrix}, \quad \forall \omega\in\R{}}\]
+The inverse operator is defined as $\text{vex}: \sotwo \to \R{}$,\[\textcolor{blue}{\R{}\ni\theta_\times\mapsto \vex{\theta_\times}\coloneqq \theta, \quad \forall \theta_\times \in \sotwo}\]
+Next, the exponential map is defined as $\exp: \sotwo \to \SOtwo$, \[ \theta_\times \mapsto \exp\left(\theta_\times \right)\coloneqq \begin{bmatrix}
+    \cos(\theta) && -\sin(\theta)\\
+    \sin(\theta) && \cos(\theta)
+\end{bmatrix}\]
+\textblue{We also define a map $\mathbb{P}_a : \SOtwo \to \sotwo$ such that \[\SOtwo\ni R \mapsto \mathbb{P}_a(R) \coloneqq \frac{1}{2}\brackets{R - R^T}\]}
+The rotation kinematics on $\SOtwo$ are given below, where $\Omega$ represents the angular velocity in the body fixed frame. 
+\begin{align}\label{eq:rotationKinematics}
+    \dotR = R\Omega_\times
+\end{align}
+% One of the standard tools for estimation on the special orthogonal groups is the nonlinear complementary filter \cite{mahony_complementaryFilter}. The measurements of the angular velocity $\Omega$ and the rotation matrix $R$ are given as $\Omegay$ and $R^y$ respectively. The following assumption is made. 
+% \begin{assumption} \label{ass:no_meas_noise}
+%     The measurements are assumed noise-free and angular velocity measurements are assumed bias-free i.e. \textblue{$\Omegay=\Omega$ and $R^y = R$.}
+% \end{assumption}
+% \textblue{This article considers the nominal case where we have perfect measurements of $R$ and $\Omega$. The next step in this study would be to consider bounded measurement errors for $R^y$ and $\Omega^y$.}
+
+% \textblue{Before moving on to the observer design, we define asymptotic independence of a pair of signals.}
+% \textblue{
+% \begin{definition}(Asymptotically Independent Signals \cite{mahony_complementaryFilter})
+% Two signals $x(t) : \R{} \to M_x$ and $y(t) : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists a nondegenerate (full ranked Hessian) function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0, \quad \forall t > T\]
+% The two signals are asymptotically independent if they are not asymptotically dependent.      
+% \end{definition}
+% }
+\textblue{Next, we define the local exponential stability and unstable sets for a dynamical system on $\SOtwo$.
+\begin{definition}{(Local Exponential Stability)}
+For a linear approximation of a rotation matrix $\SOtwo\ni R_1 \approx I + {x_1}_\times$ and $\SOtwo\ni R_2 \approx I + {x_2}_\times$, where $x_1, x_2\in \R{}$ with $e \coloneqq x_1 - x_2$, $R_1$ is locally exponentially stable to $R_2$ if there exists an $\alpha > 0$, and for every $\epsilon >0$, $\exists \delta (\epsilon) > 0$ such that \[|e(t)| = \epsilon \exp(-\alpha t), \quad \forall t > 0\] when $|e(0)| < \delta(\epsilon)$.
+\end{definition}}
+\textblue{\begin{definition}(Unstable set)
+The unstable set $W_u$ of an invariant set $\mathcal{I}$ is defined as 
+\[W_u(\mathcal{I}) \coloneqq\{ x\notin \mathcal{I} : x(t) \in \mathcal{I} \text{ as } t \to -\infty\}.\]
+\end{definition}
+}
+\section{Observer design}
+
+One of the standard tools for estimation on the special orthogonal groups is the nonlinear complementary filter \cite{mahony_complementaryFilter}. The measurements of the angular velocity $\Omega$ and the rotation matrix $R$ are given as $\Omegay$ and $R^y$ respectively. The following assumption is made. 
+\begin{assumption} \label{ass:no_meas_noise}
+    The measurements are assumed noise-free and angular velocity measurements are assumed bias-free i.e. \textblue{$\Omegay=\Omega$ and $R^y = R$.}
+\end{assumption}
+\textblue{This article considers the nominal case where we have perfect measurements of $R$ and $\Omega$. The next step in this study would be to consider bounded measurement errors for $R^y$ and $\Omega^y$.}
+
+\textblue{Before moving on to the observer design, we define asymptotic independence of a pair of signals.}
+\textblue{
+\begin{definition}(Asymptotically Independent Signals \cite{mahony_complementaryFilter})
+Two signals $x(t) : \R{} \to M_x$ and $y(t) : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists a nondegenerate (full ranked Hessian) function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0, \quad \forall t > T\]
+The two signals are asymptotically independent if they are not asymptotically dependent.      
+\end{definition}
+}
+
+Now, we re-state below the required theorem from \cite{mahony_complementaryFilter} as applied to systems evolving on $\SOtwo$.
+
+
+\begin{theorem} \label{thm:mahony}
+(Theorem 4.2, \cite{mahony_complementaryFilter}) Consider the state $R\in\SOtwo$ that follows the kinematics in equation \eqref{eq:rotationKinematics}. The measurements satisfy Assumption \eqref{ass:no_meas_noise}. Let the estimate of $\textcolor{blue}{R}$ be denoted by $\textcolor{blue}{\hat{R}\in\SOtwo}$. \textcolor{blue}{Let $k_p > 0$ be a positive gain value. With the initial estimate being $\hat{R}(0) = \hat{R}_0 \in \SOtwo$}, let the estimates satisfy the following \textcolor{blue}{kinematics:}
+
+\begin{subequations}\label{eq:observer}
+\begin{align}
+    \dot{\hat{R}} = \hat{R}\left( \Omegay + k_p\omega\right)_\times, \quad \hat{R}(0) = \hat{R}_0 \label{eq:}\\
+    \omega = \vex{\mathbb{P}_a(\textcolor{blue}{\Tilde{R}^y})}, \quad \textcolor{blue}{\Tilde{R}^y \coloneqq \hat{R}^TR^y}
+\end{align}
+\end{subequations}
+Define the estimation error as $\Tilde{R} = \hat{R}^TR$. \textcolor{red}{Assume that $\Omega(t)\in \R{}$
+is a bounded}, absolutely continuous signal and that the pair of signals \textblue{$(\Omega(t), \Tilde{R}(t))$ are asymptotically independent}. Define $\mathbb{U}_0 \subseteq \SOtwo$ as 
+\[\mathbb{U}_0 = \left\{ \Tilde{R}\in \SOtwo \mid \text{tr}(\Tilde{R}) = -2\right\}\]
+Then:
+\begin{enumerate}
+    \item The set $\mathbb{U}_0$ is forward invariant and {unstable} with respect to the system given in equation \eqref{eq:observer}.
+    \item {The error $\Tilde{R}$ is locally exponentially stable to the identity element $I$.} 
+    \item For all initial conditions such that $\textblue{\hat{R}_0^TR^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$.
+\end{enumerate}
+\end{theorem}
+Using Theorem \ref{thm:mahony}, we have an almost globally asymptotically stable observer, with the unstable set being the measure zero set of $\SOtwo$ that represents a $180^\circ$ rotation. We wish to leverage this by using hybrid control theory to obtain a globally asymptotically stable observer on $\SOtwo$. 
+
+\begin{definition}(Hybrid Observer)
+    A hybrid observer $\hat{\mathcal{H}}$ with data $(C_K, F_K, D_K, G_K, \zeta)$.
+
+\begin{align}
+    \hat{\mathcal{H}} :  \begin{cases}
+        \dot{\eta} = F_K(\eta, v), \quad (\eta, v) \in C_K\\
+        \eta^+ = G_K(\eta, v), \quad (\eta, v)\in D_K\\
+        \zeta = f(\eta, v)
+    \end{cases}
+\end{align}
+where $\eta$ is the state of the hybrid observer, $v$ is the input and $\zeta$ is the output, $C_K$ and $D_K$ represent the flow set and the jump set for the hybrid observer respectively. 
+\end{definition}
+
+
+Define a potential function on $\SOtwo$ as below. 
+
+\textblue{
+\begin{definition}\label{def:config_err}
+    The configuration error function for $\SOtwo$ is defined by $\Psi: \SOtwo \to \R{}$, \[\Psi({\Tilde{R}}) \coloneqq \frac{1}{2}\trace{I - \Tilde{R}}.\]
+\end{definition}}
+\textblue{
+\begin{lemma} 
+    The configuration error function $\Psi$ defined in Definition \ref{def:config_err} is positive definite, and the critical points of $\Psi$ are given by $\Theta =  \{I, \mathbb{U}_0\}$.
+\end{lemma}
+}
+
+
+\textblue{Due to assumption 1, we have $R^y = R$}. Our design ideology for the globally asymptotically stable observer is the following: when \textblue{$\Tilde{R}^y = \tilde{R} \in \SOtwo \backslash \mathbb{U}_0$}, the observer is defined by equation \eqref{eq:observer}. For $\textblue{\Tilde{R}^y\in\mathbb{U}_0}$, an open loop observer is defined such that $\Tilde{R}$ escapes the unstable set $\mathbb{U}_0$. Thus, what we desire is the following.
+\begin{align}
+    \dot{\Tilde{R}} &= \Tilde{R} \underbrace{\begin{bmatrix}
+        0 && 1\\
+        -1 && 0
+    \end{bmatrix}}_{\kappa_1} \nonumber\\
+    &= \Tilde{R}\kappa_1 \label{eq:Rtilde_dyn}
+\end{align}
+Since we have assumed perfect measurement, we have the knowledge of the true rotation matrix $R$. Thus, using $\dot{\Tilde{R}} = \dot{\hat{R}}^TR + \hat{R}^T\dot{R}$ we can write \eqref{eq:Rtilde_dyn} as follows. 
+\begin{align}
+    \Tilde{R}\kappa_1 &= \dot{\hat{R}}^TR + \hat{R}^T\dot{R}\nonumber\\
+    &= \dot{\hat{R}}^TR + \hat{R}^TR\Omega_\times\nonumber\\
+    \implies \dot{\hat{R}}^TR &= \Tilde{R}\left(\kappa_1 - \Omega_\times\right)\nonumber\\
+    \dot{\hat{R}}^T &= \Tilde{R}\brackets{\kappa_1 - \Omega_\times}R^T\nonumber\\
+    \implies \dot{\hat{R}} &= R\brackets{\Omega_\times - \kappa_1}R^T\hat{R} \nonumber\\
+    &= \hat{R}\Tilde{R}\brackets{\Omega_\times - \kappa_1}\Tilde{R}^T\nonumber\\
+    &= \hat{R}\adjoint{\tilde{R}}{\left(\Omega_\times - \kappa_1\right)}\nonumber\\
+    &= \textblue{\hat{R}\adjoint{\tilde{R}^y}{\left(\Omega_\times - \kappa_1\right)}\label{eq:observer_unstable}}
+\end{align}
+Note that the $\text{Ad}$ operator here represents the Adjoint map $\text{Ad}: \SOtwo\times \sotwo \to \sotwo$ \textblue{\[ \SOtwo\times \sotwo \ni(R_1, v_1) \mapsto \adjoint{R_1}{v_1} \coloneqq R_1 v_1 R_1^T \in \sotwo\]}
+
+Thus, we have the observer for the unstable region in equation \eqref{eq:observer_unstable}. It appears that employing this observer in $\mathbb{U}_0$, and employing \eqref{eq:observer} in $\SOtwo\backslash \mathbb{U}_0$ should ensure globally asymptotic stability of the observer. However, such an observer could be very sensitive to small noise, that can result in chattering. Hence, we employ a hysteresis based observer. Consider two constants $ 0 < c_1 < c_0 < 2$. Consider the following sets that are functions of $\textblue{R^y}$.
+\begin{align}
+    C_0(\textblue{R^y}) &\coloneqq \left\{\hat{R} \in \SOtwo\mid \Psi\left(\hat{R}^T\textblue{R^y}\right) \leq c_{0} \right\}\\
+    C_1(\textblue{R^y}) &\coloneqq \left\{\hat{R} \in \SOtwo\mid \Psi\brackets{\hat{R}^T\textblue{R^y}} \geq c_1 \right\}\\
+    D_0(\textblue{R^y}) &\coloneqq \left\{\hat{R} \in \SOtwo\mid \Psi\left(\hat{R}^T\textblue{R^y}\right) \geq c_{0} \right\}\\
+    D_1(\textblue{R^y}) &\coloneqq \left\{\hat{R} \in \SOtwo\mid \Psi\brackets{\hat{R}^T\textblue{R^y}} \leq c_1 \right\}
+\end{align}
+The intersection $\textblue{\Gamma({R}^y) \coloneqq C_0({R}^y)\cap C_{1}({R}^y)}$ represents the hysteresis region. The hybrid observer $\hat{\mathcal{H}}$ can be represented by the states $q \in Q\coloneqq \{0, 1\}$. The inputs for $\hat{\mathcal{H}}$ are $v = (v_1, v_2, v_3) \coloneqq (\hat{R}, \textblue{R^y}, \Omega^y) \in \SOtwo\times\SOtwo\times\R{}$, the output is $\zeta \in \sotwo$ which is defined below. Define $\gamma_0(v) \coloneqq (\Omega^y + k_p\omega)_\times$, $\gamma_1(v) \coloneqq \adjoint{\textblue{\Tilde{R}^y}}{\brackets{\Omega_\times - \kappa_1}}$. The data for the hybrid observer $\brackets{C_K, F_K, D_K, G_K, \zeta}$ is given as follows:
+\begin{align}
+    C_K &= \bigcup_{q\in Q}\brackets{C_{K, q}\times q}, \quad \begin{cases}
+        C_{K, 0} \coloneqq C_0(\textblue{R^y})\\
+        C_{K, 1} \coloneqq C_1(\textblue{R^y})
+    \end{cases}\\
+    F_K(v, q) &= 0\\
+    D_K &= \bigcup_{q\in Q} \brackets{D_{K, q}\times Q}, \quad \begin{cases}
+        D_{K,0} \coloneqq D_0(\textblue{R^y})\\
+        D_{K,1} \coloneqq D_1(\textblue{R^y})
+    \end{cases}\\
+    G_K(v, q) &= 1 - q\\
+    \zeta(v, q) &= q\gamma_1(v) + (1-q)\gamma_0(v)
+\end{align}
+Using the above hybrid observer, the estimates are updated as 
+\begin{align} \label{eq:observer_final}
+\underbrace{\dot{\hat{R}} = \hat{R}\zeta(v, q), \quad \dot{q} = 0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\hat{R}^+ = I, \quad q^+ = 1 - q}_\text{during jumps}
+\end{align}
+
+Consider the following hybrid system $\mathcal{H} = (C, F, G, D)$ with the states $(\Tilde{R}, q) \in \SOtwo\times Q$ has the following data. 
+\begin{subequations}\label{eq:hybrid_observer_error}
+\begin{align}
+C&\coloneqq C_K\\
+F(\Tilde{R}, q)&\coloneqq \begin{bmatrix}
+    \Tilde{R}\brackets{\Tilde{R}^T\zeta(v, q)^T\Tilde{R} + \Omega_\times}\\ 0\end{bmatrix}\\
+D_K &\coloneqq D_K\\
+G_K(\Tilde{R}, q) &\coloneqq \begin{bmatrix}
+\Tilde{R} \\ 1 - q
+\end{bmatrix}
+\end{align}
+\end{subequations}
+
+\begin{theorem}(Hybrid Observer Stability)
+    Given the system \eqref{eq:rotationKinematics}, and consider the set $\mathcal{A}_1\coloneqq \{I\}\times \{0\} \in \SOtwo\times Q$, the following holds:
+    \begingroup
+    \renewcommand\labelenumi{(\theenumi)}
+    \begin{enumerate}
+        \item \label{(1)}The hybrid observer error system $\mathcal{H}$ with data \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions.
+        \item \label{(2)}Every maximal solution to $\mathcal{H}$ from $C\cup D$ is complete. 
+        \item \label{(3)}The set $\mathcal{A}$ is globally asymptotically stable for $\mathcal{H}$. 
+    \end{enumerate}
+    \endgroup
+    \end{theorem}
+
+    \begin{proof}
+         Since $C_0, C_1, D_0, D_1$ are closed subsets of $\SOtwo$ and the maps $F$ and $G$ are single valued and continuous on $C$ and $D$ respectively , \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions. This proves $\eqref{(1)}$.
+    
+    Next, we note that $F(\tilde{R}, q)\in T_{\tilde{R}}\SOtwo$ for all $\tilde{R}\in \SOtwo$. Thus, using Proposition 6.10 from  \cite{hybridDynamicalSystems}, the proof of $\eqref{(2)}$ is complete. 
+    
+ We note that when $\tilde{R} = I$ and $q = 0$, $(\tilde{R}, q) \in \mathcal{A}_1$. If $q = 1$ and $\tilde{R} = I$, $(\tilde{R}, q) \in D_1$. Using the jump map, we have that $(\tilde{R}^+, q^+) \in\mathcal{A}_1$. Thus, it suffices to show that the set $\mathcal{A} \coloneqq
+  \{I\} \in \SOtwo$ is globally asymptotically stable for $\tilde{R}$ whose kinematics are governed by $\mathcal{H}$, irrespective of the value of $q$.  Next, with a slight abuse of notation, when $\theta \coloneqq \vex{\log(R)}$, $R \in \mathcal{O}$ is equivalent to saying $\theta\in\mathcal{O}$, where $\mathcal{O}$ is any set. Define $\Tilde{\theta}(t) \coloneqq \vex{\log{(\Tilde{R}(t))}}$. 
+  Since almost globally asymptotic stability is proved for $\Tilde{R}(t) \in C_0 \subset \SOtwo \backslash \mathbb{U}_0$  in \cite{mahony_complementaryFilter}, we have the following $\mathcal{KL}$ bound in $C_0$, where $\beta_0$ is a class $\mathcal{KL}$ function.
+    \begin{align}\label{eq:KL_C0}
+        |\Tilde{\theta}(t, j)|_\mathcal{A} \leq \beta_0\brackets{|\tilde{\theta}(0, 0)|_\mathcal{A}, t+j}, \quad \forall \tilde{\theta}(0, 0) \in C_0
+    \end{align}
+    We consider the four possible cases where $\tilde{R}(0, 0)$ can lie. When $\tilde{R}(0, 0)\in C_0$  we have asymptotic stability with the bounds in \eqref{eq:KL_C0}.
+    When $\tilde{R}(0,0)\in D_1$, the jump at $(t,j) = (0,0)$ puts $\tilde{R}(0, 1) \in C_0$ immediately. Thus, we have the following bound similar to \eqref{eq:KL_C0}.
+    \begin{align}\label{eq:KL_D1}
+        |\Tilde{\theta}(t, j)|_\mathcal{A} \leq \beta_0\brackets{|\tilde{\theta}(0, 0)|_\mathcal{A}, t+j}, \quad \forall \tilde{\theta}(0, 0) \in D_1
+    \end{align}
+    Since $\beta_0\in \mathcal{KL}$, $\exists K_0$ which is a class $\mathcal{K}$ function such that 
+    \begin{align}\label{eq:K_bound_D1}
+        |\tilde\theta(t,j)|_\mathcal{A} \leq K_0(|\tilde\theta(0,0)|_\mathcal{A}), \quad \forall \tilde{\theta}(0,0) \in D_1
+    \end{align}
+    
+    Next, when $\Tilde{R}(0,0)\in C_1$, using \eqref{eq:Rtilde_dyn}, we have a linear decay of $\tilde\theta(t, 0)$ as below. 
+    \begin{align}
+        \tilde{\theta}(t, 0) = \tilde{\theta}(0,0) - t
+    \end{align}
+    \textcolor{red}{For $\tilde{\theta}\in C_1$, we want $\tilde{\theta}$ to enter $D_1$ such that the inequality in \eqref{eq:KL_D1} holds for $\tilde\theta(0,0)\in C_1$.}
+    \begin{align*}
+    |\tilde{\theta}(t, j)|_{D_1} = \inf_{\theta\in D_1} |\tilde{\theta}(0,0) - t - {\theta}|
+    \end{align*}
+    Due to the construction of $C_1$ and $D_1$, $\tilde\theta(0,0) > \theta$ when $\theta\in D_1$. The infimum is first achieved at $\theta_1 \in [0,\pi]$ such that $\Psi\brackets{\exp(\tilde{{\theta}}_1)} = c_1$. Once this is achieved, $\tilde{\theta}(t,j)\in D_1$ and the jump to $C_0$ takes place. Thus, $\tilde{\theta}(0,0)\in C_1$ enters $D_1$ in finite time $T$, where $T \coloneqq \tilde\theta(0,0) - \theta_1$. For $t \leq T$, we have the following.
+    \begin{align}
+        |\tilde{\theta}(t, j)|_{D_1} &= |\tilde\theta(0,0) - \theta_1 - t|\nonumber\\
+        & \leq |\tilde\theta(0,0)|_{D_1} + t
+    \end{align}
+    \textcolor{red}{Define a class $\mathcal{K}$ function $K_1(|\tilde\theta(0,0)|) \coloneqq |\tilde\theta(0,0)| + t$}. \textblue{This is not a class K function. Prove this again}. For the purpose of the function $K_1$, $t$ is a constant parameter. Thus, we have the following. 
+    \begin{align}\label{eq:K_bound_C1}
+        |\tilde\theta (t, j)|_{D_1} \leq K_1(|\tilde\theta(0,0)|_{D_1}), \quad \forall \tilde{\theta}(0,0) \in C_1
+    \end{align}
+    Now, for two class $\mathcal{K}$ functions $K_a$ and $K_b$, there must exist a class $\mathcal{K}$ function $K_c$ such that $K_a$ and $K_b$ are upper bounded by $K_c$. Using this and \eqref{eq:K_bound_C1}, \eqref{eq:K_bound_D1}, there must exist a class $\mathcal{K}$ function $K$ such that we get the following.
+    \begin{align}\label{eq:K_bound_final_C1}
+        |\tilde{\theta}(t, j)|_\mathcal{A}\leq K(|\tilde{\theta}(0,0)|_{\mathcal{A}}), \quad \forall \tilde\theta(0,0) \in C_1
+    \end{align}
+    Now, since $\tilde\theta(t,j)$ reaches $D_1$ in finite time $T$, we have the following bound with $\beta\in \mathcal{KL}$.
+    \begin{align}\label{eq:KL_C1}
+        |\Tilde{\theta}(t, j)|_\mathcal{A} \leq \beta\brackets{|\tilde{\theta}(0, 0)|_\mathcal{A}, t+j}, \quad \forall \tilde{\theta}(0, 0) \in C_1
+    \end{align}
+
+Finally, if $\tilde{R}(0,0)\in D_0$, $\tilde{R}(0,1)\in C_1$ and \eqref{eq:KL_C1} holds. Thus, we have a similar $\mathcal{KL}$ bound for $\tilde{R}(0,0)\in D_0$ as shown below. 
+\begin{align}\label{eq:KL_D0}
+    |\Tilde{\theta}(t, j)|_\mathcal{A} \leq \beta\brackets{|\tilde{\theta}(0, 0)|_\mathcal{A}, t+j}, \quad \forall \tilde{\theta}(0, 0) \in D_0
+\end{align}
+This translates to the following global $\mathcal{KL}$ bound on the state error. 
+\begin{align}\label{eq:KL_global}
+|\Tilde{\theta}(t, j)|_\mathcal{A} \leq \beta\brackets{|\tilde{\theta}(0, 0)|_\mathcal{A}, t+j}, \quad \forall \tilde{\theta}(0, 0) \in \SOtwo
+\end{align}
+Hence, the global asymptotic stability of $\mathcal{A}$ is proved. This proves $\eqref{(3)}$.
+\end{proof}
+
+\section{Numerical Simulations}
+We consider $\Omega(t) = \sin\brackets{2\pi t/5}.$ For a simulation time step of $h=0.01 \sec$, $R(t) = R(0)\exp\brackets{h\Omega(t)_\times}$, with $R(0) = I \in \SOtwo$. The estimate $\hat{R}$ is initialized with $\hat{R}(0) = \log\brackets{\pi_\times}$. This results in $\tilde{R}\in \mathbb{U}_0$. For the hybrid observer, $c_0 = 3\pi/4$ and $c_1 = 2\pi/3$. The state $q$ is such that $q(0) = 0$. The following results are obtained.
+
+
+
+\begin{figure}[!h]
+\centering
+\begin{minipage}{.49\textwidth}
+  % \centering
+  \flushleft
+  \includegraphics[width=1.0\linewidth]{Figures/errFunction.jpg}
+  \captionof{figure}{The error function $\Psi(\Tilde{R})$ goes from its maximum value of $2$ to $0$ asymptotically.}
+  \label{fig:test1}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+  % \centering
+  \flushleft
+  \includegraphics[width=1.0\linewidth]{Figures/errAngle.jpg}
+  \captionof{figure}{The error angle $\Tilde{\theta}$ goes from its maximum value of $\pi$ to $0$ asymptotically. Linear decay is observed when $\tilde{\theta}\in C_1$. }
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+% \centering
+\begin{minipage}{.49\textwidth}
+  \includegraphics[width=1.0\linewidth]{Figures/est_track_true_angle.jpg}
+  \captionof{figure}{The estimates track the true values of $\theta$.}
+  \label{fig:tracking}
+\end{minipage}
+\begin{minipage}{.49\textwidth}
+  % \centering
+  \includegraphics[width=1.0\linewidth]{Figures/q_vs_time.jpg}
+  \captionof{figure}{$q$ vs time. Two jumps occur when initial conditions start from $D_0$.}
+  \label{fig:q_vs_time}
+\end{minipage}
+\end{figure}
+
+% \begin{figure}
+%      \centering
+%      \begin{subfigure}[b]{0.3\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{Figures/errorFunction.png}
+%          \caption{Error function $\Psi(\tilde{R})$ vs time.$\Psi(\tilde{R})$ goes from its maximum value of $2$ to $0$ asymptotically.}
+%          \label{fig:err_function}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[b]{0.3\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{Figures/errorAngle.png}
+%          \caption{The error angle $\tilde{\theta}$ goes from $\pi$ to $0$ asymptotically}. 
+%          \label{fig:err_angle}
+%      \end{subfigure}
+% \end{figure}
+
+\section{Considering perturbations}
+
+\subsection{Noise in gyroscope measurements}
+In this section, we move away from Assumption 1 and consider a bounded measurement noise in the measurements of $\Omega$, i.e. $\Omega^y = \Omega + \eta_w$, with the bound on $\eta_w$ defined as $\etabound \coloneqq \sup_{t\geq 0}\|\eta_w\|$.
+
+\begin{assumption} \label{ass:assumption2}
+    The attitude measurements are assumed to be perfect, i.e. $R^y = R$. The angular velocity measurements have a bounded error $ \eta_w$ such that $\Omega^y = \Omega + \eta_w$, where $\|\eta_w\|\leq \etabound$ for all $t\geq 0$.
+\end{assumption}
+
+Under these noisy measurements, the perturbed hybrid observer, denoted as $\hat{\mathcal{H}}_w = ({C}^w_K,{F}^w_K, {D}^w_K,  {G}^w_K, \zeta^w )$, is now given as follows. Since only $\zeta_K$ is affected by the measurement noise, the flow maps and the flow sets for the perturbed hybrid observer remain the same. Thus,
+\[{C}^w_K = C_K, \quad {F}^w_K = F_K, \quad  {D}^w_K = D_K, \quad  {G}^w_K = G_K.\]
+
+
+
+\bibliographystyle{plain}
+\bibliography{ref}
+\end{document}

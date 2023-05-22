@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{berkane_complementary}
+Soulaimane Berkane and Abdelhamid Tayebi.
+\newblock On the design of attitude complementary filters on $\text{SO}(3)$.
+\newblock {\em IEEE Transactions on Automatic Control}, 63(3):880--887, 2018.
+
+\bibitem{Cai_and_Teel}
+Chaohong Cai and Andrew~R. Teel.
+\newblock Characterizations of input-to-state stability for hybrid systems.
+\newblock {\em Systems $\&$ Control Letters}, 58(1):47--53, 2009.
+
+\bibitem{Chillingworth}
+D.~R.~J. Chillingworth, J.~E. Marsden, and Y.~H. Wan.
+\newblock Symmetry and bifurcation in three-dimensional elasticity, part i.
+\newblock {\em Archive for Rational Mechanics and Analysis}, 80(4):295--331, Dec 1982.
+
+\bibitem{hybridDynamicalSystems}
+R.~Goebel, R.~G. Sanfelice, and A.~R. Teel.
+\newblock {\em Hybrid Dynamical Systems: Modeling, Stability, and Robustness}.
+\newblock Princeton University Press, New Jersey, 2012.
+
+\bibitem{Khalil}
+H.~K. Khalil.
+\newblock {\em Nonlinear Systems}.
+\newblock Prentice Hall, 3rd edition, 2002.
+
+\bibitem{mahony_complementaryFilter}
+Robert Mahony, Tarek Hamel, and Jean-Michel Pflimlin.
+\newblock Nonlinear complementary filters on the special orthogonal group.
+\newblock {\em IEEE Transactions on Automatic Control}, 53(5):1203--1218, 2008.
+
+\bibitem{quaternion-ricardo}
+Christopher~G. Mayhew, Ricardo~G. Sanfelice, and Andrew~R. Teel.
+\newblock Quaternion-based hybrid control for robust global attitude tracking.
+\newblock {\em IEEE Transactions on Automatic Control}, 56(11):2555--2566, 2011.
+
+\end{thebibliography}
