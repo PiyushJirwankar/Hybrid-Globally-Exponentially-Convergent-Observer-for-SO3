@@ -12,6 +12,8 @@
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \newcommand{\rotcoloneqq}{\rotatebox[origin=c]{90}{$\coloneqq$}}
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 % \usepackage{filecontents}
 \usepackage{cancel}
 \usepackage[normalem]{ulem}
@@ -427,7 +429,7 @@ With $\overline{k_p}>0$, we define the following observer for the case when $\Rt
     \omega(\Rtilde_1^y) &\coloneqq \vex{\mathbb{P}_a({\Rtilde_1^y})}, \quad &&{\Rtilde_1^y \coloneqq \hat{R}^\top R^y_1}
 \end{alignat}
 \end{subequations}
-Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree$ is almost globally and locally exponentially stable for the dynamics of $\Rtilde_1$.  We employ a hysteresis based hybrid observer for reasons mentioned in Remark \ref{remark:hysteresis}. Consider two constants $ 0 < c_1 < c_0 < 1$. Consider the following sets
+Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree$ is almost globally and locally exponentially stable for the dynamics of $\Rtilde_1$. We employ a hysteresis based hybrid observer for reasons mentioned in Remark \ref{remark:hysteresis}. Consider constants $ 0 < c_1 < c_0 < 1$ and $0<\delta < 1$. Consider the following sets
 % \begin{align}
 %     C_0 &\coloneqq \textblue{\left\{(\Rtilde^y, q) \in \SOthree \times Q\mid \normSOthree{\Rtilde^y} \leq c_0 \And q=0 \right\}}\\
 %     C_1 &\coloneqq \textblue{\left\{(\Rtilde^y, q) \in \SOthree \times Q\mid \normSOthree{\Rtilde^y} \geq c_1 \And q=1 \right\}}\\
@@ -440,14 +442,20 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
     C_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_0 \right\}}\\
     C_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
     D_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
-    D_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}
+    D_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
+    B_0 &\coloneqq \SOthree\\
+    B_1 &\coloneqq 
 \end{align}
 \end{subequations}
 
- The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_1$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay)\in \SOthree\times \SOthree \times \R{3}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
+%  The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay)\in \SOthree\times \SOthree \times \R{3}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
-\begin{subequations}
-\begin{align}
+% The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay, r)\in \SOthree\times \SOthree \times \R{3}\in \mathbb{S}^2$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. The term $r$ in the input represents the axis of rotation of $\Rstar$, i.e. $\Rstar = \mathcal{R}(\cos^{-1}(1 - 2\normSOthree{\Rstar}^2), r)$. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
+
+The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The hybrid observer, denoted by $\mathcal{H}_{PCF}$, has the state $x \coloneqq (\hat{R}, q, r) \in \SOthree \times Q \times \mathbb{S}^2$ where $Q\coloneqq \{0,1\}$, the input $v \coloneqq (R^y, \Omega^y)\in \SOthree\times \R{3}$ and the output $\zeta \coloneqq \hat{R}$. Note that $r\in\mathbb{S}^2$ denotes the axis of rotation of $\Rstar$. The data of the hybrid observer is now given in \eqref{eq:hybrid_PCF}. 
+
+\begin{subequations}\label{eq:hybrid_PCF}
+\begin{align} 
     \hat{C} &= \bigcup_{q\in Q}\brackets{\hat{C}_{q}\times q}, \quad \begin{cases}
         \hat{C}_{0} \coloneqq C_0\\
         \hat{C}_{1} \coloneqq C_1
@@ -473,7 +481,7 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
 
 Using the above hybrid observer, the estimates are updated as 
 \begin{align} \label{eq:observer_final}
-\underbrace{\dot{\hat{R}} = \hat{R} f_1(q, v), \quad \dot{q} = 0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\textblue{\hat{R}^+ = \hat{R}}, \quad q^+ = 1 - q}_\text{during jumps}
+\underbrace{\dot{\hat{R}} = \hat{R} f_1(q, v), \quad \dot{q} = 0, \quad \dot{r}=0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\textblue{\hat{R}^+ = \hat{R}}, \quad q^+ = 1 - q, \quad r^+ = \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}((u^\top y)^2 - (r^\top y)^2)^2}_\text{during jumps}
 \end{align}
 
 \textbf{Working of the hybrid observer: } Let $(t_0, j_0)\in \dom \Rtilde$. If ${(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_0\times \{0\}$, the system flows. The observer in Theorem \ref{thm:mahony} is used and  $\Rtilde(t, j_0)$ converges to $R(t)$, for $t\geq t_0$ without any jumps in $q$ . Since $D_1\times \{0\}\subset C_0\times \{0\}$, this analysis also applies to the other case when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{0\}$. Next, if $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{1\}$, a jump is triggered causing $(\Rtilde(t_0, j_0+1), q(t_0, j_0+1))\in C_0\times \{0\}$ which has been analysed already. On the other hand, when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in C_1\times \{1\}$, we resort to the observer in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while ${\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>t_0$ such that ${\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the switch to ${(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0\times \{0\}$. If ${(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0\times \{0\}$, this triggers a jump such that ${(\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1))}\in C_1 \times \{1\}$ which we have analyzed already.
