@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex hybridGES"] 1684800366 "hybridGES.aux" "hybridGES.bbl" "hybridGES" 1684800370 0
+["bibtex hybridGES"] 1684810026 "hybridGES.aux" "hybridGES.bbl" "hybridGES" 1684810028 0
   "./ref.bib" 1684379400 3474 4158c50bc1d037c6cce4e1af606791e9 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "hybridGES.aux" 1684800369 7232 086faa9349f7b14e2045aa347f6b4b36 "pdflatex"
+  "hybridGES.aux" 1684810027 7220 664b9d8281039678962156610abddd43 "pdflatex"
   (generated)
   "hybridGES.bbl"
   "hybridGES.blg"
   (rewritten before read)
-["pdflatex"] 1684800368 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/hybridGES.tex" "hybridGES.pdf" "hybridGES" 1684800370 0
-  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/hybridGES.tex" 1684800368 112171 98c95f9bae4bf164bc82238e2a3a15ed ""
+["pdflatex"] 1684810026 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/hybridGES.tex" "hybridGES.pdf" "hybridGES" 1684810028 0
+  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/hybridGES.tex" 1684810024 113108 b84f514f68569489340e9f9ef6f0f5f6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -123,9 +123,9 @@
   "Figures/ECF_q.jpg" 1684379400 44081 41465a2fa6ac82d9f06ca00c09ac311e ""
   "Figures/PCF_potential.jpg" 1684379400 55684 9d693d27eb9e67762af92afa1a102c17 ""
   "Figures/PCF_q.jpg" 1684379400 44428 001b49c5da0bff55f03fedcb27652c76 ""
-  "hybridGES.aux" 1684800369 7232 086faa9349f7b14e2045aa347f6b4b36 "pdflatex"
-  "hybridGES.bbl" 1684800366 1547 9de6132d163a15d207b9d1ad67b76cf1 "bibtex hybridGES"
-  "hybridGES.tex" 1684800368 112171 98c95f9bae4bf164bc82238e2a3a15ed ""
+  "hybridGES.aux" 1684810027 7220 664b9d8281039678962156610abddd43 "pdflatex"
+  "hybridGES.bbl" 1684810026 1547 9de6132d163a15d207b9d1ad67b76cf1 "bibtex hybridGES"
+  "hybridGES.tex" 1684810024 113108 b84f514f68569489340e9f9ef6f0f5f6 ""
   (generated)
   "hybridGES.aux"
   "hybridGES.log"

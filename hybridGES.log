@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.17)  22 MAY 2023 17:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.17)  22 MAY 2023 19:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -264,20 +264,20 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 ) (./hybridGES.aux)
 \openout1 = `hybridGES.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -338,65 +338,89 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+euf on input line 88.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 89.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) [1
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2]
-Overfull \hbox (13.50061pt too wide) detected at line 207
+Overfull \hbox (13.50061pt too wide) detected at line 208
 []
  []
 
 
-Overfull \hbox (37.94493pt too wide) detected at line 221
+Overfull \hbox (37.94493pt too wide) detected at line 222
 []
  []
 
-[3] [4] [5] [6] [7] [8] [9] [10]
-Overfull \hbox (7.25232pt too wide) in paragraph at lines 675--677
+[3] [4] [5] [6]
+
+LaTeX Warning: Reference `eq:observer_final' on page 7 undefined on input line 515.
+
+
+LaTeX Warning: Reference `eq:observer_final' on page 7 undefined on input line 578.
+
+[7] [8] [9]
+
+LaTeX Warning: Reference `eq:observer_final' on page 10 undefined on input line 669.
+
+
+LaTeX Warning: Reference `eq:observer_final' on page 10 undefined on input line 672.
+
+
+Overfull \hbox (7.25232pt too wide) in paragraph at lines 681--683
 \OT1/cmr/m/n/10 ISS to gyro noise. We ob-tain a sim-i-lar ISS bound for the ro-tated ob-server [] when $[] \OMS/cmsy/m/n/10 2
  []
 
+[10]
 
-LaTeX Warning: Reference `item:d-bullet' on page 11 undefined on input line 697.
+LaTeX Warning: Reference `item:d-bullet' on page 11 undefined on input line 703.
+
+
+LaTeX Warning: Reference `eq:observer_final' on page 11 undefined on input line 732.
+
+
+LaTeX Warning: Reference `eq:observer_final' on page 11 undefined on input line 736.
 
 [11]
-Overfull \hbox (2.80515pt too wide) detected at line 748
+
+LaTeX Warning: Reference `eq:observer_final' on page 12 undefined on input line 742.
+
+
+Overfull \hbox (2.80515pt too wide) detected at line 754
 []
  []
 
 [12]
-Overfull \hbox (2.26265pt too wide) in paragraph at lines 769--771
+Overfull \hbox (2.26265pt too wide) in paragraph at lines 775--777
 \OT1/cmr/m/n/10 When $[] \OMS/cmsy/m/n/10 ^^U []$\OT1/cmr/m/n/10 , $\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 T \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0$ such that $[] = []  =[]\OMS/cmsy/m/n/10 )  []$\OT1/cmr/m/n/10 .
  []
 
-[13]
-<Figures/PCF_potential.jpg, id=70, 1124.2pt x 843.15pt>
+<Figures/PCF_potential.jpg, id=66, 1124.2pt x 843.15pt>
 File: Figures/PCF_potential.jpg Graphic file (type jpg)
 <use Figures/PCF_potential.jpg>
-Package pdftex.def Info: Figures/PCF_potential.jpg  used on input line 799.
+Package pdftex.def Info: Figures/PCF_potential.jpg  used on input line 805.
 (pdftex.def)             Requested size: 195.12767pt x 146.3441pt.
-<Figures/PCF_q.jpg, id=71, 1124.2pt x 843.15pt>
+<Figures/PCF_q.jpg, id=67, 1124.2pt x 843.15pt>
 File: Figures/PCF_q.jpg Graphic file (type jpg)
 <use Figures/PCF_q.jpg>
-Package pdftex.def Info: Figures/PCF_q.jpg  used on input line 805.
+Package pdftex.def Info: Figures/PCF_q.jpg  used on input line 811.
 (pdftex.def)             Requested size: 195.12767pt x 146.3441pt.
- [14 <./Figures/PCF_potential.jpg> <./Figures/PCF_q.jpg>] [15] [16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 1147--1153
+[13] [14 <./Figures/PCF_potential.jpg> <./Figures/PCF_q.jpg>] [15] [16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 1153--1159
 
  []
 
 [18]
-Overfull \hbox (7.26971pt too wide) detected at line 1208
+Overfull \hbox (7.26971pt too wide) detected at line 1214
 []
  []
 
@@ -404,34 +428,34 @@ Overfull \hbox (7.26971pt too wide) detected at line 1208
 <Figures/ECF_potential_ECF.jpg, id=92, 1124.2pt x 843.15pt>
 File: Figures/ECF_potential_ECF.jpg Graphic file (type jpg)
 <use Figures/ECF_potential_ECF.jpg>
-Package pdftex.def Info: Figures/ECF_potential_ECF.jpg  used on input line 1227.
+Package pdftex.def Info: Figures/ECF_potential_ECF.jpg  used on input line 1233.
 (pdftex.def)             Requested size: 195.12767pt x 146.3441pt.
 <Figures/ECF_q.jpg, id=93, 1124.2pt x 843.15pt>
 File: Figures/ECF_q.jpg Graphic file (type jpg)
 <use Figures/ECF_q.jpg>
-Package pdftex.def Info: Figures/ECF_q.jpg  used on input line 1233.
+Package pdftex.def Info: Figures/ECF_q.jpg  used on input line 1239.
 (pdftex.def)             Requested size: 195.12767pt x 146.3441pt.
-LaTeX Font Info:    Trying to load font information for U+dutchcal on input line 1240.
+LaTeX Font Info:    Trying to load font information for U+dutchcal on input line 1246.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/dutchcal/udutchcal.fd
 File: udutchcal.fd 2011/06/16 Fontinst v1.933 font definitions for U/dutchcal.
-) [20] (./hybridGES.bbl) [21 <./Figures/ECF_potential_ECF.jpg> <./Figures/ECF_q.jpg>] [22] (./hybridGES.aux)
+) (./hybridGES.bbl [20 <./Figures/ECF_potential_ECF.jpg> <./Figures/ECF_q.jpg>]) [21] (./hybridGES.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6834 strings out of 476097
- 112472 string characters out of 5791132
- 1883851 words of memory out of 5000000
- 27118 multiletter control sequences out of 15000+600000
+ 6836 strings out of 476097
+ 112484 string characters out of 5791132
+ 1884851 words of memory out of 5000000
+ 27120 multiletter control sequences out of 15000+600000
  526203 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,19n,63p,1796b,425s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,19n,63p,1497b,425s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/dutchcal/DutchCalReg.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on hybridGES.pdf (22 pages, 600725 bytes).
+Output written on hybridGES.pdf (21 pages, 601793 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+ 218 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

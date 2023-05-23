@@ -31,6 +31,7 @@
 \newcommand{\SOthree}{\mathbb{SO}(3)}
 \newcommand{\sotwo}{\mathfrak{so}(2)}
 \newcommand{\sothree}{\mathfrak{so}(3)}
+\newcommand{\axis}[1]{\text{axis}(#1)}
 \newcommand{\R}[1]{\mathbb{R}^{#1}}
 \newcommand{\dotR}{\dot{R}}
 \newcommand{\Omegay}{\Omega^y}
@@ -95,9 +96,9 @@ For any vector $v = \textblue{(v_1, v_2, v_3)^\top}\in\R{3}$, we define the \tex
         -v_2 && v_1 && 0
     \end{bmatrix}
 \end{align}
-The inverse map is defined by $\text{vex} : \sothree \to \R{3}$, $\cross{v} \mapsto \vex{\cross{v}}\coloneqq v$. \textblue{For} any matrix $A\in \R{3\times 3}$, its skew symmetric projection is given by $\mathbb{P}_a(A) \coloneqq (A - A^\top)/2$, and its symmetric projection is given by $\mathbb{P}_s(A) \coloneqq (A + A^\top)/2$. Any rotation matrix $R\in\SOthree$ can be expressed as a rotation about an axis $v\in\mathbb{S}^2$ by an angle $\theta\in\R{}$. Consider the function $\mathcal{R}:\R{}\times \mathbb{S}^2 \to \SOthree$, $(\theta, v)\mapsto \mathcal{R}(\theta, v)\coloneqq I + \cross{v}\sin\theta  + \cross{v}^2(1 - \cos{\theta})$. Now, $\mathcal{R}(\theta, v)$ represent a rotation about the axis $v$ by an angle of $\theta$ in the \textblue{counterclockwise} direction. We see that $\mathcal{R}(\theta, v) = \exp{\brackets{\theta\cross{v}}}$, where $\exp$ is the exponential map that maps values from the Lie algebra $\sothree$ to $\SOthree$. The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. For matrix Lie groups, we have $\dualpairing{A}{B} = \trace{A^\top B}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. 
+The inverse map is defined by $\text{vex} : \sothree \to \R{3}$, $\cross{v} \mapsto \vex{\cross{v}}\coloneqq v$. \textblue{For} any matrix $A\in \R{3\times 3}$, its skew symmetric projection is given by $\mathbb{P}_a(A) \coloneqq (A - A^\top)/2$, and its symmetric projection is given by $\mathbb{P}_s(A) \coloneqq (A + A^\top)/2$. Any rotation matrix $R\in\SOthree$ can be expressed as a rotation about an axis $v\in\mathbb{S}^2$ by an angle $\theta\in\R{}$. Consider the function $\mathcal{R}:\R{}\times \mathbb{S}^2 \to \SOthree$, $(\theta, v)\mapsto \mathcal{R}(\theta, v)\coloneqq I + \cross{v}\sin\theta  + \cross{v}^2(1 - \cos{\theta})$ that represents a rotation about the axis $v$ by an angle of $\theta$ in the \textblue{counterclockwise} direction. \textblue{Next, we define the function $\text{axis} : \SOthree\to \mathbb{S}^2$, $\mathcal{R}(\theta, v)\mapsto \axis{\mathcal{R}(\theta, v)} \coloneqq v$ where $\theta\in [0,\pi]$.}
 
-The inner product on the space of \textblue{real-valued} matrices is given by the Frobenius inner product $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$ for any $A, B\in\R{m\times n}$.
+The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. For matrix Lie groups, we have $\dualpairing{A}{B} = \trace{A^\top B}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. The inner product on the space of \textblue{real-valued} matrices is given by the Frobenius inner product $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$ for any $A, B\in\R{m\times n}$.
 
 \begin{definition}[Distance metric on $\SOthree$]\label{def:dist_metric}
 The distance between two points $x,y\in\SOthree$ is given by a function $d: \SOthree\times\SOthree\to \R{}$, $(x,y)\mapsto d(x,y)$, where the following \textblue{hold:}
@@ -443,32 +444,37 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
     C_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
     D_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
     D_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
-    B_0 &\coloneqq \SOthree\\
-    B_1 &\coloneqq 
+    \mathcal{B} &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + c^2 \normSOthree{\Rstar}^2} \right\rvert > \delta\right\}}
 \end{align}
 \end{subequations}
+where $c\coloneqq r^\top \axis{R^y\hat{R}^\top}$ and $r = \axis{\Rstar}$. Note that, using Remark \ref{remark:axis}, $\axis{R^y\hat{R}} = \hat{R}\axis{\Rtilde^y}$
 
 %  The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay)\in \SOthree\times \SOthree \times \R{3}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
 % The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay, r)\in \SOthree\times \SOthree \times \R{3}\in \mathbb{S}^2$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. The term $r$ in the input represents the axis of rotation of $\Rstar$, i.e. $\Rstar = \mathcal{R}(\cos^{-1}(1 - 2\normSOthree{\Rstar}^2), r)$. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
-The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The hybrid observer, denoted by $\mathcal{H}_{PCF}$, has the state $x \coloneqq (\hat{R}, q, r) \in \SOthree \times Q \times \mathbb{S}^2$ where $Q\coloneqq \{0,1\}$, the input $v \coloneqq (R^y, \Omega^y)\in \SOthree\times \R{3}$ and the output $\zeta \coloneqq \hat{R}$. Note that $r\in\mathbb{S}^2$ denotes the axis of rotation of $\Rstar$. The data of the hybrid observer is now given in \eqref{eq:hybrid_PCF}. 
+The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The hybrid observer, denoted by $\mathcal{H}_{PCF}$, has the state $x \coloneqq (\hat{R}, q, r) \in \SOthree \times Q \times \mathbb{S}^2$ where $Q\coloneqq \{0,1\}$, the input $v \coloneqq (R^y, \Omega^y)\in \SOthree\times \R{3}$ and the output $\zeta \coloneqq \hat{R}$. Note that $r\in\mathbb{S}^2$ denotes the axis of rotation of $\Rstar$. Define $\gamma_i(x, v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde^y)$, $\omega_1 \coloneqq \omega(\Rtilde_1^y)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data of the hybrid observer $\mathcal{H}_{PCF} = (\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta)$ is now given in \eqref{eq:hybrid_PCF}. 
 
 \begin{subequations}\label{eq:hybrid_PCF}
 \begin{align} 
     \hat{C} &= \bigcup_{q\in Q}\brackets{\hat{C}_{q}\times q}, \quad \begin{cases}
         \hat{C}_{0} \coloneqq C_0\\
-        \hat{C}_{1} \coloneqq C_1
+        \hat{C}_{1} \coloneqq C_1 \cap \mathcal{B}
     \end{cases}\\
-    \hat{F}(q, v) &= 0\\
+    \hat{F}(x, v) &= \begin{pmatrix}
+        \hat{R}f(x,v), \:\: 0, \:\: 0
+    \end{pmatrix}\label{eq:13b}\\
     \hat{D} &= \bigcup_{q\in Q} \brackets{\hat{D}_{q}\times q}, \quad \begin{cases}
         \hat{D}_{0} \coloneqq D_0\\
-        \hat{D}_{1} \coloneqq D_1
+        \hat{D}_{1} \coloneqq D_1 \cap (\SOthree \backslash \mathcal{B})
     \end{cases}\\
-    \hat{G}(q, v) &= 1 - q \\
-    \zeta &= f(q,v)\coloneqq (\underbrace{q\gamma_1(v) + (1-q)\gamma_0(v)}_\text{$f_1(q, v)$}, \underbrace{q}_\text{$f_2(q,v)$}) \label{eq:output_hybrid}
+    \hat{G}(x, v) &= \begin{pmatrix}
+        \hat{R}, \:\: 1-q,\:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top y)^2 - (r^\top y)^2\right)^2
+    \end{pmatrix}\\
+    \zeta &= f(x,v)\coloneqq \hat{R} \label{eq:output_hybrid}
 \end{align}
 \end{subequations}
+where $f(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$. 
 
 % \begin{align}
 %     C_K &= \textblue{C_0 \cup C_1}\\
@@ -479,10 +485,10 @@ The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region
 % \end{align}
 
 
-Using the above hybrid observer, the estimates are updated as 
-\begin{align} \label{eq:observer_final}
-\underbrace{\dot{\hat{R}} = \hat{R} f_1(q, v), \quad \dot{q} = 0, \quad \dot{r}=0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\textblue{\hat{R}^+ = \hat{R}}, \quad q^+ = 1 - q, \quad r^+ = \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}((u^\top y)^2 - (r^\top y)^2)^2}_\text{during jumps}
-\end{align}
+% Using the above hybrid observer, the estimates are updated as 
+% \begin{align} \label{eq:observer_final}
+% \underbrace{\dot{\hat{R}} = \hat{R} f_1(q, v), \quad \dot{q} = 0, \quad \dot{r}=0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\textblue{\hat{R}^+ = \hat{R}}, \quad q^+ = 1 - q, \quad r^+ = \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}((u^\top y)^2 - (r^\top y)^2)^2}_\text{during jumps}
+% \end{align}
 
 \textbf{Working of the hybrid observer: } Let $(t_0, j_0)\in \dom \Rtilde$. If ${(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_0\times \{0\}$, the system flows. The observer in Theorem \ref{thm:mahony} is used and  $\Rtilde(t, j_0)$ converges to $R(t)$, for $t\geq t_0$ without any jumps in $q$ . Since $D_1\times \{0\}\subset C_0\times \{0\}$, this analysis also applies to the other case when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{0\}$. Next, if $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{1\}$, a jump is triggered causing $(\Rtilde(t_0, j_0+1), q(t_0, j_0+1))\in C_0\times \{0\}$ which has been analysed already. On the other hand, when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in C_1\times \{1\}$, we resort to the observer in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while ${\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>t_0$ such that ${\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the switch to ${(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0\times \{0\}$. If ${(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0\times \{0\}$, this triggers a jump such that ${(\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1))}\in C_1 \times \{1\}$ which we have analyzed already.
 
@@ -901,7 +907,7 @@ Consider the system in \eqref{eq:rotationKinematics} with the measurement model 
     \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + k_p\omega_{mes}(\hat{R}, \mathbf{b}. \mathbf{r})}_\times, \quad \hat{R}(0) = \hat{R}_0\\
     \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})&\coloneqq \sum_{i=1}^n k_i \left[b_i\times (\hat{R}^\top r_i)\right],\quad k_i> 0 \text{ for } i=1,...,n
 \end{alignat}
-where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$ and let $t\mapsto \hat{R}(t)$ denote the solution to \eqref{eq:explicitMahony}. Consider the left invariant estimation error $\Rtilde\coloneqq \hat{R}^TR$. Assume that $\Omega(t)$ is a bounded, absolutely continuous function and the pair $(\Omega(t), \Rtilde(t))$ are asymptotically independent. Then:
+where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$ and let $t\mapsto \hat{R}(t)$ denote the solution to \eqref{eq:explicitMahony}. Consider the left invariant estimation error $\Rtilde\coloneqq \hat{R}^\top R$. Assume that $\Omega(t)$ is a bounded, absolutely continuous function and the pair $(\Omega(t), \Rtilde(t))$ are asymptotically independent. Then:
 \begin{enumerate}
     \item There are three unstable equilibria of the filter characterized by
     \begin{align*}
@@ -909,7 +915,7 @@ where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^
     \end{align*}
     where $D_i = \texttt{diag}(1,-1,-1)$, $D_2 = \texttt{diag}(-1,1,-1)$ and $D_3=\texttt{diag}(-1,-1,1)$, and $U_0\in\SOthree$ such that $M_0 = U_0\Lambda U_0^\top $ (where $M_0$ is defined in Assumption \ref{assumption:distinctEigOfM0}) and $\Lambda = \texttt{diag}(\lambda_1, \lambda_2, \lambda_3)$ is the diagonal matrix of distinct eigenvalues of $M_0$. \label{item:a-mahony-ecf}
     \item The set $\{I\}$ is locally exponentially stable for $\Rtilde$ dynamics. \label{item:b-mahony-ecf}
-    \item For almost all initial conditions $\Tilde{R}_0\neq \hat{R}^\top _{*i}R(0), i=1,2,3$, $\hat{R}(t)$ converges to $R(t)$, and for each positive $k$ such that $0 < k < 1-\xi$ where $\xi \coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^n k_i(u^Tr_i)^2$ and $\normSOthree{\Rtilde^y(0)}\leq k$, every solution $t\mapsto \Rtilde(t)$ to the observer error dynamics satisfies \label{item:c-mahony-ecf}
+    \item For almost all initial conditions $\Tilde{R}_0\neq \hat{R}^\top _{*i}R(0), i=1,2,3$, $\hat{R}(t)$ converges to $R(t)$, and for each positive $k$ such that $0 < k < 1-\xi$ where $\xi \coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^n k_i(u^\top r_i)^2$ and $\normSOthree{\Rtilde^y(0)}\leq k$, every solution $t\mapsto \Rtilde(t)$ to the observer error dynamics satisfies \label{item:c-mahony-ecf}
     \begin{align} \label{eq:localExpStability_ECF}
     \normSOthree{\Rtilde(t)}\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)}\quad \forall t\in\dom\Rtilde.
 \end{align}
