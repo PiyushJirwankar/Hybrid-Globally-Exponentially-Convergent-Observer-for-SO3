@@ -444,30 +444,26 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
     C_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
     D_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
     D_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
-    \mathcal{B} &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + c^2 \normSOthree{\Rstar}^2} \right\rvert > \delta\right\}}
+    \mathcal{B} &\coloneqq \textblue{\left\{r \in \mathbb{S}^2 \mid \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{r^\top \hat{R}\axis{\Rtilde^y}}^2 \normSOthree{\Rstar}^2} \right\rvert > \delta;  {\Rtilde^y}, {\hat{R}},\in\SOthree, \normSOthree{\Rstar} \in \R{}_{\geq 0}\right\}}
 \end{align}
 \end{subequations}
-where $c\coloneqq r^\top \axis{R^y\hat{R}^\top}$ and $r = \axis{\Rstar}$. Note that, using Remark \ref{remark:axis}, $\axis{R^y\hat{R}} = \hat{R}\axis{\Rtilde^y}$
 
 %  The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay)\in \SOthree\times \SOthree \times \R{3}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
 % The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, R^y, \Omegay, r)\in \SOthree\times \SOthree \times \R{3}\in \mathbb{S}^2$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:output_hybrid}. The term $r$ in the input represents the axis of rotation of $\Rstar$, i.e. $\Rstar = \mathcal{R}(\cos^{-1}(1 - 2\normSOthree{\Rstar}^2), r)$. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde)$, $\omega_1 \coloneqq \omega(\Rtilde_1)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_1 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
-The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region. The hybrid observer, denoted by $\mathcal{H}_{PCF}$, has the state $x \coloneqq (\hat{R}, q, r) \in \SOthree \times Q \times \mathbb{S}^2$ where $Q\coloneqq \{0,1\}$, the input $v \coloneqq (R^y, \Omega^y)\in \SOthree\times \R{3}$ and the output $\zeta \coloneqq \hat{R}$. Note that $r\in\mathbb{S}^2$ denotes the axis of rotation of $\Rstar$. Define $\gamma_i(x, v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde^y)$, $\omega_1 \coloneqq \omega(\Rtilde_1^y)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data of the hybrid observer $\mathcal{H}_{PCF} = (\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta)$ is now given in \eqref{eq:hybrid_PCF}. 
+The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region on $\SOthree$. The hybrid observer, denoted by $\hat{\mathcal{H}}_{PCF}$, has the state $x \coloneqq (\hat{R}, q, r) \in \SOthree \times Q \times \mathbb{S}^2$ where $Q\coloneqq \{0,1\}$, the input $v \coloneqq (R^y, \Omega^y)\in \SOthree\times \R{3}$ and the output $\zeta \coloneqq \hat{R}$. Note that $r\in\mathbb{S}^2$ denotes the axis of rotation of $\Rstar$. Define $\gamma_i(x, v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=0,1$ where $\omega_0 \coloneqq \omega(\Rtilde^y)$, $\omega_1 \coloneqq \omega(\Rtilde_1^y)$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data of the hybrid observer $\mathcal{H}_{PCF} = (\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta)$ is now given in \eqref{eq:hybrid_PCF}. 
 
 \begin{subequations}\label{eq:hybrid_PCF}
 \begin{align} 
-    \hat{C} &= \bigcup_{q\in Q}\brackets{\hat{C}_{q}\times q}, \quad \begin{cases}
-        \hat{C}_{0} \coloneqq C_0\\
-        \hat{C}_{1} \coloneqq C_1 \cap \mathcal{B}
+    \hat{C} &= \bigcup_{q\in Q}\brackets{{C}_{q}\times q \times \hat{A}_q}, \quad \begin{cases}
+        \hat{A}_0 \coloneqq \mathbb{S}^2\\
+        \hat{A}_1 \coloneqq \overline{\mathcal{B}}
     \end{cases}\\
     \hat{F}(x, v) &= \begin{pmatrix}
         \hat{R}h(x,v), \:\: 0, \:\: 0
     \end{pmatrix}\label{eq:13b}\\
-    \hat{D} &= \bigcup_{q\in Q} \brackets{\hat{D}_{q}\times q}, \quad \begin{cases}
-        \hat{D}_{0} \coloneqq D_0\\
-        \hat{D}_{1} \coloneqq D_1 \cap (\SOthree \backslash \mathcal{B})
-    \end{cases}\\
+    \hat{D} &= \brackets{C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})} \bigcup_{q\in Q} \brackets{{D}_{q}\times q\times \mathbb{S}^2}\\
     \hat{G}(x, v) &= \begin{pmatrix}
         \hat{R}, \:\: 1-q,\:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top y)^2 - (r^\top y)^2\right)^2
     \end{pmatrix}\\
@@ -490,7 +486,7 @@ where $h(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$.
 % \underbrace{\dot{\hat{R}} = \hat{R} f_1(q, v), \quad \dot{q} = 0, \quad \dot{r}=0}_{\text{during flows}}, \quad \text{ and}\quad  \underbrace{\textblue{\hat{R}^+ = \hat{R}}, \quad q^+ = 1 - q, \quad r^+ = \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}((u^\top y)^2 - (r^\top y)^2)^2}_\text{during jumps}
 % \end{align}
 
-\textbf{Working of the hybrid observer: } Let $(t_0, j_0)\in \dom \Rtilde$. If ${(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_0\times \{0\}$, the system flows. The observer in Theorem \ref{thm:mahony} is used and  $\Rtilde(t, j_0)$ converges to $R(t)$, for $t\geq t_0$ without any jumps in $q$ . Since $D_1\times \{0\}\subset C_0\times \{0\}$, this analysis also applies to the other case when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{0\}$. Next, if $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{1\}$, a jump is triggered causing $(\Rtilde(t_0, j_0+1), q(t_0, j_0+1))\in C_0\times \{0\}$ which has been analysed already. On the other hand, when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in C_1\times \{1\}$, we resort to the observer in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while ${\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>t_0$ such that ${\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the switch to ${(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0\times \{0\}$. If ${(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0\times \{0\}$, this triggers a jump such that ${(\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1))}\in C_1 \times \{1\}$ which we have analyzed already.
+% \textbf{Working of the hybrid observer: } Let $(t_0, j_0)\in \dom \Rtilde$. If ${(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_0\times \{0\}$, the system flows. The observer in Theorem \ref{thm:mahony} is used and  $\Rtilde(t, j_0)$ converges to $R(t)$, for $t\geq t_0$ without any jumps in $q$ . Since $D_1\times \{0\}\subset C_0\times \{0\}$, this analysis also applies to the other case when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{0\}$. Next, if $(\Rtilde(t_0, j_0), q(t_0, j_0))\in D_1\times \{1\}$, a jump is triggered causing $(\Rtilde(t_0, j_0+1), q(t_0, j_0+1))\in C_0\times \{0\}$ which has been analysed already. On the other hand, when $(\Rtilde(t_0, j_0), q(t_0, j_0))\in C_1\times \{1\}$, we resort to the observer in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while ${\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>t_0$ such that ${\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the switch to ${(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0\times \{0\}$. If ${(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0\times \{0\}$, this triggers a jump such that ${(\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1))}\in C_1 \times \{1\}$ which we have analyzed already.
 
 
 % is in the basin of attraction for the observer in Theorem \ref{thm:mahony}, we set the discrete mode to $q=0$ and employ the observer in \eqref{eq:observer} for $t>t_0$. Considering the other case when \cancel{\textcolor{red}{$q(t_0,j_0)=1$ and}} $\textblue{(\Rtilde(t_0,j_0), q(t_0,j_0))}\in D_1$, we have $\textblue{(\Rtilde(t_0,j_0+1), q(t_0, j_0+1))}\in C_0$\cancel{\textcolor{red}{, $q(t_0, j_0+1)=0$}} and we again resort to the observer in \eqref{eq:observer}. On the other hand, when $\textblue{(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_1$, we resort to the observer given in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while $\textblue{\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>0$ such that $\textblue{\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the \cancel{\textcolor{red}{state to}} switch to $\textblue{(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0$ \cancel{\textcolor{red}{and $q(t_0+T,j_0+1) = 0$}}. If $\textblue{(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0$, this triggers a jump such that \cancel{\textcolor{red}{$q=1$ and}} $\textblue{\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1)}\in C_1$ which we have analyzed already.
@@ -500,19 +496,19 @@ where $h(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$.
 
 % since $\Rtilde$ is in the basin of attraction for the observer in Theorem \ref{thm:mahony} and the , we set the discrete mode to $q=0$ and employ the observer in \eqref{eq:observer} for $t>t_0$. Considering the other case when \cancel{\textcolor{red}{$q(t_0,j_0)=1$ and}} $\textblue{(\Rtilde(t_0,j_0), q(t_0,j_0))}\in D_1$, we have $\textblue{(\Rtilde(t_0,j_0+1), q(t_0, j_0+1))}\in C_0$\cancel{\textcolor{red}{, $q(t_0, j_0+1)=0$}} and we again resort to the observer in \eqref{eq:observer}. On the other hand, when $\textblue{(\Rtilde(t_0,j_0), q(t_0, j_0))}\in C_1$, we resort to the observer given in \eqref{eq:unstable_observer} such that the observer error $\Rtilde$ tracks a constant rotation $R^*$ that is defined such that $\normSOthree{R^*} < c_1$. This ensures that while $\textblue{\normSOthree{\Rtilde(t,j_0)} < c_1}$ with $t\geq t_0$ and is tracking $R^*$, there exists a finite $T>0$ such that $\textblue{\normSOthree{\Rtilde(t_0 + T,j_0)} = c_1}$ which causes the \cancel{\textcolor{red}{state to}} switch to $\textblue{(\Rtilde(t_0 + T, j_0 + 1), q(t_0 + T, j_0 + 1))}\in C_0$ \cancel{\textcolor{red}{and $q(t_0+T,j_0+1) = 0$}}. If $\textblue{(\Rtilde(t_0, j_0), q(t_0, j_0))}\in D_0$, this triggers a jump such that \cancel{\textcolor{red}{$q=1$ and}} $\textblue{\Rtilde(t_0, j_0 + 1), q(t_0,, j_0+1)}\in C_1$ which we have analyzed already.
 
-Consider the hybrid system $\mathcal{H}_{PCF} = (C, F, G, D)$ that represents the observer error, with the states $\eta \coloneqq (\Rtilde, q) \in \SOthree\times Q$ and inputs $\rho \coloneqq (\hat{R}, R^y, \Omegay, \Omega)\in\SOthree\times\SOthree\times \R{3}\times \R{3}$ has the following data
+Consider the observer error dynamics, represented by the hybrid system $\tilde{\mathcal{H}}_{PCF} = (\tilde{C}, \tilde{F}, \tilde{G}, \tilde{D})$, with the states $z \coloneqq (\Rtilde, q, r) \in \SOthree\times Q \times \mathbb{S}^2$ and inputs\footnote{\textblue{input depends on $\hat{R}$ because the term `$y$' in the jump map depends on $\hat{R}$ and $\Rtilde$.}} $\rho \coloneqq (\hat{R}, \Omega)\in\SOthree\times \R{3}$ has the following data
 \begin{subequations}\label{eq:hybrid_observer_error}
 \begin{align}
-C&\coloneqq \hat{C}\\
-F(\eta, \rho)&\coloneqq \begin{bmatrix}
-    \Rtilde\brackets{\Rtilde^\top f_1(q, v)^\top \Rtilde + \Omega_\times}\\ 0\end{bmatrix} \label{eq:Rtilde_dot}\\
-D &\coloneqq \hat{D}\\
-G(\eta, \rho) &\coloneqq \begin{bmatrix}
-\Rtilde \\ 1 - q
-\end{bmatrix}
+\tilde{C}& = \hat{C}\\
+\tilde{F}(z, \rho)& = \begin{pmatrix}
+    \Rtilde\brackets{-\Rtilde^\top h(x, v) \Rtilde + \Omega_\times}, \:\: 0, \:\: 0\end{pmatrix} \label{eq:Rtilde_dot}\\
+\tilde{D} &= \hat{D}\\
+\tilde{G}(z, \rho) &= \begin{pmatrix}
+\Rtilde, \:\: 1 - q, \:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top y)^2 - (r^\top y)^2\right)^2
+\end{pmatrix}
 \end{align}
 \end{subequations}
-where $v = (\hat{R}, R^y, \Omegay)$ and \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eqref{eq:observer_final} in $\dot{\Rtilde} = \dot{\hat{R}}^\top R + \hat{R}^\top \dot{R}$. 
+where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eqref{eq:13b} in $\dot{\Rtilde} = \dot{\hat{R}}^\top R + \hat{R}^\top \dot{R}$. 
 
 % \begin{theorem}[Hybrid passive complementary filter]\label{theorem:main}
 
@@ -540,72 +536,67 @@ where $v = (\hat{R}, R^y, \Omegay)$ and \eqref{eq:Rtilde_dot} is obtained by sub
 %     \end{theorem}
 
 \begin{theorem}[Hybrid passive complementary filter]\label{theorem:main}
-    Given the system \eqref{eq:rotationKinematics}, and consider the set $\textblue{\mathcal{A}\coloneqq \{I\}\times \{0\} \subset \SOthree\times Q}$. Assume that $\Omega(t)$ is a bounded and absolutely continuous signal. If there exist positive constants \textblue{$k_p$, $\overline{k_p}$}, $c_0$, $c_1$ and a fixed $R^*\in\SOthree$ such that %$0 < \normSOthree{\Rstar} < c_1 < c_0 < 1$ and the following hold:
+    Let $\textblue{\mathcal{A}\coloneqq \{I\}\times \{0\}\times \mathbb{S}^2 \subset \SOthree\times Q\times \mathbb{S}^2}$. Assume that Assumption \ref{ass:no_meas_noise} holds and $\Omega(t)$ is a bounded and absolutely continuous signal. If there exist positive constants \textblue{$k_p$, $\overline{k_p}$}, $c_0$, $c_1$ and  $\theta^*\in \R{}$, with $\normSOthree{\Rstar}\coloneqq (1-\cos\theta^*)/2$, such that 
         \begin{enumerate}[(a)]
         \item $0 < \normSOthree{\Rstar} < c_1 < c_0 < 1$,\label{item:a-bullet}
-        % \item $2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1$,
-        % % \begin{align*}
-        % %     2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1,
-        % % \end{align*}
-        % \item $e_0 < \normSOthree{R^*} < f_0$, \label{item:c-bullet}
-        \item {${v}^\top \hat{R}(0,0)x\neq 0$ where $x$ and $v$ are the axis of rotation of $\Rtilde^y(0,0)$ and $R^*$ respectively}, \label{item:b-bullet}
-        % \item $1 - \normSOthree{\Rstar} \leq d_0 < 1$, \label{item:e-bullet}
+        \item $1 - \normSOthree{\Rstar}- \sqrt{\frac{1}{c_1}-1} > 0$, \label{item:b-bullet}
         \end{enumerate}
     \begingroup
     \renewcommand\labelenumi{(\theenumi)}
     then
     \begin{enumerate}
-        \item \label{(1)}The hybrid observer error system $\mathcal{H}_{PCF} = (C, F, D, G)$ with data \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions.
-        \item \label{(2)}Every maximal solution to $\mathcal{H}_{PCF}$ from $C\cup D$ is complete.
-        \item \label{(3)} Every maximal solution to $\mathcal{H}_{PCF}$ exhibits no more than 2 jumps. 
-        \item \label{(4)}The set $\mathcal{A}$ is globally \textcolor{red}{asymptotically} stable \textcolor{red}{and locally exponentially stable }for $\mathcal{H}_{PCF}$. 
+        \item \label{(1)}The hybrid observer error system $\tilde{\mathcal{H}}_{PCF} = (\tilde{C}, \tilde{F}, \tilde{D}, \tilde{G})$ with data \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions.
+        \item \label{(2)}Every maximal solution to $\tilde{\mathcal{H}}_{PCF}$ from $\tilde{C}\cup \tilde{D}$ is complete.
+        \item \label{(3)} Every maximal solution to $\tilde{\mathcal{H}}_{PCF}$ exhibits no more than 2 jumps. 
+        \item \label{(4)}The set $\mathcal{A}$ is globally \textcolor{red}{exponentially} stable for $\tilde{\mathcal{H}}_{PCF}$. 
     \end{enumerate}
     \endgroup
     \end{theorem}
 
     \begin{proof}
-         Since $C_0, C_1, D_0, D_1$ are closed subsets of ${\SOthree\times Q}$ and the maps $F$ and $G$ are single valued and continuous on $C$ and $D$ respectively , \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions. This proves $\eqref{(1)}$. Next, using Proposition 6.10 from  \cite{hybridDynamicalSystems}, the proof of $\eqref{(2)}$ is complete. 
+         Since $\tilde{C}, \tilde{D}$ are closed subsets of ${\SOthree\times Q \times \mathbb{S}^2}$ and the maps $\tilde{F}$ and $\tilde{G}$ are single valued and continuous on $\tilde{C}$ and $\tilde{D}$ respectively, \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions. This proves $\eqref{(1)}$. Next, \cite[Proposition 6.10]{hybridDynamicalSystems} completes the proof of $\eqref{(2)}$. 
     
  % We note that when $\Rtilde(0,0) = I$ and $q(0,0) = 0$, $(\Rtilde(0,0), q(0,0)) \in \mathcal{A}$. If $(\Rtilde(0,0), q(0,0)) = (I, 1) \in D_1\times \{1\}$, using the jump map, we have that $(\Rtilde(0,1), q(0,1)) \in\mathcal{A}$. Thus, it suffices to show that the set $\mathcal{A}_1 \coloneqq
  %  \{I\}\times \{q\} \subset \SOthree\times Q$ for any $q\in Q$ is globally exponentially stable for $\mathcal{H}$. 
   We prove the globally exponentially stability of $\mathcal{A}$ to \eqref{eq:hybrid_observer_error} by considering all four cases where $\Rtilde^y(0,0)$ can lie. 
 
-\textbf{Case 1}: ${(\Rtilde^y(0,0), q(0,0))} \in C_0\times \{0\}$. The local exponential stability for this case is evident using \eqref{eq:localExponentialStability} as follows:
+\textbf{Case 1}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))} \in C_0\times \{0\}\times\mathbb{S}^2$. The local exponential stability for this case is evident using \eqref{eq:localExponentialStability} as follows:
 \begin{align}\label{eq:C0bounds}
-    \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-c_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j) \in \dom\Rtilde.
+    \normSOthree{\Rtilde(t,0)} &\leq \expo{-k_p(1-c_0^2)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j) \in \dom\Rtilde.
 \end{align}
 
-    \textbf{Case 2}: ${(\Rtilde^y(0,0), q(0,0))}\in D_1\times\{1\}$. Since the initialization is in the jump set, the state jumps once which results in ${(\Rtilde(0,1), q(0,1))}\in C_0\times \{0\}$. Now we refer to Case 1 for further analysis. Further, due to the jump map definition in \eqref{eq:observer_final}, $\normSOthree{\Rtilde(t,j)}$ does not change with jumps.
+    \textbf{Case 2}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in D_1\times\{1\}\times\mathbb{S}^2$. Since the initialization is in the jump set, the state jumps once which results in ${(\Rtilde(0,1), q(0,1))}\in C_0\times \{0\}$. Now we refer to Case 1 for further analysis. Further, due to the jump map definition in \eqref{eq:observer_final}, $\normSOthree{\Rtilde(t,j)}$ does not change with jumps.
 
     \textbf{Case 3}: ${(\Rtilde^y(0,0), q(0,0))}\in D_0\times\{0\}$. Similar to Case 2, the initialization is in the jump set resulting in one jump and ${(\Rtilde(0,1), q(0,1))}\in C_1\times\{0\}$. We refer to Case 4 for further analysis.
 
 \textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. From Lemma \ref{lemma:normOfProduct}, we see that when  $\normSOthree{\Rtilde(0,0)}=1 \implies \normSOthree{\Rtilde_1(0,0)} = 1 - (v^\top w)^2\normSOthree{\Rstar}$, where $v, w\in\mathbb{S}^2$ are the axis of rotation corresponding to $\Rstar$ and $\hat{R}(0,0)R(0,0)^\top $ respectively. From Theorem \ref{thm:mahony}, the unstable set for $\Rtilde_1$ dynamics is the set $\mathbb{U}_0$. By definition of $\Rstar$, we have $\normSOthree{\Rstar} > 0$. Thus, $v^\top w \neq 0 \implies \normSOthree{\Rtilde_1(0,0)} \neq 1$. Using Remark \ref{remark:axis}, we get $w = \hat{R}(0,0)x$ which is the condition \ref{item:b-bullet}. This ensures that there is no initial condition that renders $\mathbb{U}_0\times Q$ forward invariant with respect to \eqref{eq:hybrid_observer_error}. Next, there exists a positive scalar $d_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$. Considering a Lyapunov function $V(\Rtilde_1) = \normSOthree{\Rtilde_1}$ for the rotated observer in \eqref{eq:unstable_observer}, following \eqref{eq:localExponentialStability}, we have that when $\normSOthree{\Rtilde_1(0,0)} \leq d_0$, every solution $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated error dynamics $\Rtilde_1$  satisfies
 
 \begin{align}\label{eq:R1tilde_exponentialconvergence}
-    \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde_1(0,0)} \quad \forall t < T \text{ and } t\in \dom \Rtilde_1
+    \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde_1(0,0)} \quad \forall t < T \text{ and } (t,j)\in \dom \Rtilde_1
 \end{align}
 and $T > 0$ is such that $(\Rtilde(T,0), q(T,0))\in D_1\times \{1\}$. We now wish to find upper and lower bounds on $\normSOthree{\Rtilde_1(t,0)}$ in terms of $\normSOthree{\Rtilde(t,0)}$ to prove that the estimation error $\normSOthree{\Rtilde}$ exponentially decreases. Firstly, we see that $\normSOthree{\hat{R}^\top \Rstar R} = \normSOthree{\Rstar R\hat{R}^\top }$ and $\normSOthree{R\hat{R}^\top } = \normSOthree{\Rtilde}$. Let $\Rstar = \mathcal{R}(\theta^*, v)$ and $R\hat{R}^\top  = \mathcal{R}(\Tilde{\theta}, w)$. Now, using Lemma \ref{lemma:normOfProduct}, we get 
 
 \begin{align}
     \normSOthree{\Rtilde_1} &= \normSOthree{\Rtilde} + \normSOthree{\Rstar} - \normSOthree{\Rtilde}\normSOthree{\Rstar} + \normSOthree{\Rtilde}\normSOthree{\Rstar}(v^\top w)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}} - v^\top w\right]\nonumber\\
-    &\leq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - \normSOthree{\Rtilde}\normSOthree{\Rstar} + 2\normSOthree{\Rtilde}\normSOthree{\Rstar}(v^\top w)\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}}\nonumber\\
-    \intertext{Since ${(\Rtilde(t,0), q(t,0))}\in C_1\times\{1\}$ for all $t < T$, by construction, $\normSOthree{\Rtilde} \geq c_1$. Furthermore, by definition of $\Rstar$, there exist positive scalars $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Since $e_0 < c_1$ by construction, this also implies that \textcolor{red}{$\normSOthree{\Rtilde(t,0)} < \normSOthree{\Rstar}$} for $t < T$. This leads to the following. }
-    \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - f_0\normSOthree{\Rtilde} + 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\nonumber\\
-    \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde}\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}} \label{eq:R1tilde_upperbound}\\
-    \intertext{It is straightforward to see that $\normSOthree{\Rtilde_1}$ will be the smallest when $v^\top w = -1$. Thus, we have }
-    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar}\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}}\nonumber\\
-    &\geq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - 2e_0\normSOthree{\Rtilde} - 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}} \nonumber\\
-    &\geq \normSOthree{\Rtilde} - 2e_0\normSOthree{\Rtilde} - 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}} \nonumber\\
-    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde}\brackets{1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]} \label{eq:R1tilde_lowerbound}
+    &\leq \normSOthree{\Rtilde} + \normSOthree{\Rtilde} - \normSOthree{\Rtilde}\normSOthree{\Rstar} + 2\normSOthree{\Rtilde}\sqrt{(1 - \normSOthree{\Rstar})(1 - c_1)}\nonumber\\
+    &\leq \normSOthree{\Rtilde}\brackets{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}} \label{eq:R1tilde_upperbound}
+    % \intertext{Since ${(\Rtilde(t,0), q(t,0))}\in C_1\times\{1\}$ for all $t < T$, by construction, $\normSOthree{\Rtilde} \geq c_1$. Furthermore, by definition of $\Rstar$, there exist positive scalars $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Since $e_0 < c_1$ by construction, this also implies that \textcolor{red}{$\normSOthree{\Rtilde(t,0)} < \normSOthree{\Rstar}$} for $t < T$. This leads to the following. }
+    % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - f_0\normSOthree{\Rtilde} + 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\nonumber\\
+    % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde}\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}} \label{eq:R1tilde_upperbound}\\
+    \intertext{For the lowerbound of $\normSOthree{\Rtilde_1}$, it is straightforward to see that $\normSOthree{\Rtilde_1}$ will be the smallest when $v^\top w = -1$. Thus, we have }
+    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde} + \normSOthree{\Rstar}\normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar}\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}}\nonumber\\
+    &\geq \normSOthree{\Rtilde} - \normSOthree{\Rstar}\normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}{\normSOthree{\Rstar}(1 - \normSOthree{\Rstar})}} \nonumber\\
+    &\geq \normSOthree{\Rtilde} - \normSOthree{\Rtilde}\normSOthree{\Rstar} - \normSOthree{\Rtilde}\sqrt{\frac{1}{c_1}-1} \nonumber\\
+    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde}\brackets{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}} \label{eq:R1tilde_lowerbound}
 \end{align}
 Using \eqref{eq:R1tilde_exponentialconvergence}, \eqref{eq:R1tilde_upperbound} and \eqref{eq:R1tilde_lowerbound} results in
 \begin{align}
-    \normSOthree{\Rtilde(t,j)} \leq \frac{\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}}}{\brackets{1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}} \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j)\in \dom \Rtilde
+    \normSOthree{\Rtilde(t,j)} \leq \lambda \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j)\in \dom \Rtilde
 \end{align}
 \begin{flushleft}
 where 
 \begin{align}
-    \lambda &\coloneqq \frac{\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}}}{\brackets{1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}}. \label{eq:lambda}
+    \lambda &\coloneqq {\frac{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}}{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}. \label{eq:lambda}
 \end{align}
 For every ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$, there exists $T > 0$ such that ${(\Rtilde(T,0), q(T,0))}\in D_1\times\{1\}$ which results in one jump and ${(\Rtilde(T,1), q(T,1))}\in C_0\times\{0\}$. This results in
 \end{flushleft}
@@ -699,7 +690,7 @@ where $\noiseatt\in\SOthree$ is the noise in attitude measurements and $\maxnois
 \begin{enumerate}[label={(\Alph*)}]
     \item set $c_0\in(0,1)$ such that $\cobar\coloneqq c_0 + 2\maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}  < 1 $. \label{item-A}
     \item set $c_1\in (0,c_0)$ such that $\overline{c_1} \coloneqq c_1 - \maxnoiseatt - \sqrt{\maxnoiseatt(1-\maxnoiseatt)} > 0$.\label{item-B}
-    \item Set $R^*\in\SOthree$ such that $0 < \normSOthree{R^*} < \overline{c_1}$. \label{item-C}
+    \item Set $\Rstar\in\SOthree$ such that $0 < \normSOthree{\Rstar} < \overline{c_1}$. \label{item-C}
     \item \textcolor{red}{Add the noise bound obtained from \ref{item:d-bullet} of Theorem \ref{theorem:main}}. 
     \item \textcolor{red}{Check if this list of items is exhaustive}. 
 \end{enumerate}
@@ -768,7 +759,7 @@ We analyze the observer given in \eqref{eq:observer_final} assuming ${(\Rtilde^y
     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -2k_p(1-\cobar)\normSOthree{\Rtilde} + \frac{k_p}{{2}}\sqrt{\maxnoiseatt} \nonumber\\
     \implies \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-\cobar)t}\normSOthree{\Rtilde(0,0)} + \frac{1}{4 (1-\cobar)} \sqrt{\maxnoiseatt} \label{eq:ISS_att_c0}
 \end{align}
-Equation \eqref{eq:ISS_att_c0} shows that the observer when ${(\Rtilde^y(0,0), q(0,0))} \in C_0\times\{0\}$ is locally ISS to attitude measurement noise. When ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$, a similar bound can be obtained as written below. {There exists ${d_0} < 1 - \normSOthree{R^*}$} such that the following holds:
+Equation \eqref{eq:ISS_att_c0} shows that the observer when ${(\Rtilde^y(0,0), q(0,0))} \in C_0\times\{0\}$ is locally ISS to attitude measurement noise. When ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$, a similar bound can be obtained as written below. {There exists ${d_0} < 1 - \normSOthree{\Rstar}$} such that the following holds:
 
 \begin{align}\label{eq:ISS_att_c1}
     \normSOthree{\Rtilde_1(t,j)} &\leq \expo{-2\overline{k_p}(1-{d_0})t}\normSOthree{\Rtilde_1(0,j)} + \frac{1}{4 (1-\overline{d_0})} \sqrt{\maxnoiseatt}
@@ -1027,7 +1018,7 @@ In this section, we extend the explicit complementary filter in Theorem \ref{the
 \begin{subequations}\label{eq:unstable_observer_explicit}
 \begin{align}
     \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + \overline{k_p}\omega_{mes}(\hat{R}, \mathbf{b}, {R^{*}}^\top \mathbf{r})}_\times,\quad \hat{R}(0) = \hat{R}_0, \quad\overline{k_p}>0\\
-    \omega_{mes}(\hat{R}, \mathbf{b}, {R^*}^\top \mathbf{r})&\coloneqq \sum_{i=1}^n \overline{k_i} \left[b_i\times (\hat{R}^\top {R^*}^\top r_i)\right],\quad \overline{k_i}> 0, \quad i=1,..., n
+    \omega_{mes}(\hat{R}, \mathbf{b}, {\Rstar}^\top \mathbf{r})&\coloneqq \sum_{i=1}^n \overline{k_i} \left[b_i\times (\hat{R}^\top {R^*}^\top r_i)\right],\quad \overline{k_i}> 0, \quad i=1,..., n
 \end{align}
 \end{subequations}
 where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$ and $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$. It is straightforward from Theorem \ref{theorem:explicitMahony} to see that \eqref{eq:unstable_observer_explicit} ensures that $R^*$ is a locally exponentially stable equilibrium point of the right invariant observer error ($\bar{R}$) dynamics. We now move towards deriving the hybrid explicit complementary filter.  
