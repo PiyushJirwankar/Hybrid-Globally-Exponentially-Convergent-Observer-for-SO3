@@ -81,7 +81,7 @@
 
 \maketitle
 
-The purpose of this work is to \textblue{design a globally asymptotically convergent observer} for a system evolving on $\SOthree$. We first \textblue{consider} the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ \textblue{and establish robustness of the filter to said noise}. 
+The purpose of this work is to \textblue{design a globally convergent observer} for a system evolving on $\SOthree$ \textblue{with GES error dynamics}. We first \textblue{consider} the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ \textblue{and establish robustness of the filter to said noise}. 
 
 \section{Preliminaries}
 
@@ -98,7 +98,7 @@ For any vector $v = \textblue{(v_1, v_2, v_3)^\top}\in\R{3}$, we define the \tex
 \end{align}
 The inverse map is defined by $\text{vex} : \sothree \to \R{3}$, $\cross{v} \mapsto \vex{\cross{v}}\coloneqq v$. \textblue{For} any matrix $A\in \R{3\times 3}$, its skew symmetric projection is given by $\mathbb{P}_a(A) \coloneqq (A - A^\top)/2$, and its symmetric projection is given by $\mathbb{P}_s(A) \coloneqq (A + A^\top)/2$. Any rotation matrix $R\in\SOthree$ can be expressed as a rotation about an axis $v\in\mathbb{S}^2$ by an angle $\theta\in\R{}$. Consider the function $\mathcal{R}:\R{}\times \mathbb{S}^2 \to \SOthree$, $(\theta, v)\mapsto \mathcal{R}(\theta, v)\coloneqq I + \cross{v}\sin\theta  + \cross{v}^2(1 - \cos{\theta})$ that represents a rotation about the axis $v$ by an angle of $\theta$ in the \textblue{counterclockwise} direction. \textblue{Next, we define the function $\text{axis} : \SOthree\to \mathbb{S}^2$, $\mathcal{R}(\theta, v)\mapsto \axis{\mathcal{R}(\theta, v)} \coloneqq v$ where $\theta\in [0,\pi]$.}
 
-The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. For matrix Lie groups, we have $\dualpairing{A}{B} = \trace{A^\top B}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. The inner product on the space of \textblue{real-valued} matrices is given by the Frobenius inner product $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$ for any $A, B\in\R{m\times n}$.
+The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. For matrix Lie groups, we have $\dualpairing{A}{B} = \trace{A^\top B}$ for any $A\in\dual{R}{\SOthree}$, $B\in \T{R}{\SOthree}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. The inner product on the space of \textblue{real-valued} matrices is given by the Frobenius inner product $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$ for any $A, B\in\R{m\times n}$. \textblue{For a set $\mathcal{X}$, its closure is defined by $\overline{\mathcal{X}}$. }
 
 \begin{definition}[Distance metric on $\SOthree$]\label{def:dist_metric}
 The distance between two points $x,y\in\SOthree$ is given by a function $d: \SOthree\times\SOthree\to \R{}$, $(x,y)\mapsto d(x,y)$, where the following \textblue{hold:}
@@ -154,8 +154,8 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
     \end{align*}
 \end{definition}
 
-\begin{definition}[Configuration error function]\label{def:config_err}
-    The configuration error function\footnote{Using Definition \ref{def:dist_between_points}, the configuration error function is the distance of $R\in\SOthree$ to the identity element $I$.} for $\SOthree$ is defined by $\normSOthree{\cdot}: \SOthree \to \R{}$, \textblue{where} \textcolor{red}{\[{\normSOthree{R}^2 \coloneqq \frac{1}{4}\trace{I - {R}} \quad \textblue{\forall R\in\SOthree}}.\]}
+\begin{definition}[Configuration error function \footnote{\textcolor{red}{I have changed the definition of $\normSOthree{R}$ as it is now a distance metric. See \cite{SO3metric}. }}]\label{def:config_err}
+    The configuration error function for $\SOthree$ is defined by $\normSOthree{\cdot}: \SOthree \to \R{}$, \textblue{where} \textcolor{red}{\[{\normSOthree{R}^2 \coloneqq \frac{1}{4}\trace{I - {R}} \quad \textblue{\forall R\in\SOthree}}.\]}
 \end{definition}
 
 \begin{definition}[\textblue{Nondegenerate function}]\label{def:nondegenerate_function}
@@ -163,7 +163,7 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
 \end{definition}
 
 \begin{definition}[\textblue{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
-\textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{Existence of such a function is not trivial as it has to be nondegenerate while satisfying $f(x(t), y(t))= 0$.} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
+\textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{Existence of such a function is not trivial as it has to be nondegenerate while satisfying $f(x(t), y(t))= 0$.}} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
 The two signals are asymptotically independent if they are not asymptotically dependent.      }
 \end{definition}
 
@@ -440,11 +440,11 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
 
 \begin{subequations}
 \begin{align}
-    C_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_0 \right\}}\\
-    C_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
-    D_0 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
-    D_1 &\coloneqq \textblue{\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
-    \mathcal{B} &\coloneqq \textblue{\left\{r \in \mathbb{S}^2 \mid \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{r^\top \hat{R}\axis{\Rtilde^y}}^2 \normSOthree{\Rstar}^2} \right\rvert > \delta;  {\Rtilde^y}, {\hat{R}},\in\SOthree, \normSOthree{\Rstar} \in \R{}_{\geq 0}\right\}}
+    C_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_0 \right\}}\\
+    C_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
+    D_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
+    D_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree \mid \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
+    \mathcal{B} &\coloneqq \textblue{\left\{r \in \mathbb{S}^2 \mid \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{r^\top \hat{R}\axis{\Rtilde^y}}^2 \normSOthree{\Rstar}^2} \right\rvert > \delta;  {\Rtilde^y}, {\hat{R}},\in\SOthree, \normSOthree{\Rstar} \in \R{}_{\geq 0}\right\}}.
 \end{align}
 \end{subequations}
 
@@ -545,7 +545,7 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
 %     \end{theorem}
 
 \begin{theorem}[Hybrid passive complementary filter]\label{theorem:main}
-    Let $\textblue{\mathcal{A}\coloneqq \{I\}\times \{0\}\times \mathbb{S}^2 \subset \SOthree\times Q\times \mathbb{S}^2}$. Assume that Assumption \ref{ass:no_meas_noise} holds and $\Omega(t)$ is a bounded and absolutely continuous signal. If there exist positive constants \textblue{$k_p$, $\overline{k_p}$}, $c_0$, $c_1$ and  $\theta^*\in \R{}$ such that 
+    Let $\textblue{\mathcal{A}\coloneqq \{I\}\times \{0\}\times \mathbb{S}^2 \subset \SOthree\times Q\times \mathbb{S}^2}$. Assume that Assumption \ref{ass:no_meas_noise} holds and $\Omega(t)$ is a bounded and absolutely continuous signal. If there exist positive constants \textblue{$k_p$, $\overline{k_p}$}, $c_0$, $c_1$, $\delta$ and  $\theta^*\in \R{}$ such that 
         \begin{enumerate}[(a)]
         \item $0 < \frac{1 - \cos\theta^*}{2} < c_1 < c_0 < 1$,\label{item:a-bullet}
         \item $1 - \sqrt{\frac{1}{c_1}-1} > \frac{1-\cos\theta^*}{2}$, \label{item:b-bullet}
@@ -556,8 +556,8 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
     \begin{enumerate}
         \item \label{(1)}The hybrid observer error system $\tilde{\mathcal{H}}_{PCF} = (\tilde{C}, \tilde{F}, \tilde{D}, \tilde{G})$ with data \eqref{eq:hybrid_observer_error} satisfies the hybrid basic conditions.
         \item \label{(2)}Every maximal solution to $\tilde{\mathcal{H}}_{PCF}$ from $\tilde{C}\cup \tilde{D}$ is complete.
-        \item \label{(3)} Every maximal solution to $\tilde{\mathcal{H}}_{PCF}$ exhibits no more than 2 jumps. 
-        \item \label{(4)}The set $\mathcal{A}$ is globally \textcolor{red}{exponentially} stable for $\tilde{\mathcal{H}}_{PCF}$. 
+        \item \label{(3)} Every maximal solution to $\tilde{\mathcal{H}}_{PCF}$ exhibits no more than 3 jumps. 
+        \item \label{(4)}The set $\mathcal{A}$ is globally exponentially stable for $\tilde{\mathcal{H}}_{PCF}$. 
     \end{enumerate}
     \endgroup
     \end{theorem}
@@ -580,52 +580,60 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
 
     The only remaining cases to be considered are when $(\Rtilde^y(0,0), q(0,0), r(0,0))\in C_1\times\{1\}\times (\overline{\mathcal{B}} \cup (\mathbb{S}^2\backslash \mathcal{B}))$. When flow occurs, the rotated observer in \eqref{eq:unstable_observer} is used with $\Rstar\coloneqq \mathcal{R}(\theta^*, r(0,0))$. Using Theorem \ref{thm:mahony}, the rotated observer fails when the observer error $\Rtilde_1$ is such that $\normSOthree{\Rtilde_1}=1$. Using Lemma \ref{lemma:normOfProduct}, we see that 
     \begin{align}
-        \normSOthree{{\Rtilde_1}} = 1 \iff \normSOthree{\Rtilde}^2 = \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 - \brackets{\axis{\Rstar}^\top\hat{R}\axis{\Rtilde}}^2\normSOthree{\Rstar}^2} \label{eq:R1tilde_unstable}
+        \normSOthree{{\Rtilde_1}} = 1 \iff \normSOthree{\Rtilde}^2 = \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{\axis{\Rstar}^\top\hat{R}\axis{\Rtilde}}^2\normSOthree{\Rstar}^2} \label{eq:R1tilde_unstable}
     \end{align}
-    It is now clear that the error system flows when $\axis{\Rstar}$ is \emph{far enough} from its the value where \eqref{eq:R1tilde_unstable} holds as $\normSOthree{\Rtilde_1}\neq 1$. 
-    , and the system jumps otherwise. This leads to the following two more cases.
+    It is now clear that when $\axis{\Rstar}$ is \emph{far enough} from its the value where \eqref{eq:R1tilde_unstable} holds,  $\normSOthree{\Rtilde_1}\neq 1$. This motivates the definition of the set $\mathcal{B}$ and results in the following two cases.
 
-\textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times \overline{\mathcal{B}}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. From Lemma \ref{lemma:normOfProduct}, we see that when  $\normSOthree{\Rtilde(0,0)}=1 \implies \normSOthree{\Rtilde_1(0,0)} = 1 - (v^\top w)^2\normSOthree{\Rstar}$, where $v, w\in\mathbb{S}^2$ are the axis of rotation corresponding to $\Rstar$ and $\hat{R}(0,0)R(0,0)^\top $ respectively. From Theorem \ref{thm:mahony}, the unstable set for $\Rtilde_1$ dynamics is the set $\mathbb{U}_0$. By definition of $\Rstar$, we have $\normSOthree{\Rstar} > 0$. Thus, $v^\top w \neq 0 \implies \normSOthree{\Rtilde_1(0,0)} \neq 1$. Using Remark \ref{remark:axis}, we get $w = \hat{R}(0,0)x$ which is the condition \ref{item:b-bullet}. This ensures that there is no initial condition that renders $\mathbb{U}_0\times Q$ forward invariant with respect to \eqref{eq:hybrid_observer_error}. Next, there exists a positive scalar $d_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$. Considering a Lyapunov function $V(\Rtilde_1) = \normSOthree{\Rtilde_1}$ for the rotated observer in \eqref{eq:unstable_observer}, following \eqref{eq:localExponentialStability}, we have that when $\normSOthree{\Rtilde_1(0,0)} \leq d_0$, every solution $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated error dynamics $\Rtilde_1$  satisfies
+\textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})$. This is the case when $r(0,0)$ is close to its value that satisfies \eqref{eq:R1tilde_unstable}. The jump map results in $(\Rtilde(0,1), q(0,1), r(0,1))\in C_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 5. 
 
+\textbf{Case 5}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times \overline{\mathcal{B}}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. $r(0,0)\in \overline{\mathcal{B}}$ ensures that the rotated observer never fails in this domain of operation. Since $c_1 > \normSOthree{\Rstar}$, there exists a finite time $T>0$ such that $\normSOthree{\Rtilde(T,0)} = c_1$. Now, following \eqref{eq:localExponentialStability}, there exists $d_0$ with $1 - \normSOthree{\Rstar} < d_0 < 1$ such that when $\normSOthree{\Rtilde_1(0,0)}\leq d_0$, every solution to $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated observer error dynamics $\Rtilde_1$ satisfies
 \begin{align}\label{eq:R1tilde_exponentialconvergence}
-    \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde_1(0,0)} \quad \forall t < T \text{ and } (t,j)\in \dom \Rtilde_1
+    \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{\Rtilde_1(0,0)} \quad \forall t \in \{s\in \R{}_{\geq 0}\mid s \leq T,\:\: (s,j)\in \dom\Rtilde_1\}
 \end{align}
-and $T > 0$ is such that $(\Rtilde(T,0), q(T,0))\in D_1\times \{1\}$. We now wish to find upper and lower bounds on $\normSOthree{\Rtilde_1(t,0)}$ in terms of $\normSOthree{\Rtilde(t,0)}$ to prove that the estimation error $\normSOthree{\Rtilde}$ exponentially decreases. Firstly, we see that $\normSOthree{\hat{R}^\top \Rstar R} = \normSOthree{\Rstar R\hat{R}^\top }$ and $\normSOthree{R\hat{R}^\top } = \normSOthree{\Rtilde}$. Let $\Rstar = \mathcal{R}(\theta^*, v)$ and $R\hat{R}^\top  = \mathcal{R}(\Tilde{\theta}, w)$. Now, using Lemma \ref{lemma:normOfProduct}, we get 
-
+where $T > 0$ is such that $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 2. We now wish to find upper and lower bounds on $\normSOthree{\Rtilde_1(t,0)}$ in terms of $\normSOthree{\Rtilde(t,0)}$ to prove that the estimation error $\normSOthree{\Rtilde}$ exponentially decreases. We note that $\normSOthree{\Rtilde_1} = \normSOthree{\hat{R}^\top \Rstar R} = \normSOthree{\Rstar R\hat{R}^\top }$ and $\normSOthree{R\hat{R}^\top } = \normSOthree{\Rtilde}$. Let $\Rstar = \mathcal{R}(\theta^*, r)$ and $R\hat{R}^\top  = \mathcal{R}(\Tilde{\theta}, w)$. Now, using Lemma \ref{lemma:normOfProduct} and $0 < \normSOthree{\Rstar} < c_1 < \normSOthree{\Rtilde(t,0)} < 1$ with $t\leq T$,
+% \begin{align*}
+%     0 < \normSOthree{\Rstar} < c_1 < \normSOthree{\Rtilde} < 1
+% \end{align*}
+we get 
 \begin{align}
-    \normSOthree{\Rtilde_1} &= \normSOthree{\Rtilde} + \normSOthree{\Rstar} - \normSOthree{\Rtilde}\normSOthree{\Rstar} + \normSOthree{\Rtilde}\normSOthree{\Rstar}(v^\top w)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}} - v^\top w\right]\nonumber\\
-    &\leq \normSOthree{\Rtilde} + \normSOthree{\Rtilde} - \normSOthree{\Rtilde}\normSOthree{\Rstar} + 2\normSOthree{\Rtilde}\sqrt{(1 - \normSOthree{\Rstar})(1 - c_1)}\nonumber\\
-    &\leq \normSOthree{\Rtilde}\brackets{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}} \label{eq:R1tilde_upperbound}
+    \normSOthree{\Rtilde_1}^2 &= \normSOthree{\Rtilde}^2 + \normSOthree{\Rstar}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 + \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2(r^\top w)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}^2}-1}\brackets{\frac{1}{\normSOthree{\Rstar}^2}-1}} - r^\top w\right]\nonumber\\
+    &\leq \normSOthree{\Rtilde}^2 + \normSOthree{\Rtilde}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 + 2\normSOthree{\Rtilde}^2\sqrt{(1 - \normSOthree{\Rstar}^2)(1 - c_1)}\nonumber\\
+    &\leq \normSOthree{\Rtilde}^2\brackets{2 - \normSOthree{\Rstar}^2 + 2\sqrt{(1-\normSOthree{\Rstar}^2)(1-c_1)}} \label{eq:R1tilde_upperbound}
     % \intertext{Since ${(\Rtilde(t,0), q(t,0))}\in C_1\times\{1\}$ for all $t < T$, by construction, $\normSOthree{\Rtilde} \geq c_1$. Furthermore, by definition of $\Rstar$, there exist positive scalars $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Since $e_0 < c_1$ by construction, this also implies that \textcolor{red}{$\normSOthree{\Rtilde(t,0)} < \normSOthree{\Rstar}$} for $t < T$. This leads to the following. }
     % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - f_0\normSOthree{\Rtilde} + 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\nonumber\\
     % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde}\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}} \label{eq:R1tilde_upperbound}\\
-    \intertext{For the lowerbound of $\normSOthree{\Rtilde_1}$, it is straightforward to see that $\normSOthree{\Rtilde_1}$ will be the smallest when $v^\top w = -1$. Thus, we have }
-    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde} + \normSOthree{\Rstar}\normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar} - 2\normSOthree{\Rtilde}\normSOthree{\Rstar}\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{\Rstar}}-1}}\nonumber\\
-    &\geq \normSOthree{\Rtilde} - \normSOthree{\Rstar}\normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}{\normSOthree{\Rstar}(1 - \normSOthree{\Rstar})}} \nonumber\\
-    &\geq \normSOthree{\Rtilde} - \normSOthree{\Rtilde}\normSOthree{\Rstar} - \normSOthree{\Rtilde}\sqrt{\frac{1}{c_1}-1} \nonumber\\
-    \normSOthree{\Rtilde_1} &\geq \normSOthree{\Rtilde}\brackets{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}} \label{eq:R1tilde_lowerbound}
+    \intertext{where $\Rtilde \equiv \Rtilde(t,0)$ for brevity. To calculate the lower bound of $\normSOthree{\Rtilde_1}$, it is straightforward to see that $\normSOthree{\Rtilde_1}$ will be the smallest when $r^\top w = -1$. Thus, we have }
+    \normSOthree{\Rtilde_1}^2 &\geq \normSOthree{\Rtilde}^2 + \normSOthree{\Rstar}^2\normSOthree{\Rtilde}^2 - 2\normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 - 2\normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}^2}-1}\brackets{\frac{1}{\normSOthree{\Rstar}^2}-1}}\nonumber\\
+    &\geq \normSOthree{\Rtilde}^2 - \normSOthree{\Rstar}^2\normSOthree{\Rtilde}^2 - 2\normSOthree{\Rtilde}^2\sqrt{\brackets{\frac{1}{c_1}-1}{\normSOthree{\Rstar}^2(1 - \normSOthree{\Rstar}^2)}} \nonumber\\
+    &\geq \normSOthree{\Rtilde}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 - \normSOthree{\Rtilde}^2\sqrt{\frac{1}{c_1}-1} \nonumber\\
+    \normSOthree{\Rtilde_1}^2 &\geq \normSOthree{\Rtilde}^2\brackets{1 - \normSOthree{\Rstar}^2 - \sqrt{\frac{1}{c_1}-1}} \label{eq:R1tilde_lowerbound}
 \end{align}
 Using \eqref{eq:R1tilde_exponentialconvergence}, \eqref{eq:R1tilde_upperbound} and \eqref{eq:R1tilde_lowerbound} results in
-\begin{align}
-    \normSOthree{\Rtilde(t,j)} \leq \lambda \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j)\in \dom \Rtilde
+\begin{align}\label{eq:eq20}
+    \normSOthree{\Rtilde(t,0)} \leq \lambda \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
 \begin{flushleft}
 where 
 \begin{align}
-    \lambda &\coloneqq {\frac{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}}{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}. \label{eq:lambda}
+    \lambda &\coloneqq \sqrt{{\frac{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}}{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}
 \end{align}
-For every ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$, there exists $T > 0$ such that ${(\Rtilde(T,0), q(T,0))}\in D_1\times\{1\}$ which results in one jump and ${(\Rtilde(T,1), q(T,1))}\in C_0\times\{0\}$. This results in
+Note that \ref{item:b-bullet} results in $\lambda > 0$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
+\begin{align}\label{eq:eq22}
+    \normSOthree{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
+\end{align}
+
+Using \eqref{eq:eq20}, \eqref{eq:eq22} and the fact that $\normSOthree{\Rtilde(t,j)} = \normSOthree{\Rtilde(t,k)}$ for all $(t,j), (t,k)\in \dom{\Rtilde}$ results in 
+% For every ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$, there exists $T > 0$ such that ${(\Rtilde(T,0), q(T,0))}\in D_1\times\{1\}$ which results in one jump and ${(\Rtilde(T,1), q(T,1))}\in C_0\times\{0\}$. This results in
 \end{flushleft}
 \begin{align}
-    \normSOthree{\Rtilde(T,0)}&\leq \lambda \expo{-2\overline{k_p}(1-d_0)T}\normSOthree{\Rtilde(0,0)}\nonumber\\
-    \normSOthree{\Rtilde(t,j)} &\leq \lambda \expo{-2\overline{k_p}(1-d_0)T} \expo{-2k_p(1-c_0)(t-T)}\normSOthree{\Rtilde(0,0)} \quad \forall t \geq T\nonumber\\
-    &= \lambda \expo{-2T[\overline{k_p}(1-d_0) - k_p(1-c_0)]}\expo{-2k_p(1-c_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\geq T\nonumber\\
-    \intertext{This leads to the following bound.}
-    \normSOthree{\Rtilde(t,j)}&\leq \min\{1, \alpha\expo{-2\min\{\overline{k_p}(1-d_0), k_p(1-c_0)\} t}\normSOthree{\Rtilde(0,0)}\} \quad \forall (t,j) \in \dom\Rtilde. \label{eq:C1bounds}
+    \normSOthree{\Rtilde(t,j)}&\leq \min\{1, \alpha\expo{-\min\{\overline{k_p}(1-d_0^2), k_p(1-c_0^2)\} t}\normSOthree{\Rtilde(0,0)}\} \quad \forall (t,j) \in \dom\Rtilde. \label{eq:C1bounds}
     \end{align}
-where $\alpha \coloneqq \max\{\lambda, \lambda \exp{(-2T[\overline{k_p}(1-d_0) - k_p(1-c_0)])}\}$. Thus, if ${(\Rtilde(0,0), q(0,0))}\in C_0\times\{0\}$ or ${(\Rtilde(0,0), q(0,0))}\in D_1\times\{1\}$, then \eqref{eq:C0bounds} holds. If ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$ or ${(\Rtilde(0,0), q(0,0))}\in D_0\times\{0\}$, then \eqref{eq:C1bounds} holds. Further, the system exhibits no jumps when ${(\Rtilde(0,0), q(0,0))}\in C_0\times\{0\}$; exhibits 1 jump if ${(\Rtilde(0,0), q(0,0))}\in D_1\times\{1\}$ or ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$; and exhibits 2 jumps if ${(\Rtilde(0,0), q(0,0))}\in D_0\times\{0\}$. The other cases when $(\Rtilde(0,0), q(0,0))\in C_i\times j$ or $(\Rtilde(0,0), q(0,0))\in D_i\times j$ where $i,j\in Q$ and $i\neq j$ are subsumed in the four cases already considered. This proves \eqref{(3)} and \eqref{(4)} and concludes the proof. 
+where $\alpha \coloneqq \max\{\lambda, \lambda \exp{(-T[\overline{k_p}(1-d_0^2) - k_p(1-c_0^2)])}\}$. Thus, if ${(\Rtilde(0,0), q(0,0), r(0,0))}\in C_0\times\{0\}\times \mathbb{S}^2$ or ${(\Rtilde(0,0), q(0,0), r(0,0))}\in D_1\times\{1\}\times\mathbb{S}^2$, then \eqref{eq:C0bounds} holds. For all other cases, \eqref{eq:C1bounds} holds. This proves \eqref{(4)}.  Further, the system exhibits no jumps in case 1,  one jump in case 2 and case 5, two jumps in case 3 and three jumps in case 4. This proves \eqref{(3)} and concludes the proof.  
 \end{proof}
 
+\begin{remark}
+    If \ref{item:b-bullet} in Theorem \ref{theorem:main} does not hold, the set $\mathcal{A}$ becomes only globally asymptotically stable for $\tilde{\mathcal{H}}_{PCF}$. 
+\end{remark}
 \begin{remark}\label{remark:hysteresis}
     If we set $c_0 = c_1$, we get rid of the hysteresis region. Such an observer would work in ideal conditions where there is no noise. Introduction of the slightest noise will cause chattering (see \cite{quaternion-ricardo}), which is the motivation to introduce the hysteresis region in the observer. 
 \end{remark}
