@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex rollingDraft"] 1685057622 "rollingDraft.aux" "rollingDraft.bbl" "rollingDraft" 1685059293 0
+["bibtex rollingDraft"] 1685057622 "rollingDraft.aux" "rollingDraft.bbl" "rollingDraft" 1685133863 0
   "./ref.bib" 1684379400 3474 4158c50bc1d037c6cce4e1af606791e9 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "rollingDraft.aux" 1685059292 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
+  "rollingDraft.aux" 1685133862 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
   (generated)
   "rollingDraft.bbl"
   "rollingDraft.blg"
   (rewritten before read)
-["pdflatex"] 1685059291 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" "rollingDraft.pdf" "rollingDraft" 1685059293 0
-  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" 1685059291 116368 b556f6a03c5889ce19865df4d8950154 ""
+["pdflatex"] 1685133861 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" "rollingDraft.pdf" "rollingDraft" 1685133863 0
+  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" 1685133861 116402 e555353137dd067eec60bb8bcbab650e ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -110,9 +110,9 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1684357081 4643411 5ced174c6d521e21dd58a10751c00482 ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1684357187 7888982 e6e482af5f2d85ebf6b39e65b4ffbaba ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "rollingDraft.aux" 1685059292 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
+  "rollingDraft.aux" 1685133862 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
   "rollingDraft.bbl" 1685057622 1491 a43df5600e83039556ba042e2e9252b6 "bibtex rollingDraft"
-  "rollingDraft.tex" 1685059291 116368 b556f6a03c5889ce19865df4d8950154 ""
+  "rollingDraft.tex" 1685133861 116402 e555353137dd067eec60bb8bcbab650e ""
   (generated)
   "rollingDraft.aux"
   "rollingDraft.log"
