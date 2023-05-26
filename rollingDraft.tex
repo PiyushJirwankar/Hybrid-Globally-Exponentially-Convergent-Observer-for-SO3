@@ -73,7 +73,7 @@
 \newcommand{\biasHat}{\hat{\mathdutchcal{b}}}
 \newcommand{\quotes}[1]{``#1''}
 
-\title{Hybrid Globally Convergent Complementary Filter for $\SOthree$}
+\title{\textblue{Hybrid Complementary Filters on $\SOthree$}}
 \author{Piyush Jirwankar}
 \date{\today}
 
@@ -81,7 +81,7 @@
 
 \maketitle
 
-The purpose of this work is to \textblue{design a globally convergent observer} for a system evolving on $\SOthree$ \textblue{with GES error dynamics}. We first \textblue{consider} the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ \textblue{and establish robustness of the filter to said noise}. 
+The purpose of this work is to {design a complementary filter} for a system evolving on $\SOthree$ \textblue{with atleast globally asymptotically stable error dynamics}. We first \textblue{consider} the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ \textblue{and establish robustness of the filter to said noise}. 
 
 \section{Preliminaries}
 
@@ -98,7 +98,7 @@ For any vector $v = \textblue{(v_1, v_2, v_3)^\top}\in\R{3}$, we define the \tex
 \end{align}
 The inverse map is defined by $\text{vex} : \sothree \to \R{3}$, $\cross{v} \mapsto \vex{\cross{v}}\coloneqq v$. \textblue{For} any matrix $A\in \R{3\times 3}$, its skew symmetric projection is given by $\mathbb{P}_a(A) \coloneqq (A - A^\top)/2$, and its symmetric projection is given by $\mathbb{P}_s(A) \coloneqq (A + A^\top)/2$. Any rotation matrix $R\in\SOthree$ can be expressed as a rotation about an axis $v\in\mathbb{S}^2$ by an angle $\theta\in\R{}$. Consider the function $\mathcal{R}:\R{}\times \mathbb{S}^2 \to \SOthree$, $(\theta, v)\mapsto \mathcal{R}(\theta, v)\coloneqq I + \cross{v}\sin\theta  + \cross{v}^2(1 - \cos{\theta})$ that represents a rotation about the axis $v$ by an angle of $\theta$ in the \textblue{counterclockwise} direction. \textblue{Next, we define the function $\text{axis} : \SOthree\to \mathbb{S}^2$, $\mathcal{R}(\theta, v)\mapsto \axis{\mathcal{R}(\theta, v)} \coloneqq v$ where $\theta\in [0,\pi]$.}
 
-The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. For matrix Lie groups, we have $\dualpairing{A}{B} = \trace{A^\top B}$ for any $A\in\dual{R}{\SOthree}$, $B\in \T{R}{\SOthree}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. The inner product on the space of \textblue{real-valued} matrices is given by the Frobenius inner product $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$ for any $A, B\in\R{m\times n}$. \textblue{For a set $\mathcal{X}$, its closure is defined by $\overline{\mathcal{X}}$. }
+The tangent space of $\SOthree$ at $R\in\SOthree$ is given by $\T{R}{\SOthree}$ and its dual is given by $\dual{R}{\SOthree}$. The action of a dual element $w\in\dual{R}{\SOthree}$ on $v\in\T{R}{\SOthree}$ is given by the duality pairing $\textblue{\dual{R}{\SOthree}\times \T{R}{\SOthree}\ni(w,v)\mapsto\dualpairing{w}{v} \coloneqq \trace{A^\top B}\in \R{}}\footnote{\textblue{Elements of $\T{R}{\SOthree}$ and $\dual{R}{\SOthree}$ are matrices. Double angles are used for the duality pairing to avoid confusion with the inner product notation.}}$. The differential of a scalar valued function $f:\SOthree\to\R{}$ is denoted by $\grad{R}{f} \in \dual{R}{\SOthree}$. For any $A, B \in \R{m\times n}$, the Frobenius inner product on the space of \textblue{real-valued} matrices is given by $\frobenius{A}{B}\coloneqq \trace{{A^\top B}}$. \textblue{The closure of a set $\mathcal{X}$ is denoted by $\overline{\mathcal{X}}$. }
 
 \begin{definition}[Distance metric on $\SOthree$]\label{def:dist_metric}
 The distance between two points $x,y\in\SOthree$ is given by a function $d: \SOthree\times\SOthree\to \R{}$, $(x,y)\mapsto d(x,y)$, where the following \textblue{hold:}
@@ -125,7 +125,7 @@ The distance of a point $x\in \SOthree$ from the closed set $\A \subset \SOthree
 \end{definition}
 
 \begin{definition}[Neighbourhood of a set]
-    For $0 \leq \epsilon \leq 1$, the \textblue{open} $\epsilon$-neighbourhood of a set $\textblue{U\subset\SOthree}$ is given by 
+    For $0 < \epsilon \leq 1$, the \textblue{open} $\epsilon$-neighbourhood of a set $\textblue{U\subset\SOthree}$ is given by 
     \begin{align*}
         \neighbourhood{\epsilon}{U} \coloneqq \{X\in\SOthree \mid d(X, R) < \epsilon,\:\:  R\in U\}
     \end{align*}
@@ -159,10 +159,10 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
 \end{definition}
 
 \begin{definition}[\textblue{Nondegenerate function}]\label{def:nondegenerate_function}
-\textblue{A function $f: \R{n}\times \R{n} \supset A\times B \to \R{}$ is said to be a nondegenerate function if the Hessian of $f$ is full ranked.}
+\textblue{A function $f: \R{n}\times \R{n} \supset A\times B \to \R{}$ is said to be nondegenerate if the Hessian of $f$ is full ranked.}
 \end{definition}
 
-\begin{definition}[\textblue{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
+\begin{definition}[\textcolor{red}{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
 \textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{Existence of such a function is not trivial as it has to be nondegenerate while satisfying $f(x(t), y(t))= 0$.}} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
 The two signals are asymptotically independent if they are not asymptotically dependent.      }
 \end{definition}
@@ -240,7 +240,7 @@ The two signals are asymptotically independent if they are not asymptotically de
 
 
 \subsection{Attitude kinematics}
-The rotation kinematics on $\SOthree$ are given \textblue{by}  
+The rotation kinematics of a rigid body on $\SOthree$ are given \textblue{by}  
 \begin{align}\label{eq:rotationKinematics}
     \dotR = R\cross{\Omega}
 \end{align}
@@ -332,7 +332,7 @@ Consider the state $R\in\SOthree$ that follows the kinematics in  \eqref{eq:rota
 
 
 Assume that $t\mapsto \Omega(t)\in \R{3}$ is a bounded, absolutely continuous signal and that the pair of signals {$t\mapsto (\Omega(t), \Rtilde(t))$ are asymptotically independent}. Define $\mathbb{U}_0 \subseteq \SOthree$ as 
-\[\mathbb{U}_0 = \left\{ \Rtilde\in \SOthree \mid \text{tr}(\Rtilde) = -1\right\}\]
+\[\mathbb{U}_0 = \left\{ \Rtilde\in \SOthree \mid \text{tr}(\Rtilde) = -1\right\}.\]
 Then:
 \begin{enumerate}[label=(\alph*)]
     \item The set $\mathbb{U}_0$ is forward invariant and {unstable} with respect to the system given in \eqref{eq:observer}. \label{item:thm_mahony_bullet1}
@@ -340,7 +340,7 @@ Then:
     % \item {The error $\Rtilde$ is locally exponentially stable to the identity element $I$.} 
     \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{\Rtilde^y(0)} \leq k$, every solution $t\mapsto\Rtilde(t)$ to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
     \begin{align}\label{eq:localExponentialStability}
-        \normSOthree{\Rtilde(t)} \leq \expo{-2k_p(1-k)t}\normSOthree{\Rtilde(0)} \quad \forall t \geq 0.
+        \normSOthree{\Rtilde(t)} \leq \expo{-2k_p(1-k^2)t}\normSOthree{\Rtilde(0)} \quad \forall t \geq 0.
     \end{align}
 \end{enumerate}
 \end{theorem}
@@ -400,7 +400,7 @@ Then:
 
 \section{Hybrid passive complementary filter}
 
-{Since $\SOthree$ is a compact Lie group, it follows that the Lyapunov function $V$ considered in Theorem \ref{thm:mahony} has compact sublevel sets.} Thus, using Theorem \ref{thm:mahony}, we have that the passive complementary filter is almost globally asymptotically convergent and has exponentially stable error dynamics, with the unstable set being the measure zero set of $\SOthree$ that represents a $180^\circ$ rotation, i.e., the set $\mathbb{U}_0$. We leverage this property by using hybrid control theory to obtain a globally asymptotically stable observer on $\SOthree$. 
+{Since $\SOthree$ is a compact Lie group, it follows that the Lyapunov function $V$ considered in Theorem \ref{thm:mahony} has compact sublevel sets.} Thus, using Theorem \ref{thm:mahony}, we have that the \textblue{error dynamics corresponding to the passive complementary filter are almost globally asymptotically and locally exponentially stable}, with the unstable set being the measure zero set of $\SOthree$ that represents a $180^\circ$ rotation, i.e., the set $\mathbb{U}_0$. We leverage this property by using hybrid control theory to obtain a globally asymptotically stable observer on $\SOthree$. 
 
 \begin{definition}[Hybrid Observer]
     \textblue{A hybrid observer $\hat{\mathcal{H}}$ with data $(\hat{C}, F, \hat{D}, G, \zeta)$ is given by}
@@ -622,7 +622,7 @@ Note that \ref{item:b-bullet} results in $\lambda > 0$. Next, since $(\Rtilde(T,
     \normSOthree{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
 
-Using \eqref{eq:eq20}, \eqref{eq:eq22} and the fact that $\normSOthree{\Rtilde(t,j)} = \normSOthree{\Rtilde(t,k)}$ for all $(t,j), (t,k)\in \dom{\Rtilde}$ results in 
+Using \eqref{eq:eq20}, \eqref{eq:eq22} and the fact that $\normSOthree{\Rtilde(t,j)} = \normSOthree{\Rtilde(t,k)}$ for all $(t,j), (t,k)\in \dom{\Rtilde}$ results\footnote{\textcolor{red}{I'm wondering if the result in \eqref{eq:C1bounds} is any different than local exponential stability (given that we already have GAS). This is because after enough time has passed (alternatively, once $\normSOthree{\Rtilde}$ enters some neighbourhood of $I$), the RHS in \eqref{eq:C1bounds} takes the form in Defintion \ref{eq:localExponentialStability}.}} in 
 % For every ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$, there exists $T > 0$ such that ${(\Rtilde(T,0), q(T,0))}\in D_1\times\{1\}$ which results in one jump and ${(\Rtilde(T,1), q(T,1))}\in C_0\times\{0\}$. This results in
 \end{flushleft}
 \begin{align}
@@ -670,294 +670,196 @@ Let $\mathcal{A}\subset\mathcal{X}$ be a nonempty and compact set.
 \end{definition}
 
 
-\subsubsection{Noise in gyro measurements}
-The following measurement model is used
-\begin{align}\label{eq:measurement_model_ISS}
-    \Omegay = \Omega + \noisegyro && R^y = R 
-\end{align}
-where the bounds on the measurement noise are given by $\noisegyro\in\R{3}$ and $\overline{\noisegyro}\coloneqq\sup_{t\geq 0} \|\noisegyro(t)\|$.
-\begin{theorem}\label{theorem:PCF_ISS_gyro}
-    Assuming the existence of positive constants $c_0, c_1, $
-    Assuming the conditions \ref{item:a-bullet}-\ref{item:b-bullet} in Theorem \ref{theorem:main} hold and there exist positive scalars $d_0, e_0, f_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$, $0 < e_0 < \normSOthree{\Rstar} < f_0 < c_1$ and
-    \begin{align*}
-        \frac{\maxnoisegyro}{8\gamma}\left\{\frac{1}{k_p(1-c_0)} + \frac{1}{\overline{k_p}(1-d_0)}\right\} < 1
-    \end{align*}
-    where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$. Then the hybrid observer defined in \eqref{eq:observer_final} renders the resulting hybrid error dynamics {eventually input-to-state stable} with respect to $\mathcal{A}$ to noisy gyroscope measurements of the form presented in \eqref{eq:measurement_model_ISS}, where the set $\mathcal{A}$ is defined in Theorem \ref{theorem:main}. 
-\end{theorem}
-\begin{proof}
-We analyze the observer given in \eqref{eq:observer_final} assuming ${(\Rtilde^y(0,0), q(0,0))}\in C_0\times\{0\}$ with the measurement model in \eqref{eq:measurement_model_ISS}. The other case when ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$ can be studied similarly. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree\Rtilde$. The derivative of the Lyapunov function along the trajectories of $\Rtilde$ is given by
-\begin{align}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{1}{4}\trace{\dot{\Rtilde}} \nonumber\\
-    &= -\frac{1}{4}\trace{\cross{\left[\Omega + \noisegyro + k_p \omega(\Rtilde ) \right]} \Rtilde + \Rtilde\cross{\Omega}} \nonumber\\
-    &= \frac{1}{4}\trace{\cross{\noisegyro}\Rtilde} + \frac{k_p}{4}\trace{\cross{\omega(\Rtilde )}\Rtilde} \nonumber\\
-    &= \frac{1}{4}\trace{\cross{\noisegyro}, \cross{\omega(\Rtilde)}} + \frac{k_p}{4}\trace{\cross{\omega(\Rtilde)}\cross{\omega(\Rtilde)}}\nonumber \\
-    &= -\frac{k_p}{2}\inprod{\omega(\Rtilde)}{\omega(\Rtilde)} - \frac{1}{2}\inprod{\noisegyro}{\omega(\Rtilde)} \nonumber\\
-    &\leq -2k_p(1-c_0)\normSOthree{\Rtilde} + \frac{1}{2}\maxnoisegyro \nonumber\\
-    \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-c_0)t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisegyro}{8k_p(1-c_0)} \quad \forall (t,j)\in\dom \Rtilde.\label{eq:gyroISS_C0}
-\end{align}
-Equation \eqref{eq:gyroISS_C0} shows that when ${(\Rtilde^y(0,0), q(0,0))\in C_0\times\{0\}}$, the observer error dynamics are locally ISS to gyro noise. We obtain a similar ISS bound for the rotated observer \eqref{eq:unstable_observer} when ${(\Rtilde^y(0,0), q(0,0))} \in C_1\times\{1\}$ as given below.
-\begin{align}
-    \normSOthree{\Rtilde_1(t,j)} \leq \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde_1(0,0)} + \frac{\maxnoisegyro}{8\overline{k_p}(1-d_0)} \quad \forall (t,j)\in\{(t,j)\in\dom \Rtilde \mid t \leq T\} \label{eq:gyroISS_C1}
-\end{align}
-where $T$ is defined in Case 4 of the proof of Theorem \ref{theorem:main}. Following \eqref{eq:C1bounds}, we obtain the following ISS bound for all $t\geq 0$:
-\begin{align}
-    \normSOthree{\Rtilde(t,j)}&\leq \min\left\{1, \alpha\expo{-2 \min\{\overline{k_p}(1-d_0), k_p(1-c_0)\} t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisegyro}{8\gamma}\left\{\frac{1}{k_p(1-c_0)} + \frac{1}{\overline{k_p}(1-d_0)}\right\}\right\} \label{eq:ISSbound_gyro}
-\end{align}
-where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$ and $\alpha$ is defined in \eqref{eq:C1bounds}. After sufficient time has passed, the second term in the parentheses in \eqref{eq:ISSbound_gyro} will become smaller than $1$, which will remove the $\min$ and complete the proof. 
-\end{proof}
+% \subsubsection{Noise in gyro measurements}
+% The following measurement model is used
+% \begin{align}\label{eq:measurement_model_ISS}
+%     \Omegay = \Omega + \noisegyro && R^y = R 
+% \end{align}
+% where the bounds on the measurement noise are given by $\noisegyro\in\R{3}$ and $\overline{\noisegyro}\coloneqq\sup_{t\geq 0} \|\noisegyro(t)\|$.
+% \begin{theorem}\label{theorem:PCF_ISS_gyro}
+%     Assuming the existence of positive constants $c_0, c_1, $
+%     Assuming the conditions \ref{item:a-bullet}-\ref{item:b-bullet} in Theorem \ref{theorem:main} hold and there exist positive scalars $d_0, e_0, f_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$, $0 < e_0 < \normSOthree{\Rstar} < f_0 < c_1$ and
+%     \begin{align*}
+%         \frac{\maxnoisegyro}{8\gamma}\left\{\frac{1}{k_p(1-c_0)} + \frac{1}{\overline{k_p}(1-d_0)}\right\} < 1
+%     \end{align*}
+%     where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$. Then the hybrid observer defined in \eqref{eq:observer_final} renders the resulting hybrid error dynamics {eventually input-to-state stable} with respect to $\mathcal{A}$ to noisy gyroscope measurements of the form presented in \eqref{eq:measurement_model_ISS}, where the set $\mathcal{A}$ is defined in Theorem \ref{theorem:main}. 
+% \end{theorem}
+% \begin{proof}
+% We analyze the observer given in \eqref{eq:observer_final} assuming ${(\Rtilde^y(0,0), q(0,0))}\in C_0\times\{0\}$ with the measurement model in \eqref{eq:measurement_model_ISS}. The other case when ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$ can be studied similarly. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree\Rtilde$. The derivative of the Lyapunov function along the trajectories of $\Rtilde$ is given by
+% \begin{align}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{1}{4}\trace{\dot{\Rtilde}} \nonumber\\
+%     &= -\frac{1}{4}\trace{\cross{\left[\Omega + \noisegyro + k_p \omega(\Rtilde ) \right]} \Rtilde + \Rtilde\cross{\Omega}} \nonumber\\
+%     &= \frac{1}{4}\trace{\cross{\noisegyro}\Rtilde} + \frac{k_p}{4}\trace{\cross{\omega(\Rtilde )}\Rtilde} \nonumber\\
+%     &= \frac{1}{4}\trace{\cross{\noisegyro}, \cross{\omega(\Rtilde)}} + \frac{k_p}{4}\trace{\cross{\omega(\Rtilde)}\cross{\omega(\Rtilde)}}\nonumber \\
+%     &= -\frac{k_p}{2}\inprod{\omega(\Rtilde)}{\omega(\Rtilde)} - \frac{1}{2}\inprod{\noisegyro}{\omega(\Rtilde)} \nonumber\\
+%     &\leq -2k_p(1-c_0)\normSOthree{\Rtilde} + \frac{1}{2}\maxnoisegyro \nonumber\\
+%     \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-c_0)t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisegyro}{8k_p(1-c_0)} \quad \forall (t,j)\in\dom \Rtilde.\label{eq:gyroISS_C0}
+% \end{align}
+% Equation \eqref{eq:gyroISS_C0} shows that when ${(\Rtilde^y(0,0), q(0,0))\in C_0\times\{0\}}$, the observer error dynamics are locally ISS to gyro noise. We obtain a similar ISS bound for the rotated observer \eqref{eq:unstable_observer} when ${(\Rtilde^y(0,0), q(0,0))} \in C_1\times\{1\}$ as given below.
+% \begin{align}
+%     \normSOthree{\Rtilde_1(t,j)} \leq \expo{-2\overline{k_p}(1-d_0)t}\normSOthree{\Rtilde_1(0,0)} + \frac{\maxnoisegyro}{8\overline{k_p}(1-d_0)} \quad \forall (t,j)\in\{(t,j)\in\dom \Rtilde \mid t \leq T\} \label{eq:gyroISS_C1}
+% \end{align}
+% where $T$ is defined in Case 4 of the proof of Theorem \ref{theorem:main}. Following \eqref{eq:C1bounds}, we obtain the following ISS bound for all $t\geq 0$:
+% \begin{align}
+%     \normSOthree{\Rtilde(t,j)}&\leq \min\left\{1, \alpha\expo{-2 \min\{\overline{k_p}(1-d_0), k_p(1-c_0)\} t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisegyro}{8\gamma}\left\{\frac{1}{k_p(1-c_0)} + \frac{1}{\overline{k_p}(1-d_0)}\right\}\right\} \label{eq:ISSbound_gyro}
+% \end{align}
+% where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$ and $\alpha$ is defined in \eqref{eq:C1bounds}. After sufficient time has passed, the second term in the parentheses in \eqref{eq:ISSbound_gyro} will become smaller than $1$, which will remove the $\min$ and complete the proof. 
+% \end{proof}
 
-\subsubsection{Noise in attitude measurements}
-The following measurement model is used
-\begin{align}\label{eq:measurement_model_ISS_att}
-    \Omegay = \Omega  && R^y = R \noiseatt
-\end{align}
-where $\noiseatt\in\SOthree$ is the noise in attitude measurements and $\maxnoiseatt\coloneqq \sup_{t\geq 0}\normSOthree{\noiseatt(t)}$ is the bound on the noise.  Now,
-\begin{enumerate}[label={(\Alph*)}]
-    \item set $c_0\in(0,1)$ such that $\cobar\coloneqq c_0 + 2\maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}  < 1 $. \label{item-A}
-    \item set $c_1\in (0,c_0)$ such that $\overline{c_1} \coloneqq c_1 - \maxnoiseatt - \sqrt{\maxnoiseatt(1-\maxnoiseatt)} > 0$.\label{item-B}
-    \item Set $\Rstar\in\SOthree$ such that $0 < \normSOthree{\Rstar} < \overline{c_1}$. \label{item-C}
-    \item \textcolor{red}{Add the noise bound obtained from \ref{item:d-bullet} of Theorem \ref{theorem:main}}. 
-    \item \textcolor{red}{Check if this list of items is exhaustive}. 
-\end{enumerate}
+% \subsubsection{Noise in attitude measurements}
+% The following measurement model is used
+% \begin{align}\label{eq:measurement_model_ISS_att}
+%     \Omegay = \Omega  && R^y = R \noiseatt
+% \end{align}
+% where $\noiseatt\in\SOthree$ is the noise in attitude measurements and $\maxnoiseatt\coloneqq \sup_{t\geq 0}\normSOthree{\noiseatt(t)}$ is the bound on the noise.  Now,
+% \begin{enumerate}[label={(\Alph*)}]
+%     \item set $c_0\in(0,1)$ such that $\cobar\coloneqq c_0 + 2\maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}  < 1 $. \label{item-A}
+%     \item set $c_1\in (0,c_0)$ such that $\overline{c_1} \coloneqq c_1 - \maxnoiseatt - \sqrt{\maxnoiseatt(1-\maxnoiseatt)} > 0$.\label{item-B}
+%     \item Set $\Rstar\in\SOthree$ such that $0 < \normSOthree{\Rstar} < \overline{c_1}$. \label{item-C}
+%     \item \textcolor{red}{Add the noise bound obtained from \ref{item:d-bullet} of Theorem \ref{theorem:main}}. 
+%     \item \textcolor{red}{Check if this list of items is exhaustive}. 
+% \end{enumerate}
 
-\begin{lemma}\label{lemma:4}
-    For any $\Rtilde\in\SOthree$ and $\noiseatt\in\SOthree$, the following holds for ${\maxnoiseatt}\leq 1/2$.
-    \begin{align*}
-        \normSOthree{\Rtilde} - 2{\maxnoiseatt} - \sqrt{\maxnoiseatt(1-\maxnoiseatt)}\leq \normSOthree{\Rtilde\noiseatt} \leq \normSOthree{\Rtilde} + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    {Let $v,w\in\mathbb{S}^2$ be the axis of rotation for $\Rtilde$ and $\noiseatt$ respectively. Using Lemma \ref{lemma:normOfProduct}, $\normSOthree{\Rtilde\noiseatt}$ is written below. }
-    \begin{align*}
-        \normSOthree{\Rtilde\noiseatt} &= \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} - (v^\top w)^2\normSOthree{\Rtilde} + 2(v^\top w)\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\geq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - 2\normSOthree{\Rtilde}\normSOthree{\noiseatt} - 2\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\geq \normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\normSOthree{\noiseatt} - \sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\geq \normSOthree{\Rtilde} - 2\normSOthree{\noiseatt} - \sqrt{\normSOthree{\noiseatt}(1-\noiseatt)}
-        \intertext{Now, since $\maxnoiseatt<1/2$, we get}
-        &\geq \normSOthree{\Rtilde} - 2{\maxnoiseatt} - \sqrt{{\maxnoiseatt}(1-\maxnoiseatt)}
-        \intertext{This proves the first inequality. }
-        \normSOthree{\Rtilde\noiseatt} &= \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} - (v^\top w)^2\normSOthree{\Rtilde} + 2(v^\top w)\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\leq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} + 2\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\leq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} + \sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
-        &\leq \normSOthree{\Rtilde} + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}
-    \end{align*}
-    {This proves the second inequality, thus concluding the proof. }
-\end{proof}
+% \begin{lemma}\label{lemma:4}
+%     For any $\Rtilde\in\SOthree$ and $\noiseatt\in\SOthree$, the following holds for ${\maxnoiseatt}\leq 1/2$.
+%     \begin{align*}
+%         \normSOthree{\Rtilde} - 2{\maxnoiseatt} - \sqrt{\maxnoiseatt(1-\maxnoiseatt)}\leq \normSOthree{\Rtilde\noiseatt} \leq \normSOthree{\Rtilde} + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}
+%     \end{align*}
+% \end{lemma}
+% \begin{proof}
+%     {Let $v,w\in\mathbb{S}^2$ be the axis of rotation for $\Rtilde$ and $\noiseatt$ respectively. Using Lemma \ref{lemma:normOfProduct}, $\normSOthree{\Rtilde\noiseatt}$ is written below. }
+%     \begin{align*}
+%         \normSOthree{\Rtilde\noiseatt} &= \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} - (v^\top w)^2\normSOthree{\Rtilde} + 2(v^\top w)\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\geq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - 2\normSOthree{\Rtilde}\normSOthree{\noiseatt} - 2\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\geq \normSOthree{\Rtilde} - 2\normSOthree{\Rtilde}\normSOthree{\noiseatt} - \sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\geq \normSOthree{\Rtilde} - 2\normSOthree{\noiseatt} - \sqrt{\normSOthree{\noiseatt}(1-\noiseatt)}
+%         \intertext{Now, since $\maxnoiseatt<1/2$, we get}
+%         &\geq \normSOthree{\Rtilde} - 2{\maxnoiseatt} - \sqrt{{\maxnoiseatt}(1-\maxnoiseatt)}
+%         \intertext{This proves the first inequality. }
+%         \normSOthree{\Rtilde\noiseatt} &= \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} - (v^\top w)^2\normSOthree{\Rtilde} + 2(v^\top w)\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\leq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} + 2\sqrt{\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\leq \normSOthree{\Rtilde} + \normSOthree{\noiseatt} - \normSOthree{\Rtilde}\normSOthree{\noiseatt} + \sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\\
+%         &\leq \normSOthree{\Rtilde} + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}
+%     \end{align*}
+%     {This proves the second inequality, thus concluding the proof. }
+% \end{proof}
 
-\begin{theorem}
-    Given the hybrid observer in \eqref{eq:observer_final} with the measurement model in \eqref{eq:measurement_model_ISS_att}, and consider the set $\mathcal{A}$ as defined in Theorem \ref{theorem:main}. If \ref{item-A}-\ref{item-C} are satisfied and there exist positive constants $d_0, e_0, f_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$, $0 < e_0 < \normSOthree{\Rstar} < f_0 < c_1$ and
-    \begin{align*}
-        \frac{\sqrt{\maxnoiseatt}}{2\gamma}\left\{\frac{1}{1-\cobar}+\frac{1}{1-{d_0}}\right\} < 1, && \maxnoiseatt < \frac{1}{13}\brackets{5 - 2\sqrt{3}}.
-    \end{align*}
-    where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$, then the hybrid observer defined in \eqref{eq:observer_final} renders the resulting error dynamics {eventually input-to-state stable} with respect to $\mathcal{A}$.
-\end{theorem}
+% \begin{theorem}
+%     Given the hybrid observer in \eqref{eq:observer_final} with the measurement model in \eqref{eq:measurement_model_ISS_att}, and consider the set $\mathcal{A}$ as defined in Theorem \ref{theorem:main}. If \ref{item-A}-\ref{item-C} are satisfied and there exist positive constants $d_0, e_0, f_0$ such that $1 - \normSOthree{\Rstar}\leq d_0 < 1$, $0 < e_0 < \normSOthree{\Rstar} < f_0 < c_1$ and
+%     \begin{align*}
+%         \frac{\sqrt{\maxnoiseatt}}{2\gamma}\left\{\frac{1}{1-\cobar}+\frac{1}{1-{d_0}}\right\} < 1, && \maxnoiseatt < \frac{1}{13}\brackets{5 - 2\sqrt{3}}.
+%     \end{align*}
+%     where $\gamma \coloneqq {1 - 2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right]}$, then the hybrid observer defined in \eqref{eq:observer_final} renders the resulting error dynamics {eventually input-to-state stable} with respect to $\mathcal{A}$.
+% \end{theorem}
 
-\begin{proof}
-Firstly, we see that for \ref{item-A} and \ref{item-B} to hold simultaneously, $\maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)} < c_1 < c_0 < 1-2\maxnoiseatt - \sqrt{\maxnoiseatt(1-\maxnoiseatt)} \implies 3\maxnoiseatt + 2\sqrt{\maxnoiseatt(1-\maxnoiseatt)} < 1$. This implies that $\maxnoiseatt < \frac{1}{13}\brackets{5 - 2\sqrt{3}}$.
+% \begin{proof}
+% Firstly, we see that for \ref{item-A} and \ref{item-B} to hold simultaneously, $\maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)} < c_1 < c_0 < 1-2\maxnoiseatt - \sqrt{\maxnoiseatt(1-\maxnoiseatt)} \implies 3\maxnoiseatt + 2\sqrt{\maxnoiseatt(1-\maxnoiseatt)} < 1$. This implies that $\maxnoiseatt < \frac{1}{13}\brackets{5 - 2\sqrt{3}}$.
 
-We analyze the observer given in \eqref{eq:observer_final} assuming ${(\Rtilde^y(0,0), q(0,0))}\in C_0\times\{0\}$ with the measurement model in \eqref{eq:measurement_model_ISS}. The other case when ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$ can be analyzed similarly. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree\Rtilde$.
-\begin{align}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{1}{4}\trace{\dot{\Rtilde}}\\
-    &= -\frac{1}{4}\trace{-\cross{\left[\Omega  + k_p \omega(\Rtilde \noiseatt) \right]} \Rtilde + \Rtilde\cross{\Omega}} \nonumber\\
-    &= \frac{k_p}{4}\trace{\cross{\omega(\Rtilde \noiseatt)}\Rtilde} \nonumber\\
-    \intertext{Now, the above term is simplified below.}
-    \trace{\cross{\omega(\Rtilde \noiseatt)}\Rtilde} &= \frac{1}{2}\brackets{\trace{\Rtilde^2\noiseatt} - \trace{\noiseatt}} \nonumber\\
-    &= 2 \brackets{\normSOthree{\noiseatt} - \normSOthree{\Rtilde^2\noiseatt}}
-    \intertext{Let the axis angle representation of $\Rtilde^2$ and $\noiseatt$ be given as $\Rtilde^2 = \mathcal{R}(2\Tilde{\theta}, u)$ and $\noiseatt = \mathcal{R}(\xi, v)$, where $2\Tilde{\theta}, \xi \in [0,\pi]$ and $u,v\in\mathbb{S}^2$. Lemma \ref{lemma:normOfProduct} results in the following.}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{kp}{2}\brackets{\normSOthree{\Rtilde^2\noiseatt} - \normSOthree{\noiseatt}} \nonumber\\
-    &= -\frac{k_p}{2}\brackets{\normSOthree{\Rtilde^2} - \normSOthree{\Rtilde^2}(u^\top v)\left[ 2\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})} - (u^\top v)\normSOthree{\noiseatt} \right]} \nonumber\\
-    &= -\frac{k_p}{2}\normSOthree{\Rtilde^2} - \frac{k_p}{2}(u^\top v)^2\normSOthree{\Rtilde^2}\normSOthree{\noiseatt} + k_p(u^\top v)\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt^2}(1-\normSOthree{\noiseatt^2})} \nonumber
-\end{align}
-\begin{align}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})} \nonumber\\
-    \intertext{Since $\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\leq \sqrt{\normSOthree{\noiseatt}}$, we have the following:}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\sqrt{\normSOthree{\noiseatt}}\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1} \nonumber\\
-    &= -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\sqrt{\normSOthree{\noiseatt}}\sqrt{\normSOthree{\Rtilde^2}(1 - \normSOthree{\Rtilde^2})}\nonumber\\
-    \intertext{Now, since $\normSOthree{\Rtilde^2}(1-\normSOthree{\Rtilde^2})\leq 1/4$, we have the following:}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2}  + \frac{k_p (u^\top v)}{{2}}\sqrt{\normSOthree{\noiseatt}} \nonumber\\
-    \intertext{Now, the following holds for any $u,v\in\mathbb{S}^2$:}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + \frac{k_p}{2}\sqrt{\maxnoiseatt} \nonumber\\
-    &\leq -2k_p \normSOthree{\Rtilde}\brackets{1 - \normSOthree{\Rtilde}} + \frac{k_p}{{2}}\sqrt{{\maxnoiseatt}}
-    % \intertext{Now, we have $\normSOthree{\Rtilde^y}\leq c_0$. Using Lemma \ref{lemma:normOfProduct}, we obtain the lower bound on $\normSOthree{\Rtilde^y}$ as \textcolor{red}{$\normSOthree{\Rtilde^y} = \normSOthree{\Rtilde \noiseatt} \geq |\normSOthree{\Rtilde}-\maxnoiseatt| - \sqrt{\maxnoiseatt(1-\maxnoiseatt)}$}. This results in $\normSOthree{\Rtilde} \leq \cobar$, where  $\cobar \coloneqq c_0 + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}$. }    
-    \intertext{We have $\normSOthree{\Rtilde^y}\leq c_0$. Using \ref{item-A} and Lemma \ref{lemma:4}, we have that $\normSOthree{\Rtilde^y} \leq c_0 \implies \normSOthree{\Rtilde}\leq \cobar$.}
-    % Now, using Lemma \ref{lemma:1} and {$\normSOthree{\Rtilde^y}\leq c_0$} since {$\Rtilde^y\in C_0$}, we get the following, {assuming that when $\Rtilde^y\in C_0$, $\normSOthree{\Rtilde}\leq c_0$} (\textcolor{red}{conditions $\maxnoiseatt$ need to be defined for this to hold}):}
-    \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -2k_p(1-\cobar)\normSOthree{\Rtilde} + \frac{k_p}{{2}}\sqrt{\maxnoiseatt} \nonumber\\
-    \implies \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-\cobar)t}\normSOthree{\Rtilde(0,0)} + \frac{1}{4 (1-\cobar)} \sqrt{\maxnoiseatt} \label{eq:ISS_att_c0}
-\end{align}
-Equation \eqref{eq:ISS_att_c0} shows that the observer when ${(\Rtilde^y(0,0), q(0,0))} \in C_0\times\{0\}$ is locally ISS to attitude measurement noise. When ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$, a similar bound can be obtained as written below. {There exists ${d_0} < 1 - \normSOthree{\Rstar}$} such that the following holds:
+% We analyze the observer given in \eqref{eq:observer_final} assuming ${(\Rtilde^y(0,0), q(0,0))}\in C_0\times\{0\}$ with the measurement model in \eqref{eq:measurement_model_ISS}. The other case when ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$ can be analyzed similarly. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree\Rtilde$.
+% \begin{align}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{1}{4}\trace{\dot{\Rtilde}}\\
+%     &= -\frac{1}{4}\trace{-\cross{\left[\Omega  + k_p \omega(\Rtilde \noiseatt) \right]} \Rtilde + \Rtilde\cross{\Omega}} \nonumber\\
+%     &= \frac{k_p}{4}\trace{\cross{\omega(\Rtilde \noiseatt)}\Rtilde} \nonumber\\
+%     \intertext{Now, the above term is simplified below.}
+%     \trace{\cross{\omega(\Rtilde \noiseatt)}\Rtilde} &= \frac{1}{2}\brackets{\trace{\Rtilde^2\noiseatt} - \trace{\noiseatt}} \nonumber\\
+%     &= 2 \brackets{\normSOthree{\noiseatt} - \normSOthree{\Rtilde^2\noiseatt}}
+%     \intertext{Let the axis angle representation of $\Rtilde^2$ and $\noiseatt$ be given as $\Rtilde^2 = \mathcal{R}(2\Tilde{\theta}, u)$ and $\noiseatt = \mathcal{R}(\xi, v)$, where $2\Tilde{\theta}, \xi \in [0,\pi]$ and $u,v\in\mathbb{S}^2$. Lemma \ref{lemma:normOfProduct} results in the following.}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &= -\frac{kp}{2}\brackets{\normSOthree{\Rtilde^2\noiseatt} - \normSOthree{\noiseatt}} \nonumber\\
+%     &= -\frac{k_p}{2}\brackets{\normSOthree{\Rtilde^2} - \normSOthree{\Rtilde^2}(u^\top v)\left[ 2\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})} - (u^\top v)\normSOthree{\noiseatt} \right]} \nonumber\\
+%     &= -\frac{k_p}{2}\normSOthree{\Rtilde^2} - \frac{k_p}{2}(u^\top v)^2\normSOthree{\Rtilde^2}\normSOthree{\noiseatt} + k_p(u^\top v)\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt^2}(1-\normSOthree{\noiseatt^2})} \nonumber
+% \end{align}
+% \begin{align}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1}\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})} \nonumber\\
+%     \intertext{Since $\sqrt{\normSOthree{\noiseatt}(1-\normSOthree{\noiseatt})}\leq \sqrt{\normSOthree{\noiseatt}}$, we have the following:}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\sqrt{\normSOthree{\noiseatt}}\normSOthree{\Rtilde^2}\sqrt{\frac{1}{\normSOthree{\Rtilde^2}}-1} \nonumber\\
+%     &= -\frac{k_p}{2}\normSOthree{\Rtilde^2} + k_p(u^\top v)\sqrt{\normSOthree{\noiseatt}}\sqrt{\normSOthree{\Rtilde^2}(1 - \normSOthree{\Rtilde^2})}\nonumber\\
+%     \intertext{Now, since $\normSOthree{\Rtilde^2}(1-\normSOthree{\Rtilde^2})\leq 1/4$, we have the following:}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2}  + \frac{k_p (u^\top v)}{{2}}\sqrt{\normSOthree{\noiseatt}} \nonumber\\
+%     \intertext{Now, the following holds for any $u,v\in\mathbb{S}^2$:}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -\frac{k_p}{2}\normSOthree{\Rtilde^2} + \frac{k_p}{2}\sqrt{\maxnoiseatt} \nonumber\\
+%     &\leq -2k_p \normSOthree{\Rtilde}\brackets{1 - \normSOthree{\Rtilde}} + \frac{k_p}{{2}}\sqrt{{\maxnoiseatt}}
+%     % \intertext{Now, we have $\normSOthree{\Rtilde^y}\leq c_0$. Using Lemma \ref{lemma:normOfProduct}, we obtain the lower bound on $\normSOthree{\Rtilde^y}$ as \textcolor{red}{$\normSOthree{\Rtilde^y} = \normSOthree{\Rtilde \noiseatt} \geq |\normSOthree{\Rtilde}-\maxnoiseatt| - \sqrt{\maxnoiseatt(1-\maxnoiseatt)}$}. This results in $\normSOthree{\Rtilde} \leq \cobar$, where  $\cobar \coloneqq c_0 + \maxnoiseatt + \sqrt{\maxnoiseatt(1-\maxnoiseatt)}$. }    
+%     \intertext{We have $\normSOthree{\Rtilde^y}\leq c_0$. Using \ref{item-A} and Lemma \ref{lemma:4}, we have that $\normSOthree{\Rtilde^y} \leq c_0 \implies \normSOthree{\Rtilde}\leq \cobar$.}
+%     % Now, using Lemma \ref{lemma:1} and {$\normSOthree{\Rtilde^y}\leq c_0$} since {$\Rtilde^y\in C_0$}, we get the following, {assuming that when $\Rtilde^y\in C_0$, $\normSOthree{\Rtilde}\leq c_0$} (\textcolor{red}{conditions $\maxnoiseatt$ need to be defined for this to hold}):}
+%     \dualpairing{\grad{\Rtilde}{V}}{\dot\Rtilde} &\leq -2k_p(1-\cobar)\normSOthree{\Rtilde} + \frac{k_p}{{2}}\sqrt{\maxnoiseatt} \nonumber\\
+%     \implies \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-\cobar)t}\normSOthree{\Rtilde(0,0)} + \frac{1}{4 (1-\cobar)} \sqrt{\maxnoiseatt} \label{eq:ISS_att_c0}
+% \end{align}
+% Equation \eqref{eq:ISS_att_c0} shows that the observer when ${(\Rtilde^y(0,0), q(0,0))} \in C_0\times\{0\}$ is locally ISS to attitude measurement noise. When ${(\Rtilde^y(0,0), q(0,0))}\in C_1\times\{1\}$, a similar bound can be obtained as written below. {There exists ${d_0} < 1 - \normSOthree{\Rstar}$} such that the following holds:
 
-\begin{align}\label{eq:ISS_att_c1}
-    \normSOthree{\Rtilde_1(t,j)} &\leq \expo{-2\overline{k_p}(1-{d_0})t}\normSOthree{\Rtilde_1(0,j)} + \frac{1}{4 (1-\overline{d_0})} \sqrt{\maxnoiseatt}
-\end{align}
-When $\normSOthree{\Rtilde^y(0,j)}\geq {c_1}$, $\exists T \geq 0$ such that $\normSOthree{\Rtilde^y(T,j)} = {c_1} \implies {(\Rtilde^y(T,j+1), q(T,j+1))\in C_0\times\{0\}}$. Using \eqref{eq:ISS_att_c0}, the following holds.
-\begin{align}
-    \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-\cobar)(t-T)}\normSOthree{\Rtilde(T,j)} + \frac{1}{4 (1-\cobar)} \sqrt{\maxnoiseatt} \quad \forall t \geq T\label{eq:iss2}
-\end{align}
-Combining equations \eqref{eq:ISS_att_c0}, \eqref{eq:ISS_att_c1} and \eqref{eq:iss2} results in the following.
-\begin{align}
-    \normSOthree{\Rtilde(t,j)} \leq \min\left\{ 1, \alpha\expo{-\min\{2k_p(1-\cobar), 2\overline{k_p}(1-{d_0})\}t}\normSOthree{\Rtilde(0,0)} + \frac{\sqrt{\maxnoiseatt}}{2\gamma}\left\{\frac{1}{1-\cobar}+\frac{1}{1-\overline{d_0}}\right\}\right\}
-\end{align}
-where $\alpha$ and $\gamma$ are defined in \eqref{eq:C1bounds} and \eqref{eq:ISSbound_gyro} respectively. This completes the proof. 
-\end{proof}
+% \begin{align}\label{eq:ISS_att_c1}
+%     \normSOthree{\Rtilde_1(t,j)} &\leq \expo{-2\overline{k_p}(1-{d_0})t}\normSOthree{\Rtilde_1(0,j)} + \frac{1}{4 (1-\overline{d_0})} \sqrt{\maxnoiseatt}
+% \end{align}
+% When $\normSOthree{\Rtilde^y(0,j)}\geq {c_1}$, $\exists T \geq 0$ such that $\normSOthree{\Rtilde^y(T,j)} = {c_1} \implies {(\Rtilde^y(T,j+1), q(T,j+1))\in C_0\times\{0\}}$. Using \eqref{eq:ISS_att_c0}, the following holds.
+% \begin{align}
+%     \normSOthree{\Rtilde(t,j)} &\leq \expo{-2k_p(1-\cobar)(t-T)}\normSOthree{\Rtilde(T,j)} + \frac{1}{4 (1-\cobar)} \sqrt{\maxnoiseatt} \quad \forall t \geq T\label{eq:iss2}
+% \end{align}
+% Combining equations \eqref{eq:ISS_att_c0}, \eqref{eq:ISS_att_c1} and \eqref{eq:iss2} results in the following.
+% \begin{align}
+%     \normSOthree{\Rtilde(t,j)} \leq \min\left\{ 1, \alpha\expo{-\min\{2k_p(1-\cobar), 2\overline{k_p}(1-{d_0})\}t}\normSOthree{\Rtilde(0,0)} + \frac{\sqrt{\maxnoiseatt}}{2\gamma}\left\{\frac{1}{1-\cobar}+\frac{1}{1-\overline{d_0}}\right\}\right\}
+% \end{align}
+% where $\alpha$ and $\gamma$ are defined in \eqref{eq:C1bounds} and \eqref{eq:ISSbound_gyro} respectively. This completes the proof. 
+% \end{proof}
 
-\begin{remark}
-    It is important to note that \cite{berkane_complementary} has proved that the complementary filter is locally ISS to noise in gyro measurements and attitude measurements. However, to show local ISS to noise in attitude measurements, \cite{berkane_complementary} assumes that the attitude measurement error $\noiseatt = \mathcal{R}(\xi, v)$ has its axis $v$ aligned with the axis of rotation of $\Rtilde$ while also assuming a small angle approximation for $\xi$. The local ISS shown above in \eqref{eq:ISS_att_c0} makes no such assumptions. 
-\end{remark}
+% \begin{remark}
+%     It is important to note that \cite{berkane_complementary} has proved that the complementary filter is locally ISS to noise in gyro measurements and attitude measurements. However, to show local ISS to noise in attitude measurements, \cite{berkane_complementary} assumes that the attitude measurement error $\noiseatt = \mathcal{R}(\xi, v)$ has its axis $v$ aligned with the axis of rotation of $\Rtilde$ while also assuming a small angle approximation for $\xi$. The local ISS shown above in \eqref{eq:ISS_att_c0} makes no such assumptions. 
+% \end{remark}
 
-\subsection{Simulations for the hybrid passive complementary filter}
-We simulate the hybrid passice complementary filter with the following initial conditions: 
-\begin{align*}
-    R(0, 0) = I, && \hat{R}(0,0) = \mathcal{R}(\pi, [0,1,0]^\top ), && q(0,0) = 0.
-\end{align*}
-The true angular velocity $\Omega$ is set as $\Omega(t,j) = [0,0,\sin{t}]$. We set $R^y(t,j) = R(t,j)$. The gains and the switching parameters are set as follows.
-\begin{align*}
-    k_p = 1, && c_0 = 0.75, && c_1 = 0.25.
-\end{align*}
-Next, $\Rstar$ is set such that $\normSOthree{\Rstar}=0.117$ and the axis of rotation of $\Rstar$ is given by $\hat{R}(0,0)x$ where $x\in\mathbb{S}^2$ is the axis of rotation of $\Rtilde^y(0,0)$. The trajectory of the error function $V : \SOthree \times Q\to \R{}$ and $q(t,j)$ with time is shown in Figures \ref{fig:PCF_potential} and \ref{fig:PCF_q} respectively. Note that the error function $V$ is such that $V(\Rtilde, q) = \normSOthree{\Rtilde}$ if $\Rtilde\times q\in C_0\times \{0\}$, and $V(\Rtilde, q)\coloneqq \normSOthree{\Rtilde_1}$ if $\Rtilde\times q\in C_1\times\{1\}$.  The states jump twice and there are no more jumps required as shown in Theorem \ref{theorem:main}. The error function goes to $0$ which shows that the estimates converge to the true values of the rotation matrix. Also, $q(t)\to 0$ which shows that $(\Rtilde(t), q(t))$ converge to $\A$. 
+% \subsection{Simulations for the hybrid passive complementary filter}
+% We simulate the hybrid passice complementary filter with the following initial conditions: 
+% \begin{align*}
+%     R(0, 0) = I, && \hat{R}(0,0) = \mathcal{R}(\pi, [0,1,0]^\top ), && q(0,0) = 0.
+% \end{align*}
+% The true angular velocity $\Omega$ is set as $\Omega(t,j) = [0,0,\sin{t}]$. We set $R^y(t,j) = R(t,j)$. The gains and the switching parameters are set as follows.
+% \begin{align*}
+%     k_p = 1, && c_0 = 0.75, && c_1 = 0.25.
+% \end{align*}
+% Next, $\Rstar$ is set such that $\normSOthree{\Rstar}=0.117$ and the axis of rotation of $\Rstar$ is given by $\hat{R}(0,0)x$ where $x\in\mathbb{S}^2$ is the axis of rotation of $\Rtilde^y(0,0)$. The trajectory of the error function $V : \SOthree \times Q\to \R{}$ and $q(t,j)$ with time is shown in Figures \ref{fig:PCF_potential} and \ref{fig:PCF_q} respectively. Note that the error function $V$ is such that $V(\Rtilde, q) = \normSOthree{\Rtilde}$ if $\Rtilde\times q\in C_0\times \{0\}$, and $V(\Rtilde, q)\coloneqq \normSOthree{\Rtilde_1}$ if $\Rtilde\times q\in C_1\times\{1\}$.  The states jump twice and there are no more jumps required as shown in Theorem \ref{theorem:main}. The error function goes to $0$ which shows that the estimates converge to the true values of the rotation matrix. Also, $q(t)\to 0$ which shows that $(\Rtilde(t), q(t))$ converge to $\A$. 
 
-\begin{figure}[h]
-\centering
-\begin{minipage}{.45\textwidth}
-  \centering  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/PCF_potential.jpg}
-  \captionof{figure}{Plot of $V(\normSOthree{\Rtilde}, q)$ vs time.  Jumps are seen at $t_{j1}=0$ sec and $t_{j2}=2.747$ sec.}
-  \label{fig:PCF_potential}
-\end{minipage}\hfill
-\begin{minipage}{.45\textwidth}
-  \centering 
-  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/PCF_q.jpg}
-  \captionof{figure}{Plot of $q(t)$ vs time.}
-  \label{fig:PCF_q}
-\end{minipage}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \begin{minipage}{.45\textwidth}
+%   \centering  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/PCF_potential.jpg}
+%   \captionof{figure}{Plot of $V(\normSOthree{\Rtilde}, q)$ vs time.  Jumps are seen at $t_{j1}=0$ sec and $t_{j2}=2.747$ sec.}
+%   \label{fig:PCF_potential}
+% \end{minipage}\hfill
+% \begin{minipage}{.45\textwidth}
+%   \centering 
+%   \vspace{0pt}\includegraphics[width=\linewidth]{Figures/PCF_q.jpg}
+%   \captionof{figure}{Plot of $q(t)$ vs time.}
+%   \label{fig:PCF_q}
+% \end{minipage}
+% \end{figure}
 
 
-\section{Hybrid Explicit Complementary Filter}
+% \section{Hybrid Explicit Complementary Filter}
 
-This section develops a hybrid globally exponentially stable observer derived from the explicit complementary filter presented in \cite{mahony_complementaryFilter}. Unlike the passive complementary filter, vector measurements are considered instead of measurements on $\SOthree$ which allows for an implementable version of the filter. 
-The IMU sensor onboard is assumed to measure some fixed inertial directions $r_i$, where $i=1,2,..n$. This measurement of $r_i$ in the body frame is denoted by $b_i$. The true vectors and the measured vectors are related as $b_i = R^\top r_i \quad \forall i = 1,2,...,n$. To be able to extract the attitude estimate $\hat{R}$ from the measurements, we assume that $n\geq 2$ and at least two of the fixed inertial directions are noncollinear. 
+% This section develops a hybrid globally exponentially stable observer derived from the explicit complementary filter presented in \cite{mahony_complementaryFilter}. Unlike the passive complementary filter, vector measurements are considered instead of measurements on $\SOthree$ which allows for an implementable version of the filter. 
+% The IMU sensor onboard is assumed to measure some fixed inertial directions $r_i$, where $i=1,2,..n$. This measurement of $r_i$ in the body frame is denoted by $b_i$. The true vectors and the measured vectors are related as $b_i = R^\top r_i \quad \forall i = 1,2,...,n$. To be able to extract the attitude estimate $\hat{R}$ from the measurements, we assume that $n\geq 2$ and at least two of the fixed inertial directions are noncollinear. 
 
-% \begin{assumption}[Measurement model]
-%     The measurements of fixed inertial direction $r_i$ in the body frame is given by $b_i$, $i=1,...,n$. Atleast two noncollinear fixed inertial vectors are required, $n\geq 2$. 
-%     \begin{align}\label{eq:measmodel_ECF}
-%         b_i = R^\top r_i \quad i=1,...,n
+% % \begin{assumption}[Measurement model]
+% %     The measurements of fixed inertial direction $r_i$ in the body frame is given by $b_i$, $i=1,...,n$. Atleast two noncollinear fixed inertial vectors are required, $n\geq 2$. 
+% %     \begin{align}\label{eq:measmodel_ECF}
+% %         b_i = R^\top r_i \quad i=1,...,n
+% %     \end{align}
+% % \end{assumption}
+
+% Further, each of the vector measurements is assigned a weight $k_i > 0$ where $i=1,2,...n$. This allows to increase the weight of the measurement in which we have more confidence.  
+
+% \begin{assumption}\label{assumption:explicit}
+% The measurements are assumed to be obtained from gyroscope and IMU sensors onboard the robot. We assume the following:
+% \begin{enumerate}
+%     \item The gyroscope and IMU measurements are noise free, i.e.
+%     \begin{align}\label{eq:measmodel_explicit}
+%         \Omegay \coloneqq \Omega && b_i = R^\top r_i\quad \forall i = 1,2,..n
 %     \end{align}
+%     where $n\geq 2$, and atleast two fixed inertial vectors $r_i$ are noncollinear. 
+%     \item The gains $k_i$ are normalized, i.e. $\sum_{i=1}^n k_i = 1. $
+% \end{enumerate}
 % \end{assumption}
 
-Further, each of the vector measurements is assigned a weight $k_i > 0$ where $i=1,2,...n$. This allows to increase the weight of the measurement in which we have more confidence.  
-
-\begin{assumption}\label{assumption:explicit}
-The measurements are assumed to be obtained from gyroscope and IMU sensors onboard the robot. We assume the following:
-\begin{enumerate}
-    \item The gyroscope and IMU measurements are noise free, i.e.
-    \begin{align}\label{eq:measmodel_explicit}
-        \Omegay \coloneqq \Omega && b_i = R^\top r_i\quad \forall i = 1,2,..n
-    \end{align}
-    where $n\geq 2$, and atleast two fixed inertial vectors $r_i$ are noncollinear. 
-    \item The gains $k_i$ are normalized, i.e. $\sum_{i=1}^n k_i = 1. $
-\end{enumerate}
-\end{assumption}
-
-\begin{assumption}\label{assumption:distinctEigOfM0}
-    Consider $M_0 \coloneqq \sum_{i=1}^n k_ir_ir_i^\top $. The gains $k_i > 0$ are chosen such that Assumption \ref{assumption:explicit} is satisfied and $M_0\coloneqq \sum_{i=1}^n k_ir_ir_i^\top $ has three distinct eigenvalues. 
-\end{assumption}
-
-\begin{lemma}\label{lemma:5}
-    Given inertial directions $r_i, i=1,...,n$ and the corresponding measurements $b_i, i=1,...,n$, and the estimate $\hat{R}$ of the true attitude $R$, the left invariant estimation error is $\Rtilde\coloneqq \hat{R}^\top R$ and the right invariant estimation error is $\bar{R}\coloneqq \hat{R}R^\top $. Define $M_0 \coloneqq \sum_{i=1}^n k_i r_ir_i^\top $ and $M \coloneqq R^\top M_0R$. Then
-    \begin{align}
-        \trace{\bar{R}M_0} &= 1 + (1-\cos\Tilde{\theta})\trace{w_\times^2M_0}\label{eq:44}\\
-        \trace{w_\times^2 M_0} &= -1 + \sum_{i=1}^n k_i (w^\top r_i)^2 \label{eq:45}
-    \end{align}
-    where $\Tilde{\theta}\in\R{}$ and $w\in\mathbb{S}^2$ are such that $\bar{R} = \mathcal{R}(\Tilde{\theta}, w)$. 
-\end{lemma}
-\begin{proof}
-    We can write $\bar{R}$ using the Rodrigues rotation formula as $\bar{R} = I + w_\times\sin\Tilde{\theta} + w^2_\times (1 - \cos\Tilde{\theta})$. Now, $\trace{\bar{R}M_0} = \trace{M_0 + (1-\cos\Tilde{\theta})w^2_\times M_0}$. Since $k_i$ are normalized weights, $\trace{M_0}=1$, this proves \eqref{eq:44}. 
-    Next, $\text{tr}(w_\times^2M_0) = \sum_{i=1}^n k_i \trace{w_\times^2r_ir_i^\top }$. Now, with $w = [w_1, w_2, w_3]^\top \in\mathbb{S}^1$ and $r_i =[r_{i,1}, r_{i,2}, r_{i,3}]^\top  \in\mathbb{S}^1$, we get
-    \begin{align*}
-        w_\times^2r_ir_i^\top  &= \begin{bmatrix}
-            0 && -w_3 && w_2\\
-            w_3 && 0 && -w_1\\
-            -w_2 && w_1 && 0
-        \end{bmatrix}\begin{bmatrix}
-            r_{i,1}^2 && r_{i,1}r_{i,2} && r_{i,1}r_{i,3}\\
-            r_{i,1}r_{i,2} && r_{i,2}^2 && r_{i,2}r_{i,3}\\
-            r_{i,1}r_{i,3} && r_{i,2}r_{i,3} && r_{i,3}^2
-        \end{bmatrix}\\
-        \implies \trace{w_\times^2r_ir_i^\top } &= -1 + (w^\top r_i)
-    \end{align*}
-    Now, $\trace{w_\times^2M_0} = -\sum_{i=1}^n k_i + \sum_{i=1}^nk_i(w^\top r_i)^2 = -1 + \sum_{i=1}^n(w^\top r_i)^2$. This completes the proof. 
-\end{proof}
-
-Next, similar to Definition \ref{def:config_err}, we define a configuration error function in terms of vectorial measurements. 
-
-\begin{definition}[Estimation error function]\label{def:estimationErrorFunc}
-Given $n$ fixed inertial directions $r_i$, the corresponding measurements $b_i$, the corresponding relative weights as $k_i, i=1,...,n$ and the attitude estimate as $\hat{R}$, the estimation error function $\Psi:\SOthree\times \R{3\times n}\times \R{3\times n} \to \R{}$ is given below:
-\begin{align}\label{eq:estimationErrorFunc}
-    \Psi(\hat{R}, \{b_i\}_{i=1}^n, \{r_i\}_{i=1}^n) \coloneqq \frac{1}{4}\sum_{i=1}^n k_i \|b_i - \hat{R}^\top r_i\|^2
-\end{align}
-\end{definition}
-
-\begin{lemma}\label{lemma:estErrorFunc}
-    The estimation error function in \eqref{eq:estimationErrorFunc} can be simplified as follows. 
-    \begin{align}
-        \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) = \normSOthree{\Rtilde} \left[ 1- \sum_{i=1}^n k_i(w^\top r_i)^2\right]
-    \end{align}
-    where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$, and $\Tilde{\theta}\in [0,\pi]$, $v\in\R{3}$ is such that $\bar{R}\coloneqq \hat{R}R^\top  = \mathcal{R}(\Tilde{\theta}, w)$.
-\end{lemma}
-\begin{proof}
-    For brevity, $\Psi \equiv \Psi(\hat{R}, \mathbf{b}, \mathbf{r})$. 
-    \begin{align*}
-        \Psi &= \frac{1}{4}\sum_{i=1}^n k_i\|b_i - \hat{R}^\top r_i\|^2\\
-        &= \frac{1}{4}\sum_{i=1}^nk_i\|R^\top r_i - \hat{R}^\top r_i\|^2\\
-        &= \frac{1}{2}\sum_{i=1}^n k_i \left[1 - r_i^\top \hat{R}R^\top r_i\right]\\
-        &= \frac{1}{2}\sum_{i=1}^n k_i \left[1 - \trace{\hat{R}R^\top r_ir_i^\top }\right]\\
-        &= \frac{1}{2}\sum_{i=1}^n \left[1 - \trace{\bar{R}M_0}\right]
-        \intertext{Using Lemma \ref{lemma:5} results in the following.}
-        \Psi&= \frac{1-\cos{\Tilde{\theta}}}{2}\left[ 1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right] = \normSOthree{\Rtilde}\left[1 -\sum_{i=1}^nk_i(w^\top r_i)^2\right]
-    \end{align*}
-\end{proof}
-The explicit complementary filter from \cite{mahony_complementaryFilter} is now stated below. 
-
-\begin{theorem}[Explicit Complementary Filter {\cite[Theorem 5.1]{mahony_complementaryFilter}}]\label{theorem:explicitMahony}
-Consider the system in \eqref{eq:rotationKinematics} with the measurement model in \eqref{eq:measmodel_explicit} with the observer gain $k_p > 0$, the measurement gains $k_i>0$ for $i=1,...,n$ following Assumption \ref{assumption:explicit} and Assumption \ref{assumption:distinctEigOfM0}. Consider the following filter dynamics:
-\begin{alignat}{3}\label{eq:explicitMahony}
-    \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + k_p\omega_{mes}(\hat{R}, \mathbf{b}. \mathbf{r})}_\times, \quad \hat{R}(0) = \hat{R}_0\\
-    \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})&\coloneqq \sum_{i=1}^n k_i \left[b_i\times (\hat{R}^\top r_i)\right],\quad k_i> 0 \text{ for } i=1,...,n
-\end{alignat}
-where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$ and let $t\mapsto \hat{R}(t)$ denote the solution to \eqref{eq:explicitMahony}. Consider the left invariant estimation error $\Rtilde\coloneqq \hat{R}^\top R$. Assume that $\Omega(t)$ is a bounded, absolutely continuous function and the pair $(\Omega(t), \Rtilde(t))$ are asymptotically independent. Then:
-\begin{enumerate}
-    \item There are three unstable equilibria of the filter characterized by
-    \begin{align*}
-        \hat{R}_{*i} = U_0D_iU_0^\top R, \quad i=1,2,3
-    \end{align*}
-    where $D_i = \texttt{diag}(1,-1,-1)$, $D_2 = \texttt{diag}(-1,1,-1)$ and $D_3=\texttt{diag}(-1,-1,1)$, and $U_0\in\SOthree$ such that $M_0 = U_0\Lambda U_0^\top $ (where $M_0$ is defined in Assumption \ref{assumption:distinctEigOfM0}) and $\Lambda = \texttt{diag}(\lambda_1, \lambda_2, \lambda_3)$ is the diagonal matrix of distinct eigenvalues of $M_0$. \label{item:a-mahony-ecf}
-    \item The set $\{I\}$ is locally exponentially stable for $\Rtilde$ dynamics. \label{item:b-mahony-ecf}
-    \item For almost all initial conditions $\Tilde{R}_0\neq \hat{R}^\top _{*i}R(0), i=1,2,3$, $\hat{R}(t)$ converges to $R(t)$, and for each positive $k$ such that $0 < k < 1-\xi$ where $\xi \coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^n k_i(u^\top r_i)^2$ and $\normSOthree{\Rtilde^y(0)}\leq k$, every solution $t\mapsto \Rtilde(t)$ to the observer error dynamics satisfies \label{item:c-mahony-ecf}
-    \begin{align} \label{eq:localExpStability_ECF}
-    \normSOthree{\Rtilde(t)}\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)}\quad \forall t\in\dom\Rtilde.
-\end{align}
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-    See \cite[Theorem 5.1]{mahony_complementaryFilter} for the proof of \ref{item:a-mahony-ecf}, \ref{item:b-mahony-ecf}. For the proof of \ref{item:c-mahony-ecf}, consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. Note that this Lyapunov function candidate is different from the one used in \cite[Theorem 5.1]{mahony_complementaryFilter}. The derivative of $V$ along the trajectory of $\Rtilde$ gives
-     \begin{align*}
-         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot\Rtilde}\\
-         &= \frac{k_p}{4}\trace{\omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})_\times \mathbb{P}_a(\Rtilde)}\\
-         &= \frac{k_p}{4}\trace{\mathbb{P}_a(\Rtilde M)\mathbb{P}_a(\Rtilde)}
-         \intertext{where $M = R^\top M_0R$.}
-         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= \frac{k_p}{8}\trace{\Rtilde^2M - M}\\
-         \intertext{Now, with $\Rtilde = \mathcal{R}(\Tilde{\theta}, x)$ for some $\Tilde{\theta}\in \R{}$ and $x\in\mathbb{S}^2$, using $\Rtilde^2 = I + x_\times \sin\Tilde{\theta} + x_\times^2 (1-\cos\Tilde{\theta})$ results in}
-         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &=\frac{k_p}{4}\normSOthree{\Rtilde^2}\trace{x_\times^2R^\top M_0R}\\
-         &= \frac{k_p}{4}\trace{w_\times^2 M_0}\\
-         \intertext{where $w\coloneqq Rx$. Now using Lemma \ref{lemma:5} results in the following.}
-         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{k_p}{4}\normSOthree{\Rtilde^2}\left[1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right]\\
-         &\leq -k_p\normSOthree{\Rtilde}(1-k)(1-\xi)\\
-         \implies \normSOthree{\Rtilde(t)}&\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)} \quad \forall t\in \dom\Rtilde. 
-     \end{align*}
-\end{proof}
-
-\begin{remark}\label{remark:explicitFilter_unstable}
-    Note that in Theorem \ref{theorem:explicitMahony}, $U_0D_iU_0^\top $ represents a rotation of $180^\circ$ about the axis given by $U_0e_i$ where $e_i$ is the standard basis vector. Thus, the unstable equilibria of the explicit complementary filter are when the right invariant estimation error ($\bar{R}\coloneqq \hat{R}R^\top $) represents a $180^\circ$ rotation about the axis of rotation given by either $U_0e_1$, $U_0e_2$ or $U_0e_3$. This is unlike the passive complementary filter in Theorem \ref{thm:mahony} which is unstable for $180^\circ$ observer error about any axis of rotation. 
-\end{remark}
+% \begin{assumption}\label{assumption:distinctEigOfM0}
+%     Consider $M_0 \coloneqq \sum_{i=1}^n k_ir_ir_i^\top $. The gains $k_i > 0$ are chosen such that Assumption \ref{assumption:explicit} is satisfied and $M_0\coloneqq \sum_{i=1}^n k_ir_ir_i^\top $ has three distinct eigenvalues. 
+% \end{assumption}
 
 % \begin{lemma}\label{lemma:5}
 %     Given inertial directions $r_i, i=1,...,n$ and the corresponding measurements $b_i, i=1,...,n$, and the estimate $\hat{R}$ of the true attitude $R$, the left invariant estimation error is $\Rtilde\coloneqq \hat{R}^\top R$ and the right invariant estimation error is $\bar{R}\coloneqq \hat{R}R^\top $. Define $M_0 \coloneqq \sum_{i=1}^n k_i r_ir_i^\top $ and $M \coloneqq R^\top M_0R$. Then
@@ -1013,15 +915,30 @@ where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^
 %         \Psi&= \frac{1-\cos{\Tilde{\theta}}}{2}\left[ 1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right] = \normSOthree{\Rtilde}\left[1 -\sum_{i=1}^nk_i(w^\top r_i)^2\right]
 %     \end{align*}
 % \end{proof}
+% The explicit complementary filter from \cite{mahony_complementaryFilter} is now stated below. 
 
-%  \begin{lemma}\label{lemma:localExpStability_ECF}
-% Consider the system \eqref{eq:rotationKinematics} with an absolutely continuous and bounded $t\mapsto \Omega(t)$ and the observer in Theorem \ref{theorem:explicitMahony} with initial condition such that $\normSOthree{\Rtilde(0)} \neq 1$. With $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$, there exists $k>0$ such that $\normSOthree{\Rtilde(0)} \leq k < 1-\xi$ and every solution $t\mapsto \Rtilde(t)$ to the error dynamics satisfies
-% \begin{align}
+% \begin{theorem}[Explicit Complementary Filter {\cite[Theorem 5.1]{mahony_complementaryFilter}}]\label{theorem:explicitMahony}
+% Consider the system in \eqref{eq:rotationKinematics} with the measurement model in \eqref{eq:measmodel_explicit} with the observer gain $k_p > 0$, the measurement gains $k_i>0$ for $i=1,...,n$ following Assumption \ref{assumption:explicit} and Assumption \ref{assumption:distinctEigOfM0}. Consider the following filter dynamics:
+% \begin{alignat}{3}\label{eq:explicitMahony}
+%     \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + k_p\omega_{mes}(\hat{R}, \mathbf{b}. \mathbf{r})}_\times, \quad \hat{R}(0) = \hat{R}_0\\
+%     \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})&\coloneqq \sum_{i=1}^n k_i \left[b_i\times (\hat{R}^\top r_i)\right],\quad k_i> 0 \text{ for } i=1,...,n
+% \end{alignat}
+% where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$ and let $t\mapsto \hat{R}(t)$ denote the solution to \eqref{eq:explicitMahony}. Consider the left invariant estimation error $\Rtilde\coloneqq \hat{R}^\top R$. Assume that $\Omega(t)$ is a bounded, absolutely continuous function and the pair $(\Omega(t), \Rtilde(t))$ are asymptotically independent. Then:
+% \begin{enumerate}
+%     \item There are three unstable equilibria of the filter characterized by
+%     \begin{align*}
+%         \hat{R}_{*i} = U_0D_iU_0^\top R, \quad i=1,2,3
+%     \end{align*}
+%     where $D_i = \texttt{diag}(1,-1,-1)$, $D_2 = \texttt{diag}(-1,1,-1)$ and $D_3=\texttt{diag}(-1,-1,1)$, and $U_0\in\SOthree$ such that $M_0 = U_0\Lambda U_0^\top $ (where $M_0$ is defined in Assumption \ref{assumption:distinctEigOfM0}) and $\Lambda = \texttt{diag}(\lambda_1, \lambda_2, \lambda_3)$ is the diagonal matrix of distinct eigenvalues of $M_0$. \label{item:a-mahony-ecf}
+%     \item The set $\{I\}$ is locally exponentially stable for $\Rtilde$ dynamics. \label{item:b-mahony-ecf}
+%     \item For almost all initial conditions $\Tilde{R}_0\neq \hat{R}^\top _{*i}R(0), i=1,2,3$, $\hat{R}(t)$ converges to $R(t)$, and for each positive $k$ such that $0 < k < 1-\xi$ where $\xi \coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^n k_i(u^\top r_i)^2$ and $\normSOthree{\Rtilde^y(0)}\leq k$, every solution $t\mapsto \Rtilde(t)$ to the observer error dynamics satisfies \label{item:c-mahony-ecf}
+%     \begin{align} \label{eq:localExpStability_ECF}
 %     \normSOthree{\Rtilde(t)}\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)}\quad \forall t\in\dom\Rtilde.
 % \end{align}
-%  \end{lemma}
-%  \begin{proof}
-%      Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. Note that this Lyapunov function candidate is different from the one used in \cite{mahony_complementaryFilter}. The derivative of $V$ along the trajectory of $\Rtilde$ gives
+% \end{enumerate}
+% \end{theorem}
+% \begin{proof}
+%     See \cite[Theorem 5.1]{mahony_complementaryFilter} for the proof of \ref{item:a-mahony-ecf}, \ref{item:b-mahony-ecf}. For the proof of \ref{item:c-mahony-ecf}, consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. Note that this Lyapunov function candidate is different from the one used in \cite[Theorem 5.1]{mahony_complementaryFilter}. The derivative of $V$ along the trajectory of $\Rtilde$ gives
 %      \begin{align*}
 %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot\Rtilde}\\
 %          &= \frac{k_p}{4}\trace{\omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})_\times \mathbb{P}_a(\Rtilde)}\\
@@ -1034,120 +951,231 @@ where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^
 %          \intertext{where $w\coloneqq Rx$. Now using Lemma \ref{lemma:5} results in the following.}
 %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{k_p}{4}\normSOthree{\Rtilde^2}\left[1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right]\\
 %          &\leq -k_p\normSOthree{\Rtilde}(1-k)(1-\xi)\\
-%          \implies \normSOthree{\Rtilde(t)}&\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)} \quad \forall t\geq 0
+%          \implies \normSOthree{\Rtilde(t)}&\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)} \quad \forall t\in \dom\Rtilde. 
 %      \end{align*}
-%  \end{proof}
+% \end{proof}
 
-\section{Hybrid explicit complementary filter}
-In this section, we extend the explicit complementary filter in Theorem \ref{theorem:explicitMahony} to obtain a globally convergent observer. Next, similar to \eqref{eq:unstable_observer}, we define a rotated observer below. 
-\begin{subequations}\label{eq:unstable_observer_explicit}
-\begin{align}
-    \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + \overline{k_p}\omega_{mes}(\hat{R}, \mathbf{b}, {R^{*}}^\top \mathbf{r})}_\times,\quad \hat{R}(0) = \hat{R}_0, \quad\overline{k_p}>0\\
-    \omega_{mes}(\hat{R}, \mathbf{b}, {\Rstar}^\top \mathbf{r})&\coloneqq \sum_{i=1}^n \overline{k_i} \left[b_i\times (\hat{R}^\top {R^*}^\top r_i)\right],\quad \overline{k_i}> 0, \quad i=1,..., n
-\end{align}
-\end{subequations}
-where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$ and $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$. It is straightforward from Theorem \ref{theorem:explicitMahony} to see that \eqref{eq:unstable_observer_explicit} ensures that $R^*$ is a locally exponentially stable equilibrium point of the right invariant observer error ($\bar{R}$) dynamics. We now move towards deriving the hybrid explicit complementary filter.  
+% \begin{remark}\label{remark:explicitFilter_unstable}
+%     Note that in Theorem \ref{theorem:explicitMahony}, $U_0D_iU_0^\top $ represents a rotation of $180^\circ$ about the axis given by $U_0e_i$ where $e_i$ is the standard basis vector. Thus, the unstable equilibria of the explicit complementary filter are when the right invariant estimation error ($\bar{R}\coloneqq \hat{R}R^\top $) represents a $180^\circ$ rotation about the axis of rotation given by either $U_0e_1$, $U_0e_2$ or $U_0e_3$. This is unlike the passive complementary filter in Theorem \ref{thm:mahony} which is unstable for $180^\circ$ observer error about any axis of rotation. 
+% \end{remark}
+
+% % \begin{lemma}\label{lemma:5}
+% %     Given inertial directions $r_i, i=1,...,n$ and the corresponding measurements $b_i, i=1,...,n$, and the estimate $\hat{R}$ of the true attitude $R$, the left invariant estimation error is $\Rtilde\coloneqq \hat{R}^\top R$ and the right invariant estimation error is $\bar{R}\coloneqq \hat{R}R^\top $. Define $M_0 \coloneqq \sum_{i=1}^n k_i r_ir_i^\top $ and $M \coloneqq R^\top M_0R$. Then
+% %     \begin{align}
+% %         \trace{\bar{R}M_0} &= 1 + (1-\cos\Tilde{\theta})\trace{w_\times^2M_0}\label{eq:44}\\
+% %         \trace{w_\times^2 M_0} &= -1 + \sum_{i=1}^n k_i (w^\top r_i)^2 \label{eq:45}
+% %     \end{align}
+% %     where $\Tilde{\theta}\in\R{}$ and $w\in\mathbb{S}^2$ are such that $\bar{R} = \mathcal{R}(\Tilde{\theta}, w)$. 
+% % \end{lemma}
+% % \begin{proof}
+% %     We can write $\bar{R}$ using the Rodrigues rotation formula as $\bar{R} = I + w_\times\sin\Tilde{\theta} + w^2_\times (1 - \cos\Tilde{\theta})$. Now, $\trace{\bar{R}M_0} = \trace{M_0 + (1-\cos\Tilde{\theta})w^2_\times M_0}$. Since $k_i$ are normalized weights, $\trace{M_0}=1$, this proves \eqref{eq:44}. 
+% %     Next, $\text{tr}(w_\times^2M_0) = \sum_{i=1}^n k_i \trace{w_\times^2r_ir_i^\top }$. Now, with $w = [w_1, w_2, w_3]^\top \in\mathbb{S}^1$ and $r_i =[r_{i,1}, r_{i,2}, r_{i,3}]^\top  \in\mathbb{S}^1$, we get
+% %     \begin{align*}
+% %         w_\times^2r_ir_i^\top  &= \begin{bmatrix}
+% %             0 && -w_3 && w_2\\
+% %             w_3 && 0 && -w_1\\
+% %             -w_2 && w_1 && 0
+% %         \end{bmatrix}\begin{bmatrix}
+% %             r_{i,1}^2 && r_{i,1}r_{i,2} && r_{i,1}r_{i,3}\\
+% %             r_{i,1}r_{i,2} && r_{i,2}^2 && r_{i,2}r_{i,3}\\
+% %             r_{i,1}r_{i,3} && r_{i,2}r_{i,3} && r_{i,3}^2
+% %         \end{bmatrix}\\
+% %         \implies \trace{w_\times^2r_ir_i^\top } &= -1 + (w^\top r_i)
+% %     \end{align*}
+% %     Now, $\trace{w_\times^2M_0} = -\sum_{i=1}^n k_i + \sum_{i=1}^nk_i(w^\top r_i)^2 = -1 + \sum_{i=1}^n(w^\top r_i)^2$. This completes the proof. 
+% % \end{proof}
+
+% % Next, similar to Definition \ref{def:config_err}, we define a configuration error function in terms of vectorial measurements. 
+
+% % \begin{definition}[Estimation error function]\label{def:estimationErrorFunc}
+% % Given $n$ fixed inertial directions $r_i$, the corresponding measurements $b_i$, the corresponding relative weights as $k_i, i=1,...,n$ and the attitude estimate as $\hat{R}$, the estimation error function $\Psi:\SOthree\times \R{3\times n}\times \R{3\times n} \to \R{}$ is given below:
+% % \begin{align}\label{eq:estimationErrorFunc}
+% %     \Psi(\hat{R}, \{b_i\}_{i=1}^n, \{r_i\}_{i=1}^n) \coloneqq \frac{1}{4}\sum_{i=1}^n k_i \|b_i - \hat{R}^\top r_i\|^2
+% % \end{align}
+% % \end{definition}
+
+% % \begin{lemma}\label{lemma:estErrorFunc}
+% %     The estimation error function in \eqref{eq:estimationErrorFunc} can be simplified as follows. 
+% %     \begin{align}
+% %         \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) = \normSOthree{\Rtilde} \left[ 1- \sum_{i=1}^n k_i(w^\top r_i)^2\right]
+% %     \end{align}
+% %     where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$, $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$, and $\Tilde{\theta}\in [0,\pi]$, $v\in\R{3}$ is such that $\bar{R}\coloneqq \hat{R}R^\top  = \mathcal{R}(\Tilde{\theta}, w)$.
+% % \end{lemma}
+% % \begin{proof}
+% %     For brevity, $\Psi \equiv \Psi(\hat{R}, \mathbf{b}, \mathbf{r})$. 
+% %     \begin{align*}
+% %         \Psi &= \frac{1}{4}\sum_{i=1}^n k_i\|b_i - \hat{R}^\top r_i\|^2\\
+% %         &= \frac{1}{4}\sum_{i=1}^nk_i\|R^\top r_i - \hat{R}^\top r_i\|^2\\
+% %         &= \frac{1}{2}\sum_{i=1}^n k_i \left[1 - r_i^\top \hat{R}R^\top r_i\right]\\
+% %         &= \frac{1}{2}\sum_{i=1}^n k_i \left[1 - \trace{\hat{R}R^\top r_ir_i^\top }\right]\\
+% %         &= \frac{1}{2}\sum_{i=1}^n \left[1 - \trace{\bar{R}M_0}\right]
+% %         \intertext{Using Lemma \ref{lemma:5} results in the following.}
+% %         \Psi&= \frac{1-\cos{\Tilde{\theta}}}{2}\left[ 1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right] = \normSOthree{\Rtilde}\left[1 -\sum_{i=1}^nk_i(w^\top r_i)^2\right]
+% %     \end{align*}
+% % \end{proof}
+
+% %  \begin{lemma}\label{lemma:localExpStability_ECF}
+% % Consider the system \eqref{eq:rotationKinematics} with an absolutely continuous and bounded $t\mapsto \Omega(t)$ and the observer in Theorem \ref{theorem:explicitMahony} with initial condition such that $\normSOthree{\Rtilde(0)} \neq 1$. With $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$, there exists $k>0$ such that $\normSOthree{\Rtilde(0)} \leq k < 1-\xi$ and every solution $t\mapsto \Rtilde(t)$ to the error dynamics satisfies
+% % \begin{align}
+% %     \normSOthree{\Rtilde(t)}\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)}\quad \forall t\in\dom\Rtilde.
+% % \end{align}
+% %  \end{lemma}
+% %  \begin{proof}
+% %      Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. Note that this Lyapunov function candidate is different from the one used in \cite{mahony_complementaryFilter}. The derivative of $V$ along the trajectory of $\Rtilde$ gives
+% %      \begin{align*}
+% %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot\Rtilde}\\
+% %          &= \frac{k_p}{4}\trace{\omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})_\times \mathbb{P}_a(\Rtilde)}\\
+% %          &= \frac{k_p}{4}\trace{\mathbb{P}_a(\Rtilde M)\mathbb{P}_a(\Rtilde)}
+% %          \intertext{where $M = R^\top M_0R$.}
+% %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= \frac{k_p}{8}\trace{\Rtilde^2M - M}\\
+% %          \intertext{Now, with $\Rtilde = \mathcal{R}(\Tilde{\theta}, x)$ for some $\Tilde{\theta}\in \R{}$ and $x\in\mathbb{S}^2$, using $\Rtilde^2 = I + x_\times \sin\Tilde{\theta} + x_\times^2 (1-\cos\Tilde{\theta})$ results in}
+% %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &=\frac{k_p}{4}\normSOthree{\Rtilde^2}\trace{x_\times^2R^\top M_0R}\\
+% %          &= \frac{k_p}{4}\trace{w_\times^2 M_0}\\
+% %          \intertext{where $w\coloneqq Rx$. Now using Lemma \ref{lemma:5} results in the following.}
+% %          \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{k_p}{4}\normSOthree{\Rtilde^2}\left[1 - \sum_{i=1}^n k_i(w^\top r_i)^2\right]\\
+% %          &\leq -k_p\normSOthree{\Rtilde}(1-k)(1-\xi)\\
+% %          \implies \normSOthree{\Rtilde(t)}&\leq \expo{-k_p(1-\xi)(1-k)t}\normSOthree{\Rtilde(0)} \quad \forall t\geq 0
+% %      \end{align*}
+% %  \end{proof}
+
+% \section{Hybrid explicit complementary filter}
+% In this section, we extend the explicit complementary filter in Theorem \ref{theorem:explicitMahony} to obtain a globally convergent observer. Next, similar to \eqref{eq:unstable_observer}, we define a rotated observer below. 
+% \begin{subequations}\label{eq:unstable_observer_explicit}
+% \begin{align}
+%     \dot{\hat{R}} &= \hat{R}\brackets{\Omegay + \overline{k_p}\omega_{mes}(\hat{R}, \mathbf{b}, {R^{*}}^\top \mathbf{r})}_\times,\quad \hat{R}(0) = \hat{R}_0, \quad\overline{k_p}>0\\
+%     \omega_{mes}(\hat{R}, \mathbf{b}, {\Rstar}^\top \mathbf{r})&\coloneqq \sum_{i=1}^n \overline{k_i} \left[b_i\times (\hat{R}^\top {R^*}^\top r_i)\right],\quad \overline{k_i}> 0, \quad i=1,..., n
+% \end{align}
+% \end{subequations}
+% where $\mathbf{b}\coloneqq \{b_i\}_{i=1}^n$ and $\mathbf{r}\coloneqq \{r_i\}_{i=1}^n$. It is straightforward from Theorem \ref{theorem:explicitMahony} to see that \eqref{eq:unstable_observer_explicit} ensures that $R^*$ is a locally exponentially stable equilibrium point of the right invariant observer error ($\bar{R}$) dynamics. We now move towards deriving the hybrid explicit complementary filter.  
 
 
-Let $\xi = \max_{u\in\mathbb{S}^2} \sum_{i=1}^nk_i (u^\top r_i)^2$. Define positive constants $c_0, c_1$ such that $0 < c_1 < c_0 < 1-\xi$. For the hybrid observer, we define the flow and jump sets below. 
+% Let $\xi = \max_{u\in\mathbb{S}^2} \sum_{i=1}^nk_i (u^\top r_i)^2$. Define positive constants $c_0, c_1$ such that $0 < c_1 < c_0 < 1-\xi$. For the hybrid observer, we define the flow and jump sets below. 
+
+% % \begin{subequations}
+% % \begin{align}
+% %     C_0 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_0\}\\
+% %     D_0 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_0\}\\
+% %     C_1 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_1\}\\
+% %     D_1 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_1\}
+% % \end{align}
+% % \end{subequations}
 
 % \begin{subequations}
 % \begin{align}
-%     C_0 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_0\}\\
-%     D_0 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_0\}\\
-%     C_1 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_1\}\\
-%     D_1 \coloneqq \{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_1\}
+%     C_0 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_0 \}}\\
+%     D_0 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_0 \}}\\
+%     C_1 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_1 \}}\\
+%     D_1 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_1\}}
 % \end{align}
 % \end{subequations}
-
-\begin{subequations}
-\begin{align}
-    C_0 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_0 \}}\\
-    D_0 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_0 \}}\\
-    C_1 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \geq c_1 \}}\\
-    D_1 \coloneqq {\{(\hat{R}, \mathbf{b}, \mathbf{r})\in\SOthree\times \R{3\times n}\times \R{3\times n}\mid \Psi(\hat{R}, \mathbf{b}, \mathbf{r}) \leq c_1\}}
-\end{align}
-\end{subequations}
-The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_2$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)\in \SOthree\times \R{3\times n}\times \R{3\times n} \times \R{}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:hybrid-observer-ecf-output}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=1,2$ where $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$, $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \Rstar^\top\mathbf{r})$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_2 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
+% The state of the hybrid observer, denoted by $\hat{\mathcal{H}}_2$, is $q\in Q\coloneqq \{0, 1\}$, the input is $v \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)\in \SOthree\times \R{3\times n}\times \R{3\times n} \times \R{}$ and the output $\zeta=f(q,v)\coloneqq (f_1(q,v), f_2(q,v))\in\sothree\times Q$ is defined in \eqref{eq:hybrid-observer-ecf-output}. Define $\gamma_i(v) \coloneqq (\Omegay + k_i\omega_i)_\times$, $i=1,2$ where $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$, $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \Rstar^\top\mathbf{r})$ and $k_0 \coloneqq k_p$, $k_1\coloneqq \overline{k_p}$. The data for the hybrid observer $\hat{\mathcal{H}}_2 = ({\hat{C}, \hat{F}, \hat{D}, \hat{G}, \zeta})$ is given as 
 
 
-% The hybrid observer $\hat{H}_2$ can be represented by the states $q\in Q\coloneqq\{0,1\}$. The inputs for $\hat{H}_2$ are $u \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)\in\SOthree\times\R{3\times n}\times \R{3\times n}\times \R{3}$, the output $\zeta: \SOthree\times\R{3\times n}\times \R{3\times n}\times \R{3}\times Q\to\sothree$ is defined below. Define $\gamma_i(u) = \brackets{\Omegay + k_p\omega_i}_\times, \:i=0,1$ where $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$ and $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, {\Rstar}^\top \mathbf{r})$. The data for the hybrid observer $\hat{H}_2 = (C_K, F_K, D_K, G_K, \zeta)$ is given as follows.  
+% % The hybrid observer $\hat{H}_2$ can be represented by the states $q\in Q\coloneqq\{0,1\}$. The inputs for $\hat{H}_2$ are $u \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)\in\SOthree\times\R{3\times n}\times \R{3\times n}\times \R{3}$, the output $\zeta: \SOthree\times\R{3\times n}\times \R{3\times n}\times \R{3}\times Q\to\sothree$ is defined below. Define $\gamma_i(u) = \brackets{\Omegay + k_p\omega_i}_\times, \:i=0,1$ where $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$ and $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, {\Rstar}^\top \mathbf{r})$. The data for the hybrid observer $\hat{H}_2 = (C_K, F_K, D_K, G_K, \zeta)$ is given as follows.  
+% % \begin{align}
+% %     C_K &= \bigcup_{q\in Q}\brackets{C_{K, q}\times q}, \quad \begin{cases}
+% %         C_{K, 0} \coloneqq C_0\\
+% %         C_{K, 1} \coloneqq C_1
+% %     \end{cases}\\
+% %     F_K(u, q) &= 0\\
+% %     D_K &= \bigcup_{q\in Q} \brackets{D_{K, q}\times Q}, \quad \begin{cases}
+% %         D_{K,0} \coloneqq D_0\\
+% %         D_{K,1} \coloneqq D_1
+% %     \end{cases}\\
+% %     G_K(u, q) &= 1 - q \\
+% %     \zeta(u, q) &= q\gamma_1(u) + (1-q)\gamma_0(u)
+% % \end{align}
+
+% \begin{subequations}
 % \begin{align}
-%     C_K &= \bigcup_{q\in Q}\brackets{C_{K, q}\times q}, \quad \begin{cases}
-%         C_{K, 0} \coloneqq C_0\\
-%         C_{K, 1} \coloneqq C_1
+%     \hat{C} &= \bigcup_{q\in Q}\brackets{\hat{C}_{q}\times q}, \quad \begin{cases}
+%         \hat{C}_{0} \coloneqq C_0\\
+%         \hat{C}_{1} \coloneqq C_1
 %     \end{cases}\\
-%     F_K(u, q) &= 0\\
-%     D_K &= \bigcup_{q\in Q} \brackets{D_{K, q}\times Q}, \quad \begin{cases}
-%         D_{K,0} \coloneqq D_0\\
-%         D_{K,1} \coloneqq D_1
+%     \hat{F}(q, v) &= 0\\
+%     \hat{D} &= \bigcup_{q\in Q} \brackets{\hat{D}_{q}\times q}, \quad \begin{cases}
+%         \hat{D}_{0} \coloneqq D_0\\
+%         \hat{D}_{1} \coloneqq D_1
 %     \end{cases}\\
-%     G_K(u, q) &= 1 - q \\
-%     \zeta(u, q) &= q\gamma_1(u) + (1-q)\gamma_0(u)
+%     \hat{G}(q, v) &= 1 - q \\
+%     \zeta &= f(q,v)\coloneqq (\underbrace{q\gamma_1(v) + (1-q)\gamma_0(v)}_\text{$f_1(q, v)$}, \underbrace{q}_\text{$f_2(q,v)$}) \label{eq:hybrid-observer-ecf-output}
+% \end{align}
+% \end{subequations}
+% Using the above hybrid observer, the estimates are updated as 
+% \begin{align}\label{eq:hybrid_observer_ECF}
+% \underbrace{\dot{\hat{R}} = \hat{R}f_1(q, v), \quad \dot{q} = 0}_{\text{during flows}}, \quad \text{ and}\quad \quad   \underbrace{\hat{R}^+ = \hat{R}, \quad q^+ = 1 - q}_\text{during jumps}
 % \end{align}
 
-\begin{subequations}
-\begin{align}
-    \hat{C} &= \bigcup_{q\in Q}\brackets{\hat{C}_{q}\times q}, \quad \begin{cases}
-        \hat{C}_{0} \coloneqq C_0\\
-        \hat{C}_{1} \coloneqq C_1
-    \end{cases}\\
-    \hat{F}(q, v) &= 0\\
-    \hat{D} &= \bigcup_{q\in Q} \brackets{\hat{D}_{q}\times q}, \quad \begin{cases}
-        \hat{D}_{0} \coloneqq D_0\\
-        \hat{D}_{1} \coloneqq D_1
-    \end{cases}\\
-    \hat{G}(q, v) &= 1 - q \\
-    \zeta &= f(q,v)\coloneqq (\underbrace{q\gamma_1(v) + (1-q)\gamma_0(v)}_\text{$f_1(q, v)$}, \underbrace{q}_\text{$f_2(q,v)$}) \label{eq:hybrid-observer-ecf-output}
-\end{align}
-\end{subequations}
-Using the above hybrid observer, the estimates are updated as 
-\begin{align}\label{eq:hybrid_observer_ECF}
-\underbrace{\dot{\hat{R}} = \hat{R}f_1(q, v), \quad \dot{q} = 0}_{\text{during flows}}, \quad \text{ and}\quad \quad   \underbrace{\hat{R}^+ = \hat{R}, \quad q^+ = 1 - q}_\text{during jumps}
-\end{align}
-
-Consider the hybrid system $\mathcal{H}_2 = (C, F, G, D)$, that represents the observer error, with the states $\eta \coloneqq (\Rtilde, q) \in \SOthree\times Q$ and inputs $\rho \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay, \Omega)\in\SOthree\times\R{3\times n}\times\R{3\times n}\times \R{3}\times \R{3}$ has the following data. 
-\begin{subequations}\label{eq:hybrid_observer_error_explicit}
-\begin{align}
-C&\coloneqq \hat{C}\\
-F(\eta, \rho)&\coloneqq \begin{bmatrix}
-    \Rtilde\brackets{\Rtilde^\top f_1(q, v)^\top \Rtilde + \Omega_\times}\\ 0\end{bmatrix} \label{eq:Rtilde_dot_ecf}\\
-D &\coloneqq \hat{D}\\
-G(\eta, \rho) &\coloneqq \begin{bmatrix}
-\Rtilde \\ 1 - q
-\end{bmatrix}
-\end{align}
-\end{subequations}
-where $v = (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)$ and \eqref{eq:Rtilde_dot_ecf} is obtained by substituting $\dot{\hat{R}}$ from \eqref{eq:hybrid_observer_ECF} in $\dot{\Rtilde} = \dot{\hat{R}}^\top R + \hat{R}^\top \dot{R}$. 
-
-
-% Consider the hybrid system $\mathcal{H}_2 = (C, F, G, D)$ that represents the observer error with the states $(\Rtilde, q) \in \SOthree\times Q$, inputs $()$ and has the following data. 
+% Consider the hybrid system $\mathcal{H}_2 = (C, F, G, D)$, that represents the observer error, with the states $\eta \coloneqq (\Rtilde, q) \in \SOthree\times Q$ and inputs $\rho \coloneqq (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay, \Omega)\in\SOthree\times\R{3\times n}\times\R{3\times n}\times \R{3}\times \R{3}$ has the following data. 
 % \begin{subequations}\label{eq:hybrid_observer_error_explicit}
 % \begin{align}
-% C&\coloneqq C_K\\
-% F(\Rtilde, q)&\coloneqq \begin{bmatrix}
-%     \Rtilde\brackets{\Rtilde^\top \zeta(u, q)^\top \Rtilde + \Omega_\times}\\ 0\end{bmatrix}\\
-% D &\coloneqq D_K\\
-% G(\Rtilde, q) &\coloneqq \begin{bmatrix}
+% C&\coloneqq \hat{C}\\
+% F(\eta, \rho)&\coloneqq \begin{bmatrix}
+%     \Rtilde\brackets{\Rtilde^\top f_1(q, v)^\top \Rtilde + \Omega_\times}\\ 0\end{bmatrix} \label{eq:Rtilde_dot_ecf}\\
+% D &\coloneqq \hat{D}\\
+% G(\eta, \rho) &\coloneqq \begin{bmatrix}
 % \Rtilde \\ 1 - q
 % \end{bmatrix}
 % \end{align}
 % \end{subequations}
+% where $v = (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)$ and \eqref{eq:Rtilde_dot_ecf} is obtained by substituting $\dot{\hat{R}}$ from \eqref{eq:hybrid_observer_ECF} in $\dot{\Rtilde} = \dot{\hat{R}}^\top R + \hat{R}^\top \dot{R}$. 
+
+
+% % Consider the hybrid system $\mathcal{H}_2 = (C, F, G, D)$ that represents the observer error with the states $(\Rtilde, q) \in \SOthree\times Q$, inputs $()$ and has the following data. 
+% % \begin{subequations}\label{eq:hybrid_observer_error_explicit}
+% % \begin{align}
+% % C&\coloneqq C_K\\
+% % F(\Rtilde, q)&\coloneqq \begin{bmatrix}
+% %     \Rtilde\brackets{\Rtilde^\top \zeta(u, q)^\top \Rtilde + \Omega_\times}\\ 0\end{bmatrix}\\
+% % D &\coloneqq D_K\\
+% % G(\Rtilde, q) &\coloneqq \begin{bmatrix}
+% % \Rtilde \\ 1 - q
+% % \end{bmatrix}
+% % \end{align}
+% % \end{subequations}
+
+% % \begin{theorem}[Hybrid explicit complementary filter]\label{theorem:hybridECF}
+% % Given the system \eqref{eq:rotationKinematics} and consider the set $\mathcal{A}\coloneqq \{I\}\times \{0\}\in\SOthree\times Q$. Define $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$. If there exist constants $c_0, c_1, d_0, e_0, f_0 > 0$ and $\Rstar\in\SOthree$ such that the following holds:
+
+% % \begin{enumerate}[(a)]
+% %         \item $0 < e_0 < f_0 < c_1 < c_0 < 1-\xi$,\label{item:a-bullet-ecf}\\
+% %         \item $2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1$,
+% %         % \begin{align*}
+% %         %     2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1,
+% %         % \end{align*}
+% %         \item $e_0 < \normSOthree{R^*} < f_0$, \label{item:c-bullet-ecf}
+% %         \item {${v}^\top \hat{R}(0,0)x\neq 0$ where $x$ and $v$ are the axis of rotation of $\Rtilde^y(0,0)$ and $R^*$ respectively}, \label{item:d-bullet-ecf}
+% %         \item $1 - \normSOthree{\Rstar} < d_0 < 1$, \label{item:e-bullet-ecf}
+% % \end{enumerate}
+% % then:
+% % \begingroup
+% %     \renewcommand\labelenumi{(\theenumi)}
+% %     \begin{enumerate}
+% %         \item \label{(1ecf)}The hybrid observer error system $\mathcal{H}_2 = (C, F, D, G)$ with data given in \eqref{eq:hybrid_observer_error_explicit} satisfies the hybrid basic conditions.
+% %         \item \label{(2ecf)}Every maximal solution to $\mathcal{H}_2$ from $C\cup D$ is complete.
+% %         \item \label{(3ecf)} Every maximal solution to $\mathcal{H}_2$ exhibits no more than 2 jumps. 
+% %         \item \label{(4ecf)}The set $\mathcal{A}$ is globally exponentially stable for $\mathcal{H}_2$. 
+% %     \end{enumerate}
+% %     \endgroup
+% % \end{theorem}
+
+
+
 
 % \begin{theorem}[Hybrid explicit complementary filter]\label{theorem:hybridECF}
-% Given the system \eqref{eq:rotationKinematics} and consider the set $\mathcal{A}\coloneqq \{I\}\times \{0\}\in\SOthree\times Q$. Define $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$. If there exist constants $c_0, c_1, d_0, e_0, f_0 > 0$ and $\Rstar\in\SOthree$ such that the following holds:
+% Given the system \eqref{eq:rotationKinematics} and consider the set $\mathcal{A}\coloneqq \{I\}\times \{0\}\in\SOthree\times Q$. Define $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$. Assume that $\Omega(t)$ is a bounded and absolutely continuous. If there exist constants $k_p, \overline{k_p}, c_0, c_1 > 0$ and $\Rstar\in\SOthree$ such that
 
 % \begin{enumerate}[(a)]
-%         \item $0 < e_0 < f_0 < c_1 < c_0 < 1-\xi$,\label{item:a-bullet-ecf}\\
-%         \item $2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1$,
+%         \item $0 < \normSOthree{\Rstar} < c_1 < c_0 < 1-\xi$,\label{item:a-bullet-ecf}\\
+%         % \item $2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1$,
 %         % \begin{align*}
 %         %     2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1,
 %         % \end{align*}
-%         \item $e_0 < \normSOthree{R^*} < f_0$, \label{item:c-bullet-ecf}
-%         \item {${v}^\top \hat{R}(0,0)x\neq 0$ where $x$ and $v$ are the axis of rotation of $\Rtilde^y(0,0)$ and $R^*$ respectively}, \label{item:d-bullet-ecf}
-%         \item $1 - \normSOthree{\Rstar} < d_0 < 1$, \label{item:e-bullet-ecf}
+%         % \item $e_0 < \normSOthree{R^*} < f_0$, \label{item:c-bullet-ecf}
+%         \item {${v}^\top \hat{R}(0,0)x\neq 0$ where $x$ and $v$ are the axis of rotation of $\Rtilde^y(0,0)$ and $R^*$ respectively}, \label{item:b-bullet-ecf}
+%         % \item $1 - \normSOthree{\Rstar} < d_0 < 1$, \label{item:e-bullet-ecf}
 % \end{enumerate}
-% then:
+% then
 % \begingroup
 %     \renewcommand\labelenumi{(\theenumi)}
 %     \begin{enumerate}
@@ -1161,110 +1189,82 @@ where $v = (\hat{R}, \mathbf{b}, \mathbf{r}, \Omegay)$ and \eqref{eq:Rtilde_dot_
 
 
 
+% \begin{proof}
+% The proof follows in the same manner as the proof of Theorem \ref{theorem:main}. The only difference is in the exponential bounds that we obtain. We now calculate just the bounds since the rest of it follows directly from Theorem \ref{theorem:main}. 
+% Due to the construction of the set $C_0$,  ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r})}\in C_0 \implies \Psi(\hat{R}(0,0), \mathbf{b}, \mathbf{r}) {\leq c_0}$. Using \ref{lemma:estErrorFunc}, we have that $\Psi(\hat{R}, \mathbf{b}, \mathbf{r})\leq c_0\implies \normSOthree{\Rtilde} \leq \frac{c_0}{1-\xi}$. Now, using \eqref{eq:localExpStability_ECF}, we obtain the exponential bound when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_0\times\{0\}$ as below. 
+% \begin{align}
+%     \normSOthree{\Rtilde(t,0)} &\leq \expo{-k_p(1-\xi-c_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in\dom\Rtilde.
+%     \intertext{Similarly, when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_1\times\{1\}$ and using the fact that there exists $d_0$ such that $1-\normSOthree{\Rstar} < d_0 < 1$, we have }
+%     \normSOthree{\Rtilde_1(t,0)}&\leq \expo{-\overline{k_p}(1-\xi-d_0)t}\normSOthree{\Rtilde_1(0,0)}\quad \forall t\in\dom\Rtilde_1 \label{eq:non_rot_ecf}\\
+%     \intertext{Now, due to \ref{item:a-bullet-ecf}, there exist positive constants $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Using \eqref{eq:R1tilde_upperbound} and \eqref{eq:R1tilde_lowerbound}, we obtain the following. }
+%     \implies \normSOthree{\Rtilde(t,0)} &\leq \alpha \expo{-\overline{k_p}(1-\xi-d_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in\dom\Rtilde \label{eq:rot_ecf}
+%     \intertext{where $\alpha$ is defined in \eqref{eq:C1bounds}. Since $V(\Rtilde) = \normSOthree{\Rtilde}$ is always decreasing, there exists $T > 0$ such that ${(\hat{R}(0,0), \mathbf{b},\mathbf{r}, q(0,0))} \in C_1\times\{1\}$ which implies that ${(\hat{R}(T,0), \mathbf{b}, \mathbf{r}, q(T,0))}\in D_1\times\{1\}$, resulting in ${(\hat{R}(T,1), \mathbf{b}, \mathbf{r}, q(T,1))} \in C_0\times\{0\}$. Combining \eqref{eq:non_rot_ecf} and \eqref{eq:rot_ecf} results in}
+%     \normSOthree{\Rtilde(t,0)} &\leq \min\{1, \alpha \expo{-\min\{\overline{k_p}(1-d_0), k_p(1-c_0)\}t}\normSOthree{\Rtilde(0,0)}\} \quad \forall t\in \dom\Rtilde
+% \end{align}
+% Following similar arguments as the proof of Theorem \ref{theorem:main} completes the proof. 
+% \end{proof}
 
-\begin{theorem}[Hybrid explicit complementary filter]\label{theorem:hybridECF}
-Given the system \eqref{eq:rotationKinematics} and consider the set $\mathcal{A}\coloneqq \{I\}\times \{0\}\in\SOthree\times Q$. Define $\xi\coloneqq \max_{u\in\mathbb{S}^2}\sum_{i=1}^nk_i(u^\top r_i)^2$. Assume that $\Omega(t)$ is a bounded and absolutely continuous. If there exist constants $k_p, \overline{k_p}, c_0, c_1 > 0$ and $\Rstar\in\SOthree$ such that
+% \subsection{Robustness analysis of the hybrid explicit complementary filter}
+% We consider measurement noise in gyro measurements $\Omegay$ as well as the vectorial direction measurements $\{b_i\}_{i=1}^n$. Consider the following measurement model
+% \begin{align}\label{eq:hybridECF_ISS}
+%     \Omegay = \Omega + \noisegyro && b_i = R^\top r_i + \noisevec_i, \quad i=1,...,n
+% \end{align}
+% with the bounds on the noise as given by $\textblue{\maxnoisegyro\coloneqq \sup_{t\geq 0}\|\noisegyro(t)\|}$ and $\textblue{\maxnoisevec \coloneqq \max_{i}\{\sup_{t\geq 0}\|\noisevec_i(t)\|\}_{i=1}^n}$. 
 
-\begin{enumerate}[(a)]
-        \item $0 < \normSOthree{\Rstar} < c_1 < c_0 < 1-\xi$,\label{item:a-bullet-ecf}\\
-        % \item $2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1$,
-        % \begin{align*}
-        %     2e_0\left[1 + \sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\right] < 1,
-        % \end{align*}
-        % \item $e_0 < \normSOthree{R^*} < f_0$, \label{item:c-bullet-ecf}
-        \item {${v}^\top \hat{R}(0,0)x\neq 0$ where $x$ and $v$ are the axis of rotation of $\Rtilde^y(0,0)$ and $R^*$ respectively}, \label{item:b-bullet-ecf}
-        % \item $1 - \normSOthree{\Rstar} < d_0 < 1$, \label{item:e-bullet-ecf}
-\end{enumerate}
-then
-\begingroup
-    \renewcommand\labelenumi{(\theenumi)}
-    \begin{enumerate}
-        \item \label{(1ecf)}The hybrid observer error system $\mathcal{H}_2 = (C, F, D, G)$ with data given in \eqref{eq:hybrid_observer_error_explicit} satisfies the hybrid basic conditions.
-        \item \label{(2ecf)}Every maximal solution to $\mathcal{H}_2$ from $C\cup D$ is complete.
-        \item \label{(3ecf)} Every maximal solution to $\mathcal{H}_2$ exhibits no more than 2 jumps. 
-        \item \label{(4ecf)}The set $\mathcal{A}$ is globally exponentially stable for $\mathcal{H}_2$. 
-    \end{enumerate}
-    \endgroup
-\end{theorem}
+% \begin{theorem}
+%     Assuming the conditions \ref{item:a-bullet}-\ref{item:b-bullet} in Theorem \ref{theorem:hybridECF} hold and $\frac{\maxnoisevec \kappa}{4} + \frac{\maxnoisegyro\kappa_\omega}{4} < 1$, where $\kappa\coloneqq \frac{1}{1-\xi-d_0} + \frac{1}{1-\xi-c_0}$ and $\kappa_\omega\coloneqq \frac{1}{\overline{k_p}(1-\xi-d_0)} + \frac{1}{k_p(1-\xi-c_0)}$. Consider the set $\A$ defined in Theorem \ref{theorem:hybridECF}. Then, the hybrid observer defined in \eqref{eq:hybrid_observer_ECF} renders the resulting observer error dynamics eventually input-to-state stable with respect to $\A$ to noisy gyroscope and direction measurements of the form presented in \eqref{eq:hybridECF_ISS}.
+% \end{theorem}
+% \begin{proof}
+%     Consider the case when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))} \in C_0 \times\{0\}$. This implies that $\Psi(\hat{R}(0,0), \mathbf{b}, \mathbf{r})\leq c_0$. It follows from Lemma \ref{lemma:estErrorFunc} that $\normSOthree{\Rtilde(0,0)}\leq \frac{c_0}{1-\xi}$. This case employs the observer in \eqref{eq:explicitMahony}. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. The derivative of the Lyapunov function candidate along the trajectories of $\Rtilde$ is given below. 
+%     \begin{align}
+%         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot{\Rtilde}}\\
+%         &= \frac{k_p}{4}\trace{\omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})_\times \Rtilde} + \frac{k_p}{4}\trace{\left[\sum_{i=1}^n k_i (\eta_i\times \hat{R}^\top r_i)\right]_\times \Rtilde} + \frac{1}{4}\trace{{\noisegyro}_\times \Rtilde} \nonumber\\
+%         &\leq \frac{k_p}{4}\normSOthree{\Rtilde^2}\trace{v_\times^2R^\top M_0R} + \frac{k_p}{4}\maxnoisevec + \frac{1}{4}\maxnoisegyro
+%         \intertext{Following the proof of \ref{eq:localExpStability_ECF}, we obtain the following.}
+%         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}&\leq -k_p(1-\xi-c_0)\normSOthree{\Rtilde} + \frac{k_p}{4}\maxnoisevec + \frac{1}{4}\maxnoisegyro\nonumber\\
+%         \normSOthree{\Rtilde(t,0)}&\leq \expo{-k_p(1-\xi-c_0)t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisevec}{4(1-\xi-c_0)} + \frac{\maxnoisegyro}{4k_p(1-\xi-c_0)}  \quad \forall t\in\dom\Rtilde\label{eq:ECF_ISS_C0}
+%         \intertext{Considering the other case when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_1\times\{1\}$ results in the following bound. }
+%         \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-k_p(1-\xi-d_0)t}\normSOthree{{\Rtilde_1(0,0)}} + \frac{\maxnoisevec}{4(1-\xi-d_0)} + \frac{\maxnoisegyro}{4k_p(1-\xi-d_0)} \quad \textblue{\forall t \in \{\overline{t}\in \dom\Rtilde_1\mid \overline{t}\leq T\}}
+%         \intertext{where {$T\geq 0$ is such that $(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))\in C_1 \times\{1\} \implies (\hat{R}(T,0), \mathbf{b}, \mathbf{r}, q(T,0))\in D_1\times\{1\}$}. Performing a similar analysis as in Theorem \ref{theorem:PCF_ISS_gyro}, we obtain }
+%         \normSOthree{\Rtilde(t,j)}&\leq \min\left\{1, \alpha\expo{-\min\{k_p(1-\xi-c_0), \overline{k_p}(1-\xi-d_0)\}t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisevec \kappa}{4} + \frac{\maxnoisegyro\kappa_\omega}{4}\right\} \quad \forall {t}\in\dom\Rtilde
+%     \end{align}
+%     where $\kappa\coloneqq \frac{1}{1-\xi-d_0} + \frac{1}{1-\xi-c_0}$, $\kappa_\omega\coloneqq \frac{1}{\overline{k_p}(1-\xi-d_0)} + \frac{1}{k_p(1-\xi-c_0)}$ {and $\alpha$ is defined in \eqref{eq:C1bounds}}. Thus, it is evident that the observer error dynamics are eventually ISS with respect to noise in gyroscope and direction measurements. This concludes the proof. 
+% \end{proof}
 
+% \subsection{Simulations for hybrid explicit complementary filter}
+% We simulate the hybrid ECF with the following initial conditions: 
+% \begin{align*}
+%     R(0) = I, && \hat{R}(0) = \mathcal{R}(\pi, [0,0,1]^\top ), && q(0) = 0,
+% \end{align*}
+% with $n=3$ and the three fixed inertial directions are taken to be $r_1 = [1,0,0]^\top , r_2=[0,1,0]^\top , r_3 = [0,0,1]^\top $. The true angular velocity $\Omega$ is set as $\Omega(t) = [0,0,\sin{t}]$. Next, the gains and the switching parameters are set as follows.
+% \begin{align*}
+%     k_p = 1, && \overline{k_p}=1, && k_i = 1/3 \quad i=1,2,3,\\
+%     c_0 =\frac{1-\xi}{1.5}, && c_1 = \frac{c_0}{2}.
+% \end{align*}
+% Next, $\Rstar$ is set such that $\normSOthree{\Rstar} =  \frac{c_1}{2}$, with the axis of rotation of $\Rstar$ given by $\hat{R}(0,0)x$ where $x\in\mathbb{S}^2$ is the axis of rotation of $\hat{R}(0,0)^\top \Rtilde^y(0,0)$. The trajectory of $\normSOthree{\Rtilde(t,j)}$ and $q(t,j)$ with time is shown in Figures \ref{fig:ECF_potential} and \ref{fig:ECF_q} respectively. The states jump twice and there are no more jumps required as shown in Theorem \ref{theorem:hybridECF}. The error function goes to $0$ which shows that the estimates converge to the true values of the rotation matrix. 
 
+% \begin{figure}
+% \centering
+% \begin{minipage}{.45\textwidth}
+%   \centering  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/ECF_potential_ECF.jpg}
+%   \captionof{figure}{Plot of $\Psi$ vs time.  Jumps are seen at $t_{j1}=0$ sec and $t_{j2}=3.472$ sec. For $t$ such that $t_{j1}\leq t\leq j_{j_2}$, $\Psi = \Psi(\hat{R}, \mathbf{b}, \Rstar^\top \mathbf{r})$, otherwise $\Psi =\Psi(\hat{R},\mathbf{b}, \mathbf{r})$. This hybrid estimation error function is strictly decreasing during flows. }
+%   \label{fig:ECF_potential}
+% \end{minipage}\hfill
+% \begin{minipage}{.45\textwidth}
+%   \centering 
+%   \vspace{0pt}\includegraphics[width=\linewidth]{Figures/ECF_q.jpg}
+%   \captionof{figure}{Plot of $q(t)$ vs time. Jumps are seen at $t_{j1} = 0$ sec and at $t_{j2}=3.472$ sec. $q(0,0)=0$, after which a jump occurs since $\Psi(\hat{R}, \mathbf{b}, \mathbf{r})=1-\xi$.}
+%   \label{fig:ECF_q}
+% \end{minipage}
+% \end{figure}
 
-\begin{proof}
-The proof follows in the same manner as the proof of Theorem \ref{theorem:main}. The only difference is in the exponential bounds that we obtain. We now calculate just the bounds since the rest of it follows directly from Theorem \ref{theorem:main}. 
-Due to the construction of the set $C_0$,  ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r})}\in C_0 \implies \Psi(\hat{R}(0,0), \mathbf{b}, \mathbf{r}) {\leq c_0}$. Using \ref{lemma:estErrorFunc}, we have that $\Psi(\hat{R}, \mathbf{b}, \mathbf{r})\leq c_0\implies \normSOthree{\Rtilde} \leq \frac{c_0}{1-\xi}$. Now, using \eqref{eq:localExpStability_ECF}, we obtain the exponential bound when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_0\times\{0\}$ as below. 
-\begin{align}
-    \normSOthree{\Rtilde(t,0)} &\leq \expo{-k_p(1-\xi-c_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in\dom\Rtilde.
-    \intertext{Similarly, when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_1\times\{1\}$ and using the fact that there exists $d_0$ such that $1-\normSOthree{\Rstar} < d_0 < 1$, we have }
-    \normSOthree{\Rtilde_1(t,0)}&\leq \expo{-\overline{k_p}(1-\xi-d_0)t}\normSOthree{\Rtilde_1(0,0)}\quad \forall t\in\dom\Rtilde_1 \label{eq:non_rot_ecf}\\
-    \intertext{Now, due to \ref{item:a-bullet-ecf}, there exist positive constants $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Using \eqref{eq:R1tilde_upperbound} and \eqref{eq:R1tilde_lowerbound}, we obtain the following. }
-    \implies \normSOthree{\Rtilde(t,0)} &\leq \alpha \expo{-\overline{k_p}(1-\xi-d_0)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in\dom\Rtilde \label{eq:rot_ecf}
-    \intertext{where $\alpha$ is defined in \eqref{eq:C1bounds}. Since $V(\Rtilde) = \normSOthree{\Rtilde}$ is always decreasing, there exists $T > 0$ such that ${(\hat{R}(0,0), \mathbf{b},\mathbf{r}, q(0,0))} \in C_1\times\{1\}$ which implies that ${(\hat{R}(T,0), \mathbf{b}, \mathbf{r}, q(T,0))}\in D_1\times\{1\}$, resulting in ${(\hat{R}(T,1), \mathbf{b}, \mathbf{r}, q(T,1))} \in C_0\times\{0\}$. Combining \eqref{eq:non_rot_ecf} and \eqref{eq:rot_ecf} results in}
-    \normSOthree{\Rtilde(t,0)} &\leq \min\{1, \alpha \expo{-\min\{\overline{k_p}(1-d_0), k_p(1-c_0)\}t}\normSOthree{\Rtilde(0,0)}\} \quad \forall t\in \dom\Rtilde
-\end{align}
-Following similar arguments as the proof of Theorem \ref{theorem:main} completes the proof. 
-\end{proof}
+% \section{ECF with biased angular velocity measurements}
+% The measurement model used in \eqref{eq:hybridECF_ISS} did not consider bias in the angular velocity measurements that is inadvertently introduced by the gyroscope. Here, we consider the bias $\bias\in\R{3}$ in the angular velocity measurements, resulting in the following measurement model 
 
-\subsection{Robustness analysis of the hybrid explicit complementary filter}
-We consider measurement noise in gyro measurements $\Omegay$ as well as the vectorial direction measurements $\{b_i\}_{i=1}^n$. Consider the following measurement model
-\begin{align}\label{eq:hybridECF_ISS}
-    \Omegay = \Omega + \noisegyro && b_i = R^\top r_i + \noisevec_i, \quad i=1,...,n
-\end{align}
-with the bounds on the noise as given by $\textblue{\maxnoisegyro\coloneqq \sup_{t\geq 0}\|\noisegyro(t)\|}$ and $\textblue{\maxnoisevec \coloneqq \max_{i}\{\sup_{t\geq 0}\|\noisevec_i(t)\|\}_{i=1}^n}$. 
-
-\begin{theorem}
-    Assuming the conditions \ref{item:a-bullet}-\ref{item:b-bullet} in Theorem \ref{theorem:hybridECF} hold and $\frac{\maxnoisevec \kappa}{4} + \frac{\maxnoisegyro\kappa_\omega}{4} < 1$, where $\kappa\coloneqq \frac{1}{1-\xi-d_0} + \frac{1}{1-\xi-c_0}$ and $\kappa_\omega\coloneqq \frac{1}{\overline{k_p}(1-\xi-d_0)} + \frac{1}{k_p(1-\xi-c_0)}$. Consider the set $\A$ defined in Theorem \ref{theorem:hybridECF}. Then, the hybrid observer defined in \eqref{eq:hybrid_observer_ECF} renders the resulting observer error dynamics eventually input-to-state stable with respect to $\A$ to noisy gyroscope and direction measurements of the form presented in \eqref{eq:hybridECF_ISS}.
-\end{theorem}
-\begin{proof}
-    Consider the case when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))} \in C_0 \times\{0\}$. This implies that $\Psi(\hat{R}(0,0), \mathbf{b}, \mathbf{r})\leq c_0$. It follows from Lemma \ref{lemma:estErrorFunc} that $\normSOthree{\Rtilde(0,0)}\leq \frac{c_0}{1-\xi}$. This case employs the observer in \eqref{eq:explicitMahony}. Consider the Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$. The derivative of the Lyapunov function candidate along the trajectories of $\Rtilde$ is given below. 
-    \begin{align}
-        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot{\Rtilde}}\\
-        &= \frac{k_p}{4}\trace{\omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})_\times \Rtilde} + \frac{k_p}{4}\trace{\left[\sum_{i=1}^n k_i (\eta_i\times \hat{R}^\top r_i)\right]_\times \Rtilde} + \frac{1}{4}\trace{{\noisegyro}_\times \Rtilde} \nonumber\\
-        &\leq \frac{k_p}{4}\normSOthree{\Rtilde^2}\trace{v_\times^2R^\top M_0R} + \frac{k_p}{4}\maxnoisevec + \frac{1}{4}\maxnoisegyro
-        \intertext{Following the proof of \ref{eq:localExpStability_ECF}, we obtain the following.}
-        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}&\leq -k_p(1-\xi-c_0)\normSOthree{\Rtilde} + \frac{k_p}{4}\maxnoisevec + \frac{1}{4}\maxnoisegyro\nonumber\\
-        \normSOthree{\Rtilde(t,0)}&\leq \expo{-k_p(1-\xi-c_0)t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisevec}{4(1-\xi-c_0)} + \frac{\maxnoisegyro}{4k_p(1-\xi-c_0)}  \quad \forall t\in\dom\Rtilde\label{eq:ECF_ISS_C0}
-        \intertext{Considering the other case when ${(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))}\in C_1\times\{1\}$ results in the following bound. }
-        \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-k_p(1-\xi-d_0)t}\normSOthree{{\Rtilde_1(0,0)}} + \frac{\maxnoisevec}{4(1-\xi-d_0)} + \frac{\maxnoisegyro}{4k_p(1-\xi-d_0)} \quad \textblue{\forall t \in \{\overline{t}\in \dom\Rtilde_1\mid \overline{t}\leq T\}}
-        \intertext{where {$T\geq 0$ is such that $(\hat{R}(0,0), \mathbf{b}, \mathbf{r}, q(0,0))\in C_1 \times\{1\} \implies (\hat{R}(T,0), \mathbf{b}, \mathbf{r}, q(T,0))\in D_1\times\{1\}$}. Performing a similar analysis as in Theorem \ref{theorem:PCF_ISS_gyro}, we obtain }
-        \normSOthree{\Rtilde(t,j)}&\leq \min\left\{1, \alpha\expo{-\min\{k_p(1-\xi-c_0), \overline{k_p}(1-\xi-d_0)\}t}\normSOthree{\Rtilde(0,0)} + \frac{\maxnoisevec \kappa}{4} + \frac{\maxnoisegyro\kappa_\omega}{4}\right\} \quad \forall {t}\in\dom\Rtilde
-    \end{align}
-    where $\kappa\coloneqq \frac{1}{1-\xi-d_0} + \frac{1}{1-\xi-c_0}$, $\kappa_\omega\coloneqq \frac{1}{\overline{k_p}(1-\xi-d_0)} + \frac{1}{k_p(1-\xi-c_0)}$ {and $\alpha$ is defined in \eqref{eq:C1bounds}}. Thus, it is evident that the observer error dynamics are eventually ISS with respect to noise in gyroscope and direction measurements. This concludes the proof. 
-\end{proof}
-
-\subsection{Simulations for hybrid explicit complementary filter}
-We simulate the hybrid ECF with the following initial conditions: 
-\begin{align*}
-    R(0) = I, && \hat{R}(0) = \mathcal{R}(\pi, [0,0,1]^\top ), && q(0) = 0,
-\end{align*}
-with $n=3$ and the three fixed inertial directions are taken to be $r_1 = [1,0,0]^\top , r_2=[0,1,0]^\top , r_3 = [0,0,1]^\top $. The true angular velocity $\Omega$ is set as $\Omega(t) = [0,0,\sin{t}]$. Next, the gains and the switching parameters are set as follows.
-\begin{align*}
-    k_p = 1, && \overline{k_p}=1, && k_i = 1/3 \quad i=1,2,3,\\
-    c_0 =\frac{1-\xi}{1.5}, && c_1 = \frac{c_0}{2}.
-\end{align*}
-Next, $\Rstar$ is set such that $\normSOthree{\Rstar} =  \frac{c_1}{2}$, with the axis of rotation of $\Rstar$ given by $\hat{R}(0,0)x$ where $x\in\mathbb{S}^2$ is the axis of rotation of $\hat{R}(0,0)^\top \Rtilde^y(0,0)$. The trajectory of $\normSOthree{\Rtilde(t,j)}$ and $q(t,j)$ with time is shown in Figures \ref{fig:ECF_potential} and \ref{fig:ECF_q} respectively. The states jump twice and there are no more jumps required as shown in Theorem \ref{theorem:hybridECF}. The error function goes to $0$ which shows that the estimates converge to the true values of the rotation matrix. 
-
-\begin{figure}
-\centering
-\begin{minipage}{.45\textwidth}
-  \centering  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/ECF_potential_ECF.jpg}
-  \captionof{figure}{Plot of $\Psi$ vs time.  Jumps are seen at $t_{j1}=0$ sec and $t_{j2}=3.472$ sec. For $t$ such that $t_{j1}\leq t\leq j_{j_2}$, $\Psi = \Psi(\hat{R}, \mathbf{b}, \Rstar^\top \mathbf{r})$, otherwise $\Psi =\Psi(\hat{R},\mathbf{b}, \mathbf{r})$. This hybrid estimation error function is strictly decreasing during flows. }
-  \label{fig:ECF_potential}
-\end{minipage}\hfill
-\begin{minipage}{.45\textwidth}
-  \centering 
-  \vspace{0pt}\includegraphics[width=\linewidth]{Figures/ECF_q.jpg}
-  \captionof{figure}{Plot of $q(t)$ vs time. Jumps are seen at $t_{j1} = 0$ sec and at $t_{j2}=3.472$ sec. $q(0,0)=0$, after which a jump occurs since $\Psi(\hat{R}, \mathbf{b}, \mathbf{r})=1-\xi$.}
-  \label{fig:ECF_q}
-\end{minipage}
-\end{figure}
-
-\section{ECF with biased angular velocity measurements}
-The measurement model used in \eqref{eq:hybridECF_ISS} did not consider bias in the angular velocity measurements that is inadvertently introduced by the gyroscope. Here, we consider the bias $\bias\in\R{3}$ in the angular velocity measurements, resulting in the following measurement model 
-
-\begin{align}
-    \Omegay = \Omega + \bias + \noisegyro && b_i = R^\top r_i + \eta_i, \quad i=1,...,n
-\end{align}
-where $\noisegyro\in\R{3}$ represents the noise in gyro measurements and $\eta_i, i=1,...,n$ represents the measurement noise in the vectorial direction measurements. Now, the bias is also estimated, and the estimate is denoted by $\biasHat$. Following \cite{mahony_complementaryFilter}, the hybrid explicit complementary filter with bias estimation is given below. Define $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$ and $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b},\Rstar^\top \mathbf{r})$.
+% \begin{align}
+%     \Omegay = \Omega + \bias + \noisegyro && b_i = R^\top r_i + \eta_i, \quad i=1,...,n
+% \end{align}
+% where $\noisegyro\in\R{3}$ represents the noise in gyro measurements and $\eta_i, i=1,...,n$ represents the measurement noise in the vectorial direction measurements. Now, the bias is also estimated, and the estimate is denoted by $\biasHat$. Following \cite{mahony_complementaryFilter}, the hybrid explicit complementary filter with bias estimation is given below. Define $\omega_0 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b}, \mathbf{r})$ and $\omega_1 \coloneqq \omega_{mes}(\hat{R}, \mathbf{b},\Rstar^\top \mathbf{r})$.
 
 \bibliographystyle{plain}
 \bibliography{ref}

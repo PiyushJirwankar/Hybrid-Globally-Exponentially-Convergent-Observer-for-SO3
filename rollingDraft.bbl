@@ -1,10 +1,5 @@
 \begin{thebibliography}{1}
 
-\bibitem{berkane_complementary}
-Soulaimane Berkane and Abdelhamid Tayebi.
-\newblock On the design of attitude complementary filters on $\text{SO}(3)$.
-\newblock {\em IEEE Transactions on Automatic Control}, 63(3):880--887, 2018.
-
 \bibitem{Cai_and_Teel}
 Chaohong Cai and Andrew~R. Teel.
 \newblock Characterizations of input-to-state stability for hybrid systems.
