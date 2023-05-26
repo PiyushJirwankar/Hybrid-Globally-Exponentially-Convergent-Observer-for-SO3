@@ -275,17 +275,19 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 %     \normSOthree{\Rtilde(0)}\leq \delta(\epsilon) \implies \normSOthree{\Rtilde(t)} \textblue\leq \epsilon \expo{-\lambda t} \normSOthree{\Rtilde(0)}\quad \forall t \geq 0
 % \end{align*}
 
+% \begin{definition}[\textblue{Local exponential stability}]\label{def:local_lyap_stab}
+% \textblue{For an absolutely continuous $t\mapsto\Omega(t)$, the point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} if there exist positive constants $\lambda$, $k$, $\delta$ such that every solution $t\mapsto R(t)$ {to \eqref{eq:CL-rotm}} satisfies}
+% \begin{align*}
+%     \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom R.}
+% \end{align*}
+
 \begin{definition}[\textblue{Local exponential stability}]\label{def:local_lyap_stab}
-\textblue{For an absolutely continuous $t\mapsto\Omega(t)$, the point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} if there exist positive constants $\lambda$, $k$, $\delta$ such that every solution $t\mapsto R(t)$ {to \eqref{eq:CL-rotm}} satisfies}
+\textblue{The point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} if there exist positive constants $\lambda$, $k$, $\delta$ such that every solution $t\mapsto (R(t), \Omega(t))$ {to \eqref{eq:CL-rotm}} with an absolutely continuous $t\mapsto \Omega(t)$ satisfies}
 \begin{align*}
-    \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom R.}
+    \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom{(R,\Omega)}.}
 \end{align*}
 
-% \begin{definition}[Unstable set of a dynamical system] Given the system \eqref{eq:CL-rotm} with its solutions given by $t\mapsto R(t)$, a set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon > 0$ with $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$, then $R(t)\notin U$ for all $t\geq 0$.  
-    
-% \end{definition}
-
-\begin{definition}[\textblue{Unstable set of a dynamical system}] \textblue{For an absolutely continuous $t\mapsto \Omega(t)$, a set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto R(t)$ to \eqref{eq:CL-rotm} with $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom R$.  }
+\begin{definition}[\textblue{Unstable set of a dynamical system}] \textblue{A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} with an absolutely continuous $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$.  }
     
 \end{definition}
 
