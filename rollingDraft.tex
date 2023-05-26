@@ -73,7 +73,7 @@
 \newcommand{\biasHat}{\hat{\mathdutchcal{b}}}
 \newcommand{\quotes}[1]{``#1''}
 
-\title{\textblue{Hybrid Complementary Filters on $\SOthree$}}
+\title{\textblue{Hybrid Nonlinear Complementary Filters on $\SOthree$}}
 \author{Piyush Jirwankar}
 \date{\today}
 
@@ -162,8 +162,8 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
 \textblue{A function $f: \R{n}\times \R{n} \supset A\times B \to \R{}$ is said to be nondegenerate if the Hessian of $f$ is full ranked.}
 \end{definition}
 
-\begin{definition}[\textcolor{red}{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
-\textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{Existence of such a function is not trivial as it has to be nondegenerate while satisfying $f(x(t), y(t))= 0$.}} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
+\begin{definition}[\textblue{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
+\textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{As mentioned in your previous comments, there will always exist $f$ such that $(x,y)$ are asymptotically independent. But that is fine since we only care about whether $f(x(t), y(t))=0 \:\:\forall t>T$. }} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
 The two signals are asymptotically independent if they are not asymptotically dependent.      }
 \end{definition}
 
@@ -262,7 +262,7 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 \begin{align}\label{eq:CL-rotm}
     \textblue{\dot{R} = f(R, \Omega)}
 \end{align}
-\textblue{for some $f:\SOthree\times \R{3}\to \T{R}{\SOthree}$. It is important to note here that for the purpose of observer design, $t\mapsto \Omega(t)$ is not a control input and it cannot be altered, and hence it can be considered as a time-varying parameter. }
+\textblue{for some $f:\SOthree\times \R{3}\to \T{R}{\SOthree}$.}
 %  \begin{definition}[Local Exponential Stability] For $R_1, R_2\in\SOthree$, $R_1$ is locally exponentially stable to $R_2$, or alternatively $\Rtilde\coloneqq R_1^\top R_2$ is locally exponentially stable to $I$, if there exists $\lambda > 0$, and for every $\epsilon>0$, there exists $\delta(\epsilon) > 0$ such that the following holds when $
 % \normSOthree{\Rtilde} < \delta(\epsilon)$:
 % \begin{align*}
@@ -276,18 +276,15 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 % \end{align*}
 
 \begin{definition}[\textblue{Local exponential stability}]\label{def:local_lyap_stab}
-\textblue{For an absolutely continuous $t\mapsto\Omega(t)$, the point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} if there exist positive constants $\lambda$, $k$, $\delta$ such that every solution $t\mapsto R(t)$ {to \eqref{eq:CL-rotm}} satisfies}
+\textblue{The point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} if there exist positive constants $\lambda$, $k$, $\delta$ such that every solution $t\mapsto (R(t), \Omega(t))$ {to \eqref{eq:CL-rotm}} with an absolutely continuous $t\mapsto \Omega(t)$ satisfies}
 \begin{align*}
-    \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom R.}
+    \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom{(R,\Omega)}.}
 \end{align*}
 
-% \begin{definition}[Unstable set of a dynamical system] Given the system \eqref{eq:CL-rotm} with its solutions given by $t\mapsto R(t)$, a set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon > 0$ with $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$, then $R(t)\notin U$ for all $t\geq 0$.  
-    
-% \end{definition}
-
-\begin{definition}[\textblue{Unstable set of a dynamical system}] \textblue{For an absolutely continuous $t\mapsto \Omega(t)$, a set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto R(t)$ to \eqref{eq:CL-rotm} with $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom R$.  }
+\begin{definition}[\textblue{Unstable set of a dynamical system}] \textblue{A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} with an absolutely continuous $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$.  }
     
 \end{definition}
+
 
 
 
@@ -340,7 +337,7 @@ Then:
     % \item {The error $\Rtilde$ is locally exponentially stable to the identity element $I$.} 
     \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{\Rtilde^y(0)} \leq k$, every solution $t\mapsto\Rtilde(t)$ to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
     \begin{align}\label{eq:localExponentialStability}
-        \normSOthree{\Rtilde(t)} \leq \expo{-2k_p(1-k^2)t}\normSOthree{\Rtilde(0)} \quad \forall t \geq 0.
+        \normSOthree{\Rtilde(t)} \leq \expo{-k_p(1-k^2)t}\normSOthree{\Rtilde(0)} \quad \forall t \geq 0.
     \end{align}
 \end{enumerate}
 \end{theorem}
@@ -400,7 +397,7 @@ Then:
 
 \section{Hybrid passive complementary filter}
 
-{Since $\SOthree$ is a compact Lie group, it follows that the Lyapunov function $V$ considered in Theorem \ref{thm:mahony} has compact sublevel sets.} Thus, using Theorem \ref{thm:mahony}, we have that the \textblue{error dynamics corresponding to the passive complementary filter are almost globally asymptotically and locally exponentially stable}, with the unstable set being the measure zero set of $\SOthree$ that represents a $180^\circ$ rotation, i.e., the set $\mathbb{U}_0$. We leverage this property by using hybrid control theory to obtain a globally asymptotically stable observer on $\SOthree$. 
+{Since $\SOthree$ is a compact Lie group, it follows that the Lyapunov function $V$ considered in Theorem \ref{thm:mahony} has compact sublevel sets.} Thus, using Theorem \ref{thm:mahony}, we have that the \textblue{error dynamics corresponding to the passive complementary filter are almost globally asymptotically and locally exponentially stable}, with the unstable set being the measure zero set that represents a $180^\circ$ rotation, i.e., the set $\mathbb{U}_0$. We leverage this property by using hybrid control theory to obtain a globally convergent observer on $\SOthree$ with at least asymptotically stable error dynamics. 
 
 \begin{definition}[Hybrid Observer]
     \textblue{A hybrid observer $\hat{\mathcal{H}}$ with data $(\hat{C}, F, \hat{D}, G, \zeta)$ is given by}
@@ -409,13 +406,13 @@ Then:
     \textblue{\hat{\mathcal{H}} :  \begin{cases}
         \dot{z} &= F(z, v), \quad (z, v) \in \hat{C}\\
         z^+ &= G(z, v), \quad (z, v)\in \hat{D}\\
-        \zeta &= f(z, v)
+        \zeta &= h(z, v)
     \end{cases}}
 \end{alignat}
 \textblue{where $z$ is the state of the hybrid observer, $v$ is the input and $\zeta$ is the output, $\hat{C}$ and $\hat{D}$ represent the flow set and the jump set for the hybrid observer respectively. }
 \end{definition}
 
-Due to Assumption 1, we have $R^y = R$. Our design approach for the globally asymptotically convergent observer is the following: when {$\Rtilde^y = \Rtilde$} is \emph{close enough} to $I$, the observer is defined by \eqref{eq:observer}. When ${\Rtilde^y}$ is \emph{far enough} from $I$, a different passive complementary filter is defined such that $\Rtilde$ tracks a constant $\Rstar\in\SOthree$ (which is \emph{close} to identity) which brings $\Rtilde$ in a \emph{small enough} neighbourhood of $I$ so that the observer \eqref{eq:observer} can be used. Thus, what we desire is the following. For a fixed $\Rstar\in \SOthree$:
+Due to Assumption 1, we have $R^y = R$. Our design approach for the observer with at least GAS error is the following: when {$\Rtilde^y = \Rtilde$} is \emph{close enough} to $I$, the observer is defined by \eqref{eq:observer}. When ${\Rtilde^y}$ is \emph{far enough} from $I$, a different passive complementary filter is defined such that $\Rtilde$ tracks a constant $\Rstar\in\SOthree$ (which is \emph{close} to identity) which brings $\Rtilde$ in a \emph{small enough} neighbourhood of $I$ so that the observer \eqref{eq:observer} can be used. Thus, what we desire is the following. For a fixed $\Rstar\in \SOthree$:
 \begin{subequations}
 \begin{align}
     R_1 &\coloneqq \Rstar R, && R_1^y \coloneqq \Rstar R^y\\
@@ -462,7 +459,7 @@ The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region
         \hat{A}_1 \coloneqq \overline{\mathcal{B}}
     \end{cases}\\
     \hat{F}(x, v) &= \begin{pmatrix}
-        \hat{R}h(x,v), \:\: 0, \:\: 0
+        \hat{R}f(x,v), \:\: 0, \:\: 0
     \end{pmatrix}\label{eq:13b}\\
     \hat{D} &= {\brackets{C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})} \cup \brackets{\bigcup_{q\in Q} \brackets{{D}_{q}\times q\times \mathbb{S}^2}}}\\
     \hat{G}(x, v) &= \left\{\begin{array}{@{}ll@{}}
@@ -472,10 +469,10 @@ The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region
         % \end{pmatrix}, 
         &(\Rtilde^y, q, r)\in \bigcup_{q\in Q} \brackets{{D}_{q}\times q\times \mathbb{S}^2}
     \end{array}\right.\\
-    \zeta &= f(x,v)\coloneqq \hat{R} \label{eq:output_hybrid}
+    \zeta &= h(x,v)\coloneqq \hat{R} \label{eq:output_hybrid}
 \end{align}
 \end{subequations}
-where $h(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$. Note that by definition of the flow (resp. jump) set $\hat{C}$ (resp. $\hat{D}$) are with respect to the measurement error $\Rtilde^y$. 
+where $f(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$. Note that by definition of the flow (resp. jump) set $\hat{C}$ (resp. $\hat{D}$) are with respect to the measurement error $\Rtilde^y$. 
 
 % \begin{align}
 %     C_K &= \textblue{C_0 \cup C_1}\\
@@ -506,7 +503,7 @@ Consider the observer error dynamics, represented by the hybrid system $\tilde{\
 \begin{align}
 \tilde{C}& = \hat{C}\\
 \tilde{F}(z, \rho)& = \begin{pmatrix}
-    \Rtilde\brackets{-\Rtilde^\top h(x, v) \Rtilde + \Omega_\times}, \:\: 0, \:\: 0\end{pmatrix} \label{eq:Rtilde_dot}\\
+    \Rtilde\brackets{-\Rtilde^\top f(x, v) \Rtilde + \Omega_\times}, \:\: 0, \:\: 0\end{pmatrix} \label{eq:Rtilde_dot}\\
 \tilde{D} &= \hat{D}\\
 \tilde{G}(z, \rho) &= \left\{\begin{array}{@{}ll@{}}
     \brackets{\tilde{R}, \:\: q,\:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top y)^2 - (r^\top y)^2\right)^2}, &(\Rtilde^y, q, r)\in C_1\times \{1\}\times (\mathbb{S}^2\backslash \mathcal{B})\\
@@ -567,7 +564,7 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
     
  % We note that when $\Rtilde(0,0) = I$ and $q(0,0) = 0$, $(\Rtilde(0,0), q(0,0)) \in \mathcal{A}$. If $(\Rtilde(0,0), q(0,0)) = (I, 1) \in D_1\times \{1\}$, using the jump map, we have that $(\Rtilde(0,1), q(0,1)) \in\mathcal{A}$. Thus, it suffices to show that the set $\mathcal{A}_1 \coloneqq
  %  \{I\}\times \{q\} \subset \SOthree\times Q$ for any $q\in Q$ is globally exponentially stable for $\mathcal{H}$. 
-  We prove the globally exponentially stability of $\mathcal{A}$ to \eqref{eq:hybrid_observer_error} by considering all \textcolor{red}{five} cases where the state $z$ of $\tilde{\mathcal{H}}_{PCF}$ can lie. 
+  We prove the globally exponentially stability of $\mathcal{A}$ for \eqref{eq:hybrid_observer_error} by considering all five cases where the state $z$ of $\tilde{\mathcal{H}}_{PCF}$ can lie. 
 
 \textbf{Case 1}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))} \in C_0\times \{0\}\times\mathbb{S}^2$. The local exponential stability for this case is evident using \eqref{eq:localExponentialStability} as follows:
 \begin{align}\label{eq:C0bounds}
@@ -584,7 +581,7 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
     \end{align}
     It is now clear that when $\axis{\Rstar}$ is \emph{far enough} from its the value where \eqref{eq:R1tilde_unstable} holds,  $\normSOthree{\Rtilde_1}\neq 1$. This motivates the definition of the set $\mathcal{B}$ and results in the following two cases.
 
-\textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})$. This is the case when $r(0,0)$ is close to its value that satisfies \eqref{eq:R1tilde_unstable}. The jump map results in $(\Rtilde(0,1), q(0,1), r(0,1))\in C_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 5. 
+\textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})$. This is the case when $r(0,0)$ is close to its value that satisfies \eqref{eq:R1tilde_unstable}. The jump map changes $r(0,0)$ such that $r(0,1)$ is as far away as possible from its value that satisfies \eqref{eq:R1tilde_unstable}. This results in $(\Rtilde(0,1), q(0,1), r(0,1))\in C_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 5. 
 
 \textbf{Case 5}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times \overline{\mathcal{B}}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. $r(0,0)\in \overline{\mathcal{B}}$ ensures that the rotated observer never fails in this domain of operation. Since $c_1 > \normSOthree{\Rstar}$, there exists a finite time $T>0$ such that $\normSOthree{\Rtilde(T,0)} = c_1$. Now, following \eqref{eq:localExponentialStability}, there exists $d_0$ with $1 - \normSOthree{\Rstar} < d_0 < 1$ such that when $\normSOthree{\Rtilde_1(0,0)}\leq d_0$, every solution to $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated observer error dynamics $\Rtilde_1$ satisfies
 \begin{align}\label{eq:R1tilde_exponentialconvergence}
@@ -650,7 +647,6 @@ We consider the filter in Theorem \ref{thm:mahony} and analyze the effect of mea
         x^+ &= g(x,u), \quad (x,u)\in D.
     \end{cases}
 \end{alignat}
-Let $\mathcal{A}\subset\mathcal{X}$ be a nonempty and compact set. 
 
 \begin{definition}[{Local input-to-state stability}]
     The system  \eqref{eq:ISS_system} is said to be locally input-to-state stable with respect to a nonempty, compact set $\mathcal{A}$ if there exist a class $\mathcal{KL}$ function $\beta$, a class $\mathcal{K}$ function $\gamma$ and a scalar $\kappa$ such that for each solution pair $(x,u)$ to \eqref{eq:ISS_system} with $|{x(0,0)}|_\mathcal{A}\leq \kappa$ and  $\norm{u_{\#}}\coloneqq  \sup_{(t,j)\in \dom u} \norm{u(t,j)}$, every solution $(t,j)\mapsto x(t,j)$ to \eqref{eq:ISS_system} satisfies
@@ -658,14 +654,14 @@ Let $\mathcal{A}\subset\mathcal{X}$ be a nonempty and compact set.
     \begin{align*}
         |x(t,j)|_\mathcal{A}\leq \beta(|x(0,0)|_\mathcal{A}, t+j) + \gamma(\norm{u_{\#}}) \quad \forall (t,j)\in \dom x.
     \end{align*}
-    If this holds for \textcolor{red}{$\kappa \to +\infty$}\footnote{$\kappa\to+\infty$ is required for ISS when considering proper indicator functions. On $\SOthree$, $\kappa\ = +1$ ensures ISS. How should I write it for $\SOthree$ as I cannot use proper indicator functions?}, then the system \eqref{eq:ISS_system} is said to be input-to-state stable (ISS). 
+    If this holds for \textcolor{red}{$\kappa \to +\infty$}\footnote{\textcolor{red}{$\kappa\to+\infty$ is required for ISS when considering proper indicator functions. On $\SOthree$, $\kappa\ = +1$ ensures ISS. How should I write it for $\SOthree$ as I cannot use proper indicator functions?}}, then the system \eqref{eq:ISS_system} is said to be input-to-state stable (ISS). 
 \end{definition}
 
 \begin{definition}[{Eventual input-to-state stability}]
-    The system  \eqref{eq:ISS_system} is said to be eventually input-to-state stable with respect to $\mathcal{A}$ if there exist a class $\mathcal{KL}$ function $\beta$, a class $\mathcal{K}$ function $\gamma$ and strictly positive scalars $\kappa$ and $T$ such that for each solution pair $(x,u)$ to \eqref{eq:ISS_system} with $|{x(0,0)}|_\mathcal{A}\leq \kappa$ and  $u_{\#}\coloneqq \sup_{(t,j)\in \dom u} \norm{u(t,j)}$, every solution $(t,j)\mapsto x(t,j)$ to \eqref{eq:ISS_system} satisfies
+    The system  \eqref{eq:ISS_system} is said to be eventually input-to-state stable with respect to a nonempty, compact $\mathcal{A}$ if there exist a class $\mathcal{KL}$ function $\beta$, a class $\mathcal{K}$ function $\gamma$ and strictly positive scalars $\kappa$ and $T$ such that for each solution pair $(x,u)$ to \eqref{eq:ISS_system} with $|{x(0,0)}|_\mathcal{A}\leq \kappa$ and  $u_{\#}\coloneqq \sup_{(t,j)\in \dom u} \norm{u(t,j)}$, every solution pair $(t,j)\mapsto (x(t,j),u(t,j))$ to \eqref{eq:ISS_system} satisfies
     % The system $\mathcal{H}_u$ is locally input-to-state stable (ISS) if there exist $r>0$, $\gamma\in \mathcal{KL}$ and $\kappa\in\mathcal{K}$ such that, for each $|x(0,0)|_\mathcal{A}\leq r$, each maximal solution pair $(x,u)$ to $\mathcal{H}_u$ with $|\overline{u}|\leq r$ satisfies
     \begin{align*}
-        |x(t,j)|_\mathcal{A}\leq \beta(|x(0,0)|_\mathcal{A}, t+j) + \gamma(\norm{u_{\#}}) \quad \forall (t,j) \in  \{(\bar t,\bar j)\in \dom x \mid \bar t+\bar j \geq T\}.
+        |x(t,j)|_\mathcal{A}\leq \beta(|x(0,0)|_\mathcal{A}, t+j) + \gamma(\norm{u_{\#}}) \quad \forall (t,j) \in  \{(s,k)\in \dom x \mid s+k \geq T\}.
     \end{align*}
 \end{definition}
 
