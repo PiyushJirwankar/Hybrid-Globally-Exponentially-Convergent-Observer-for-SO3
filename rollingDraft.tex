@@ -472,7 +472,7 @@ The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region
     \zeta &= h(x,v)\coloneqq \hat{R} \label{eq:output_hybrid}
 \end{align}
 \end{subequations}
-where $f(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$. Note that by definition of the flow (resp. jump) set $\hat{C}$ (resp. $\hat{D}$) are with respect to the measurement error $\Rtilde^y$. 
+where $h(x,v)\coloneqq \left(q\gamma_1(x,v) + (1-q)\gamma_0(x,v)\right)$ and $y\coloneqq \hat{R}\axis{\Rtilde^y}$. Note that by definition of the flow (resp. jump) set $\hat{C}$ (resp. $\hat{D}$) are with respect to the measurement error $\Rtilde^y$. 
 
 % \begin{align}
 %     C_K &= \textblue{C_0 \cup C_1}\\
@@ -612,9 +612,9 @@ Using \eqref{eq:R1tilde_exponentialconvergence}, \eqref{eq:R1tilde_upperbound} a
 \begin{flushleft}
 where 
 \begin{align}
-    \lambda &\coloneqq \sqrt{{\frac{2 - \normSOthree{\Rstar} + 2\sqrt{(1-\normSOthree{\Rstar})(1-c_1)}}{1 - \normSOthree{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}
+    \textblue{\lambda} &\textblue{\coloneqq \sqrt{{\frac{2 - \normSOthree{\Rstar}^2 + 2\sqrt{(1-\normSOthree{\Rstar}^2)(1-c_1)}}{1 - \normSOthree{\Rstar}^2 - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}}
 \end{align}
-Note that \ref{item:b-bullet} results in $\lambda > 0$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
+Note that \ref{item:b-bullet} results in $\textblue{\lambda \in \R{}_{\geq 0}}$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
 \begin{align}\label{eq:eq22}
     \normSOthree{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
