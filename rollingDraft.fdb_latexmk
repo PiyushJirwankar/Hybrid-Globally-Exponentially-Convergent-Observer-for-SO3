@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex rollingDraft"] 1685557865 "rollingDraft.aux" "rollingDraft.bbl" "rollingDraft" 1685557867 0
+["bibtex rollingDraft"] 1685754546 "rollingDraft.aux" "rollingDraft.bbl" "rollingDraft" 1685754548 0
   "./ref.bib" 1684379400 3474 4158c50bc1d037c6cce4e1af606791e9 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "rollingDraft.aux" 1685557866 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
+  "rollingDraft.aux" 1685754547 2924 6e68dc3b45a3582fcef3dc6255e27cfb "pdflatex"
   (generated)
   "rollingDraft.bbl"
   "rollingDraft.blg"
   (rewritten before read)
-["pdflatex"] 1685557865 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" "rollingDraft.pdf" "rollingDraft" 1685557867 0
-  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" 1685557866 116178 0316c2c3aa88efa5c7c3c2748e838812 ""
+["pdflatex"] 1685754546 "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" "rollingDraft.pdf" "rollingDraft" 1685754548 0
+  "/Users/pjirwank/UCSC/PhD/Drafts/Hybrid Globally Exponentially Convergent Observer for SO3/rollingDraft.tex" 1685754544 116150 25270564a316393dc36730ac67655020 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -56,7 +56,6 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1248133631 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
-  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
@@ -110,9 +109,9 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1684357081 4643411 5ced174c6d521e21dd58a10751c00482 ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1684357187 7888982 e6e482af5f2d85ebf6b39e65b4ffbaba ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "rollingDraft.aux" 1685557866 2923 9cdbc666ef3b03995885f11415f477c7 "pdflatex"
-  "rollingDraft.bbl" 1685557865 1491 a43df5600e83039556ba042e2e9252b6 "bibtex rollingDraft"
-  "rollingDraft.tex" 1685557866 116178 0316c2c3aa88efa5c7c3c2748e838812 ""
+  "rollingDraft.aux" 1685754547 2924 6e68dc3b45a3582fcef3dc6255e27cfb "pdflatex"
+  "rollingDraft.bbl" 1685754546 1491 a43df5600e83039556ba042e2e9252b6 "bibtex rollingDraft"
+  "rollingDraft.tex" 1685754544 116150 25270564a316393dc36730ac67655020 ""
   (generated)
   "rollingDraft.aux"
   "rollingDraft.log"
