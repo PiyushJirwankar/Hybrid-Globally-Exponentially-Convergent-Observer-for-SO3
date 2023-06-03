@@ -48,7 +48,7 @@
 \newcommand{\textblue}[1]{\textcolor{blue}{#1}}
 \newcommand{\Rtilde}{\tilde{R}}
 \newcommand{\etabound}{\Bar{\eta}_w}
-\newcommand{\normSOthree}[1]{{{\vert}#1 {\vert}_I}}
+\newcommand{\normSOthree}[2]{{{\vert}#2 {\vert}^{#1}_I}}
 \newcommand{\cross}[1]{{#1}_\times}
 \newcommand{\expo}[1]{e^{#1}}
 \newcommand{\frobenius}[2]{\langle\langle #1, #2\rangle\rangle_F}
@@ -59,7 +59,7 @@
 \newcommand{\noisegyro}{\eta_\omega}
 \newcommand{\maxnoisegyro}{\overline{\eta_\omega}}
 \newcommand{\noiseatt}{\mathcal{N}_R}
-\newcommand{\maxnoiseatt}{\normSOthree{\overline{\noiseatt}}}
+\newcommand{\maxnoiseatt}{\normSOthree{}{\overline{\noiseatt}}}
 \newcommand{\dualpairing}[2]{\langle\langle #1 , #2 \rangle\rangle}
 \newcommand{\T}[2]{\text{T}_{#1}{#2}}
 \newcommand{\dual}[2]{\text{T}^*_{#1}{#2}}
@@ -81,7 +81,7 @@
 
 \maketitle
 
-The purpose of this work is to {design a complementary filter} for a system evolving on $\SOthree$ \textblue{with at least globally asymptotically stable error dynamics}. We first consider the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then, we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ and establish robustness of the filter to \textblue{such} noise. 
+The purpose of this work is to {design a complementary filter} for a system evolving on $\SOthree$ \textblue{with \textcolor{red}{at least} globally asymptotically stable error dynamics}. We first consider the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then, we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ and establish robustness of the filter to \textblue{such} noise. 
 
 \section{Preliminaries}
 
@@ -147,15 +147,15 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
     {For $R_1, R_2\in\SOthree$, if $R_2 = \mathcal{R}(\theta, v)$ for some $\theta\in\R{}$ and $v\in\mathbb{S}^2$, then $R_1R_2R_1^\top = \mathcal{R}(\theta, R_1 v)$. }
 \end{remark}
 
-\begin{definition}[\textblue{Distance between two points}]\label{def:dist_between_points}
-    \textblue{The distance between two points $R_1, R_2\in\SOthree$  is given by $|R_1|_{R_2}$, where }
+\begin{definition}[{Distance between two points}]\label{def:dist_between_points}
+    {The distance between two points $R_1, R_2\in\SOthree$  is given by $|R_1|_{R_2}$, where }
     \begin{align*}
-        \textcolor{red}{{|R_1|_{R_2}}^2 \coloneqq \frac{1}{4}\trace{I - R_2^\top R_1} \quad \forall R_1, R_2 \in \SOthree.}
+        \textcolor{red}{{|R_1|^2_{R_2}} \coloneqq \frac{1}{4}\trace{I - R_2^\top R_1} \quad \forall R_1, R_2 \in \SOthree.}
     \end{align*}
 \end{definition}
 
-\begin{definition}[Configuration error function \footnote{\textcolor{red}{I have changed the definition of $\normSOthree{R}$ as it is now a distance metric. See section 3.5 in \cite[p. 158]{SO3metric}. Added in the shared folder. }}]\label{def:config_err}
-    The configuration error function for $\SOthree$ is defined by $\normSOthree{\cdot}: \SOthree \to \R{}$, \textblue{where} \textcolor{red}{\[{\normSOthree{R}^2 \coloneqq \frac{1}{4}\trace{I - {R}} \quad \textblue{\forall R\in\SOthree}}.\]}
+\begin{definition}[Configuration error function \footnote{\textcolor{red}{I have changed the definition of $\normSOthree{}{R}$ as it is now a distance metric. See section 3.5 in \cite[p. 158]{SO3metric}. Added in the shared folder. }}]\label{def:config_err}
+    The configuration error function for $\SOthree$ is defined by $\normSOthree{}{\cdot}: \SOthree \to \R{}$, {where} {\[{\normSOthree{2}{R} \coloneqq \frac{1}{4}\trace{I - {R}} \quad {\forall R\in\SOthree}}.\]}
 \end{definition}
 
 \begin{definition}[\textblue{Nondegenerate function}]\label{def:nondegenerate_function}
@@ -171,21 +171,21 @@ The two signals are asymptotically independent if they are not asymptotically de
     For any rotation matrix $R\in\SOthree$, the following holds. 
     \begin{subequations}
     \begin{align}
-        \normSOthree{{R}^2}^2 = 4\normSOthree{{R}}^2\brackets{1 - \normSOthree{{R}}^2} \label{eq:lemma1_eq1}\\
-        \|\vex{\mathbb{P}_a(R)}\|^2 = \normSOthree{R^2}^2 \label{eq:lemma1_eq2}
+        \normSOthree{2}{{R}^2} = 4\normSOthree{2}{{R}}\brackets{1 - \normSOthree{2}{{R}}} \label{eq:lemma1_eq1}\\
+        \|\vex{\mathbb{P}_a(R)}\|^2 = \normSOthree{2}{R^2} \label{eq:lemma1_eq2}
     \end{align}
     \end{subequations}
 \end{lemma}
 \begin{proof}
-    For any $R\in\SOthree$, there exists $\theta\in[0,\pi]$ and $v\in\mathbb{S}^2$ such that $R = \mathcal{R}(\theta, v) = \exp(\theta\cross{v})$. Now, $R^2 = \textblue{RR} = \exp(\theta \cross{v})\exp(\theta \cross{v})$. Using Remark \ref{remark:baker-campbell-hausdorff}, we have $R^2 = \exp(2\theta\cross{v})$. Next, using \textblue{Definition \ref{def:config_err} and} the fact that $\trace{R} = 1 + 2\cos\theta$, \textblue{we get} 
+    For any $R\in\SOthree$, there exists $\theta\in[0,\pi]$ and $v\in\mathbb{S}^2$ such that $R = \mathcal{R}(\theta, v) = \exp(\theta\cross{v})$. Now, $R^2 = {RR} = \exp(\theta \cross{v})\exp(\theta \cross{v})$. Using Remark \ref{remark:baker-campbell-hausdorff}, we have $R^2 = \exp(2\theta\cross{v})$. Next, using {Definition \ref{def:config_err} and} the fact that $\trace{R} = 1 + 2\cos\theta$, {we get} 
     \begin{align}\label{eq:intermediate}
-        \textblue{\normSOthree{R}^2 = (1 - \cos\theta)/2 \implies  \textblue{\cos\theta} = 1 - 2\normSOthree{R}^2}.
+        {\normSOthree{2}{R} = \frac{1}{2}(1 - \cos\theta) \implies  {\cos\theta} = 1 - 2\normSOthree{2}{R}}.
     \end{align}
-   \textblue{ Since $\theta\in[0,\pi]$, this leads to  $\sin\theta =\sqrt{1-(\cos\theta)^2} = 2\sqrt{\normSOthree{R}^2\brackets{1 - \normSOthree{R}^2}}$. Now using \eqref{eq:intermediate} results in}
+   { Since $\theta\in[0,\pi]$, this leads to  $\sin\theta =\sqrt{1-(\cos\theta)^2} = 2\sqrt{\normSOthree{2}{R}\brackets{1 - \normSOthree{2}{R}}}$. Now using \eqref{eq:intermediate} results in}
     \begin{align*}
-        \normSOthree{R^2}^2 &= \frac{1}{2}\brackets{1 - \cos{2\theta}} \\
+        \normSOthree{2}{R^2} &= \frac{1}{2}\brackets{1 - \cos{2\theta}} \\
         &= \text{sin}^2{\theta} \nonumber\\
-        &= 4\normSOthree{R}^2\brackets{1 - \normSOthree{R}^2}
+        &= 4\normSOthree{2}{R}\brackets{1 - \normSOthree{2}{R}}
     \end{align*}
     This proves \eqref{eq:lemma1_eq1}. \\ \textblue{To prove \eqref{eq:lemma1_eq2}, using the fact that $\inprod{v}{w} = \frac{1}{2}\frobenius{\cross{v}}{\cross{w}} \text{ for all } v, w\in\R{3}$, we expand $\vex{\mathbb{P}_a(R)}$ as follows:} 
     \begin{align*}
@@ -193,32 +193,32 @@ The two signals are asymptotically independent if they are not asymptotically de
         &= \frac{1}{2}\frobenius{\mathbb{P}_a(R)}{\mathbb{P}_a(R)}\\
         &= \frac{1}{2}\trace{\brackets{\frac{R - R^\top}{2}}^\top\brackets{\frac{R - R^\top}{2}}}\\
         &= \frac{1}{4}\trace{I - R^2}\\
-        &= \normSOthree{R^2}^2
+        &= \normSOthree{2}{R^2}
     \end{align*}
     This proves \eqref{eq:lemma1_eq2}.
 \end{proof}
 
 \begin{lemma}\label{lemma:normOfProduct}
-    For any $X,Y\in\SOthree$ with $X = \mathcal{R}(x, v_x)$ and $Y = \mathcal{R}(y, v_y)$ where \textblue{$x,y\in[0,\pi]$} and $v_x, v_y\in \mathbb{S}^2$, the following holds:
+    For any $X,Y\in\SOthree$ with $X = \mathcal{R}(x, v_x)$ and $Y = \mathcal{R}(y, v_y)$ where {$x,y\in[0,\pi]$} and $v_x, v_y\in \mathbb{S}^2$, the following holds:
     % \begin{align}
     %     \normSOthree{XY} = \normSOthree{X} + \normSOthree{Y} - \normSOthree{X}\normSOthree{Y} + \normSOthree{X}\normSOthree{Y}(v_x^\top v_y)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{X}}-1}\brackets{\frac{1}{\normSOthree{Y}}-1}} - v_x^\top v_y\right]
     % \end{align}
     \begin{align}
-        \textblue{\normSOthree{XY}^2 = \normSOthree{X}^2 + \normSOthree{Y}^2 - \normSOthree{X}^2\normSOthree{Y}^2 + (v_x^\top v_y)\normSOthree{X}\normSOthree{Y}\left[2\sqrt{\brackets{1 - \normSOthree{X}^2}\brackets{1-\normSOthree{Y}^2}} - v_x^\top v_y\normSOthree{X}\normSOthree{Y}\right]}
+        {\normSOthree{2}{XY} = \normSOthree{2}{X} + \normSOthree{2}{Y} - \normSOthree{2}{X}\normSOthree{2}{Y} + (v_x^\top v_y)\normSOthree{}{X}\normSOthree{}{Y}\left[2\sqrt{\brackets{1 - \normSOthree{2}{X}}\brackets{1-\normSOthree{2}{Y}}} - v_x^\top v_y\normSOthree{}{X}\normSOthree{}{Y}\right]}
     \end{align}
 \end{lemma}
 \begin{proof}
     Expanding $XY = \mathcal{R}(x,v_x)\mathcal{R}(y, v_y)$ we get the following. 
     \begin{align*}
         XY &= \brackets{I + \cross{v_x}\sin x  + \cross{v_x}^2(1-\cos x)}\brackets{I + \cross{v_y}\sin y  + \cross{v_y}^2(1-\cos y)}\\
-        \intertext{\textblue{Taking the trace on both sides results in}}
+        \intertext{{Taking the trace on both sides results in}}
         \trace{XY} &= \trace{X} + (\sin{x}\sin{y}) \trace{\cross{v_x}\cross{v_y}}   + (1-\cos{y})\trace{\cross{v_y}^2} + (1-\cos{x})(1-\cos{y})\trace{\cross{v_x}^2\cross{v_y}^2}
     \intertext{It is easy to verify that for any $v, w\in\mathbb{S}^2$, $\trace{\cross{v}\cross{w}} = -2v^\top w$ and $\trace{\cross{v}^2\cross{w}^2} = 1 + (v^\top w)^2$. Using this, we obtain the following:}
     \trace{XY} &= \trace{X} - 2(v^\top w)\sin{x}\sin{y} - 2(1-\cos{y}) + (1-\cos{x})(1-\cos{y})(1 + (v^\top w)^2)\\
-    \intertext{Now \textblue{using \eqref{eq:intermediate}}, we have $\cos{x} = 1 - 2\normSOthree{X}^2$ and \textblue{$\sin{x} = 4\sqrt{\normSOthree{X}^2(1-\normSOthree{X}^2)}$} for all $X\in \SOthree$. This leads to the following equation:} 
-    \trace{XY} &= \trace{X} - 8(v^\top w)\sqrt{\normSOthree{X}^2(1 - \normSOthree{X}^2)}\sqrt{\normSOthree{Y}^2(1-\normSOthree{Y}^2)} - 4\normSOthree{Y}^2 + 4\normSOthree{X}^2\normSOthree{Y}^2(1 + (v^\top w)^2)\\    
+    \intertext{Now {using \eqref{eq:intermediate}}, we have $\cos{x} = 1 - 2\normSOthree{2}{X}$ and {$\sin{x} = 4\sqrt{\normSOthree{2}{X}(1-\normSOthree{2}{X})}$} for all $X\in \SOthree$. This leads to the following equation:} 
+    \trace{XY} &= \trace{X} - 8(v^\top w)\sqrt{\normSOthree{2}{X}(1 - \normSOthree{2}{X})}\sqrt{\normSOthree{2}{Y}(1-\normSOthree{2}{Y})} - 4\normSOthree{2}{Y} + 4\normSOthree{2}{X}\normSOthree{2}{Y}(1 + (v^\top w)^2)\\    
     \intertext{Using Definition \ref{def:config_err} results in}
-      \normSOthree{XY}^2 &= \normSOthree{X}^2 + \normSOthree{Y}^2 - \normSOthree{X}^2\normSOthree{Y}^2 + (v_x^\top v_y)\normSOthree{X}\normSOthree{Y}\left[2\sqrt{\brackets{1 - \normSOthree{X}^2}\brackets{1-\normSOthree{Y}^2}} - v_x^\top v_y\normSOthree{X}\normSOthree{Y}\right]
+      \normSOthree{2}{XY} &= \normSOthree{2}{X} + \normSOthree{2}{Y} - \normSOthree{2}{X}\normSOthree{2}{Y} + (v_x^\top v_y)\normSOthree{}{X}\normSOthree{}{Y}\left[2\sqrt{\brackets{1 - \normSOthree{2}{X}}\brackets{1-\normSOthree{2}{Y}}} - v_x^\top v_y\normSOthree{}{X}\normSOthree{}{Y}\right]
     \end{align*}
     This completes the proof.
 \end{proof}
@@ -275,7 +275,7 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 %     \normSOthree{\Rtilde(0)}\leq \delta(\epsilon) \implies \normSOthree{\Rtilde(t)} \textblue\leq \epsilon \expo{-\lambda t} \normSOthree{\Rtilde(0)}\quad \forall t \geq 0
 % \end{align*}
 
-\begin{definition}{\textblue{Solution concept}}
+\begin{definition}{\textcolor{red}{Solution concept}}
     \textblue{}
 \end{definition}
 
@@ -285,7 +285,7 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
     \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom{(R,\Omega)}.}
 \end{align*}
 
-\begin{definition}[\textblue{Unstable set of a dynamical system}] \textblue{A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} with an absolutely continuous $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$.  }
+\begin{definition}[{Unstable set of a dynamical system}] {A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} with an absolutely continuous $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$.  }
     
 \end{definition}
 
@@ -339,17 +339,17 @@ Then:
     \item The set $\mathbb{U}_0$ is forward invariant and {unstable} with respect to the system given in \eqref{eq:observer}. \label{item:thm_mahony_bullet1}
     \item {The identity element $I$ is locally exponentially stable for the dynamics of the error $\Rtilde$.}\label{item:thm_mahony_bullet2}
     % \item {The error $\Rtilde$ is locally exponentially stable to the identity element $I$.} 
-    \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{\Rtilde^y(0)} \leq k$, every solution $t\mapsto\Rtilde(t)$ to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
+    \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{}{\Rtilde^y(0)} \leq k$, every solution $t\mapsto\Rtilde(t)$ to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
     \begin{align}\label{eq:localExponentialStability}
-        \normSOthree{\Rtilde(t)} \leq \expo{-k_p(1-k^2)t}\normSOthree{\Rtilde(0)} \quad \forall t \geq 0.
+        \normSOthree{}{\Rtilde(t)} \leq \expo{-k_p(1-k^2)t}\normSOthree{}{\Rtilde(0)} \quad \forall t \geq 0.
     \end{align}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    See {\cite[Theorem 4.2]{mahony_complementaryFilter}} for the proof of \ref{item:thm_mahony_bullet1}, \ref{item:thm_mahony_bullet2}. Next, $\Rtilde^y(t) = \Rtilde(t)$ for all $t\geq 0$ due to Assumption \ref{ass:no_meas_noise}. For the proof of \ref{item:thm_mahony_bullet3}, consider a Lyapunov function candidate candidate $V(\Rtilde) = \normSOthree{\Rtilde}^2$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get 
+    See {\cite[Theorem 4.2]{mahony_complementaryFilter}} for the proof of \ref{item:thm_mahony_bullet1}, \ref{item:thm_mahony_bullet2}. Next, $\Rtilde^y(t) = \Rtilde(t)$ for all $t\geq 0$ due to Assumption \ref{ass:no_meas_noise}. For the proof of \ref{item:thm_mahony_bullet3}, consider a Lyapunov function candidate candidate $V(\Rtilde) = \normSOthree{2}{\Rtilde}$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get 
     \begin{align*}
-        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= 2\normSOthree{\Rtilde}\frac{d \normSOthree{\Rtilde(t)}}{dt} = -\frac{1}{4}\trace{\dot{\Rtilde}(t)}.\\
+        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= 2\normSOthree{}{\Rtilde}\frac{d \normSOthree{}{\Rtilde(t)}}{dt} = -\frac{1}{4}\trace{\dot{\Rtilde}(t)}.\\
         \intertext{Now, since $\dot{\Rtilde} = [R, \Omega_\times] - k_p{\omega(\Rtilde)}_\times\Rtilde$ and using the fact that the trace of the Lie bracket is $0$, we get the following.}
         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= \frac{k_p}{4}\trace{{{\omega(\Rtilde)}_\times}\Rtilde}\\
         &= \frac{k_p}{4}\trace{{\omega(\Rtilde)}_\times \mathbb{P}_a{(\Rtilde)}}\\
@@ -357,29 +357,29 @@ Then:
         &= -\frac{k_p}{4}\frobenius{{\omega(\Rtilde)}_\times}{{\omega(\Rtilde)}_\times}\\
         &= -\frac{k_p}{2}\|\omega(\Rtilde)\|^2.\\
         \intertext{Now using Lemma \ref{lemma:1}, we have the following:}
-        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= -2k_p\normSOthree{\Rtilde}^2(1-\normSOthree{\Rtilde}^2)\\
-        2\normSOthree{\Rtilde}\frac{d\normSOthree{\Rtilde(t)}}{dt}&\leq -2k_p(1-k^2)\normSOthree{\Rtilde}\\ 
-        \implies \normSOthree{\Rtilde(t)} &\leq \expo{-k_p(1-k^2)t}\normSOthree{\Rtilde(0)} \quad \forall t\geq 0.
+        \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= -2k_p\normSOthree{2}{\Rtilde}(1-\normSOthree{2}{\Rtilde})\\
+        2\normSOthree{}{\Rtilde}\frac{d\normSOthree{}{\Rtilde(t)}}{dt}&\leq -2k_p(1-k^2)\normSOthree{}{\Rtilde}\\ 
+        \implies \normSOthree{}{\Rtilde(t)} &\leq \expo{-k_p(1-k^2)t}\normSOthree{}{\Rtilde(0)} \quad \forall t\geq 0.
     \end{align*}
 \end{proof}
 
 \begin{lemma}[\textblue{{\cite[Lemma 5.6]{Chillingworth}}}] \label{lemma:lyapfunc}
-    The configuration error function $\normSOthree{\Rtilde}$ defined in Definition \ref{def:config_err} is positive definite, and \textblue{has 4 critical points given by $\Theta =  \{I, \exp(\pi e_{1_{\times}}),  \exp(\pi e_{2_{\times}}), \exp(\pi e_{3_{\times}})\}$ where $e_1, e_2, e_3 \in \mathbb{S}^2$ are the eigenvectors of $I$. Note that $\Theta\backslash\{I\}\subset \mathbb{U}_0$. }
+    The configuration error function $\normSOthree{}{\Rtilde}$ defined in Definition \ref{def:config_err} is positive definite, and \textblue{has 4 critical points given by $\Theta =  \{I, \exp(\pi e_{1_{\times}}),  \exp(\pi e_{2_{\times}}), \exp(\pi e_{3_{\times}})\}$ where $e_1, e_2, e_3 \in \mathbb{S}^2$ are the eigenvectors of $I$. Note that $\Theta\backslash\{I\}\subset \mathbb{U}_0$. }
 \end{lemma}
 
 % \textblue{\begin{remark}
-%     It is easy to see using \eqref{eq:localExponentialStability} that the set $\{R\in\SOthree : \normSOthree{R}\leq k\}$ is forward invariant with respect to the observer error $\Rtilde$ in Theorem \ref{thm:mahony}.
+%     It is easy to see using \eqref{eq:localExponentialStability} that the set $\{R\in\SOthree : \normSOthree{}{R}\leq k\}$ is forward invariant with respect to the observer error $\Rtilde$ in Theorem \ref{thm:mahony}.
 % \end{remark}}
 
 % \begin{lemma}[Local exponential stability of \eqref{eq:observer}]\label{lemma:localExponentialStability}
-% For the observer in \eqref{eq:observer} with initial condition such that $\Rtilde(t_0)\notin \mathbb{U}_0$, there exists $\normSOthree{\Rtilde(0)}\leq k<1$ with $\normSOthree{\Rtilde(t)}\leq k$ for all $t\geq t_0$ and the following holds:
+% For the observer in \eqref{eq:observer} with initial condition such that $\Rtilde(t_0)\notin \mathbb{U}_0$, there exists $\normSOthree{}{\Rtilde(0)}\leq k<1$ with $\normSOthree{}{\Rtilde(t)}\leq k$ for all $t\geq t_0$ and the following holds:
 % \begin{align}
-%     \normSOthree{\Rtilde(t)} \leq \expo{-2k_p(1-k)(t-t_0)}\normSOthree{\Rtilde(0)} \quad \forall t \geq t_0.
+%     \normSOthree{}{\Rtilde(t)} \leq \expo{-2k_p(1-k)(t-t_0)}\normSOthree{}{\Rtilde(0)} \quad \forall t \geq t_0.
 % \end{align}
 % \end{lemma}
 
 % \begin{proof}
-%     Consider a Lyapunov function candidate $V(\Rtilde) = \normSOthree{\Rtilde}$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get the following:
+%     Consider a Lyapunov function candidate $V(\Rtilde) = \normSOthree{}{\Rtilde}$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get the following:
 %     \begin{align*}
 %         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= -\frac{1}{4}\trace{\dot{\Rtilde}(t)}\\
 %         \intertext{Now, since $\dot{\Rtilde} = [R, \Omega_\times] - k_p{\omega(\Rtilde)}_\times\Rtilde$ and using the fact that the trace of the Lie bracket is $0$, we get the following.}
@@ -389,9 +389,9 @@ Then:
 %         &= -\frac{k_p}{4}\frobenius{{\omega(\Rtilde)}_\times}{{\omega(\Rtilde)}_\times}\\
 %         &= -\frac{k_p}{2}\|\omega(\Rtilde)\|^2\\
 %         \intertext{Now using Lemma \ref{lemma:1}, we have the following:}
-%         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= -2k_p\normSOthree{\Rtilde}(1-\normSOthree{\Rtilde})\\
-%         &\leq -2k_p(1-k)\normSOthree{\Rtilde}\\ 
-%         \implies \normSOthree{\Rtilde(t)} &\leq \expo{-2k_p(1-k)(t-t_0)}\normSOthree{\Rtilde(t_0)} \quad \forall t\geq t_0.
+%         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}}  &= -2k_p\normSOthree{}{\Rtilde}(1-\normSOthree{}{\Rtilde})\\
+%         &\leq -2k_p(1-k)\normSOthree{}{\Rtilde}\\ 
+%         \implies \normSOthree{}{\Rtilde(t)} &\leq \expo{-2k_p(1-k)(t-t_0)}\normSOthree{}{\Rtilde(t_0)} \quad \forall t\geq t_0.
 %     \end{align*}
 % \end{proof}
 
@@ -431,7 +431,7 @@ With $\overline{k_p}>0$, we define the following observer for the case when $\Rt
     \omega(\Rtilde_1^y) &\coloneqq \vex{\mathbb{P}_a({\Rtilde_1^y})}, \quad &&{\Rtilde_1^y \coloneqq \hat{R}^\top R^y_1}
 \end{alignat}
 \end{subequations}
-Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree$ is almost globally and locally exponentially stable for the dynamics of $\Rtilde_1$. We employ a hysteresis based hybrid observer for reasons mentioned in Remark \ref{remark:hysteresis}. Consider constants $ 0 < c_1 < c_0 < 1$, $0<\delta < 1$ and $\theta^*\in\R{}$ with $\normSOthree{\Rstar}\coloneqq (1 - \cos\theta^*)/2$. Consider the following sets
+Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree$ is almost globally and locally exponentially stable for the dynamics of $\Rtilde_1$. We employ a hysteresis based hybrid observer for reasons mentioned in Remark \ref{remark:hysteresis}. Consider constants $ 0 < c_1 < c_0 < 1$, $0<\delta < 1$ and $\theta^*\in\R{}$ with $\normSOthree{2}{\Rstar}\coloneqq (1 - \cos\theta^*)/2$. Consider the following sets
 % \begin{align}
 %     C_0 &\coloneqq \textblue{\left\{(\Rtilde^y, q) \in \SOthree \times Q\mid \normSOthree{\Rtilde^y} \leq c_0 \And q=0 \right\}}\\
 %     C_1 &\coloneqq \textblue{\left\{(\Rtilde^y, q) \in \SOthree \times Q\mid \normSOthree{\Rtilde^y} \geq c_1 \And q=1 \right\}}\\
@@ -441,11 +441,11 @@ Using Theorem \ref{thm:mahony}, it is straightforward to see that  $I\in\SOthree
 
 \begin{subequations}
 \begin{align}
-    C_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{\Rtilde^y} \leq c_0 \right\}}\\
-    C_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{\Rtilde^y} \geq c_1 \right\}}\\
-    D_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{\Rtilde^y} \geq c_0 \right\}}\\
-    D_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{\Rtilde^y} \leq c_1 \right\}}\\
-    \mathcal{B} &\coloneqq \textblue{\left\{(r,\Rtilde^y, \hat{R}) \in \mathbb{S}^2\times(\SOthree)^2: \left\lvert \normSOthree{\Rtilde^y}^2 - \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{r^\top \hat{R}\axis{\Rtilde^y}}^2 \normSOthree{\Rstar}^2} \right\rvert > \delta \right\} \cap \mathbb{S}^2 }.
+    C_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{}{\Rtilde^y} \leq c_0 \right\}}\\
+    C_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{}{\Rtilde^y} \geq c_1 \right\}}\\
+    D_0 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{}{\Rtilde^y} \geq c_0 \right\}}\\
+    D_1 &\coloneqq {\left\{\Rtilde^y \in \SOthree : \normSOthree{}{\Rtilde^y} \leq c_1 \right\}}\\
+    \mathcal{B} &\coloneqq \textblue{\left\{(r,\Rtilde^y, \hat{R}) \in \mathbb{S}^2\times(\SOthree)^2: \left\lvert \normSOthree{2}{\Rtilde^y} - \frac{1 - \normSOthree{2}{\Rstar}}{1 - \normSOthree{2}{\Rstar} + \brackets{r^\top \hat{R}\axis{\Rtilde^y}}^2 \normSOthree{2}{\Rstar}} \right\rvert > \delta \right\} \cap \mathbb{S}^2 }.
 \end{align}
 \end{subequations}
 
@@ -467,7 +467,7 @@ The intersection $\Gamma \coloneqq C_0\cap C_1$ represents the hysteresis region
     \end{pmatrix}\label{eq:13b}\\
     \hat{D} &= {\brackets{C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})} \cup \brackets{\bigcup_{q\in Q} \brackets{{D}_{q}\times q\times \mathbb{S}^2}}}\\
     \hat{G}(x, v) &= \left\{\begin{array}{@{}ll@{}}
-        \brackets{\hat{R}, \:\: q,\:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top \textcolor{red}{y})^2 - (r^\top \textcolor{red}{y})^2\right)^2}, &(\Rtilde^y, q, r)\in C_1\times \{1\}\times (\mathbb{S}^2\backslash \mathcal{B})\\
+        \brackets{\hat{R}, \:\: q,\:\: \underset{u\in\mathbb{S}^2}{\mathrm{argmax}}\left((u^\top {y})^2 - (r^\top {y})^2\right)^2}, &(\Rtilde^y, q, r)\in C_1\times \{1\}\times (\mathbb{S}^2\backslash \mathcal{B})\\
         % \begin{pmatrix}
             (\hat{R}, \:\: 1-q,\:\: r),
         % \end{pmatrix}, 
@@ -572,62 +572,62 @@ where \eqref{eq:Rtilde_dot} is obtained by substituting $\dot{\hat{R}}$ from \eq
 
 \textbf{Case 1}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))} \in C_0\times \{0\}\times\mathbb{S}^2$. The local exponential stability for this case is evident using \eqref{eq:localExponentialStability} as follows:
 \begin{align}\label{eq:C0bounds}
-    \normSOthree{\Rtilde(t,0)} &\leq \expo{-k_p(1-c_0^2)t}\normSOthree{\Rtilde(0,0)} \quad \forall (t,j) \in \dom\Rtilde.
+    \normSOthree{}{\Rtilde(t,0)} &\leq \expo{-k_p(1-c_0^2)t}\normSOthree{}{\Rtilde(0,0)} \quad \forall (t,j) \in \dom\Rtilde.
 \end{align}
 
     \textbf{Case 2}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in D_1\times\{1\}\times\mathbb{S}^2$. Since the initialization is in the jump set, the state jumps once which results in ${(\Rtilde(0,1), q(0,1), r(0,1))}\in C_0\times \{0\}\times \mathbb{S}^2$. Now we refer to Case 1 for further analysis.
 
     \textbf{Case 3}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in D_0\times\{0\} \times \mathbb{S}^2$. Similar to Case 2, the initialization is in the jump set resulting in one jump and ${(\Rtilde(0,1), q(0,1), r(0,1))}\in C_1\times\{1\}\times \mathbb{S}^2$. We refer to Case 4 and Case 5 for further analysis.
 
-    The only remaining cases to be considered are when $(\Rtilde^y(0,0), q(0,0), r(0,0))\in C_1\times\{1\}\times (\overline{\mathcal{B}} \cup (\mathbb{S}^2\backslash \mathcal{B}))$. When flow occurs, the rotated observer in \eqref{eq:unstable_observer} is used with $\Rstar\coloneqq \mathcal{R}(\theta^*, r(0,0))$. Using Theorem \ref{thm:mahony}, the rotated observer fails when the observer error $\Rtilde_1$ is such that $\normSOthree{\Rtilde_1}=1$. Using Lemma \ref{lemma:normOfProduct}, we see that 
+    The only remaining cases to be considered are when $(\Rtilde^y(0,0), q(0,0), r(0,0))\in C_1\times\{1\}\times (\overline{\mathcal{B}} \cup (\mathbb{S}^2\backslash \mathcal{B}))$. When flow occurs, the rotated observer in \eqref{eq:unstable_observer} is used with $\Rstar\coloneqq \mathcal{R}(\theta^*, r(0,0))$. Using Theorem \ref{thm:mahony}, the rotated observer fails when the observer error $\Rtilde_1$ is such that $\normSOthree{}{\Rtilde_1}=1$. Using Lemma \ref{lemma:normOfProduct}, we see that 
     \begin{align}
-        \normSOthree{{\Rtilde_1}} = 1 \iff \normSOthree{\Rtilde}^2 = \frac{1 - \normSOthree{\Rstar}^2}{1 - \normSOthree{\Rstar}^2 + \brackets{\axis{\Rstar}^\top\hat{R}\axis{\Rtilde}}^2\normSOthree{\Rstar}^2} \label{eq:R1tilde_unstable}
+        \normSOthree{}{{\Rtilde_1}} = 1 \iff \normSOthree{2}{\Rtilde} = \frac{1 - \normSOthree{2}{\Rstar}}{1 - \normSOthree{2}{\Rstar} + \brackets{\axis{\Rstar}^\top\hat{R}\axis{\Rtilde}}^2\normSOthree{2}{\Rstar}} \label{eq:R1tilde_unstable}
     \end{align}
-    It is now clear that when $\axis{\Rstar}$ is \emph{far enough} from its the value where \eqref{eq:R1tilde_unstable} holds,  $\normSOthree{\Rtilde_1}\neq 1$. This motivates the definition of the set $\mathcal{B}$ and results in the following two cases.
+    It is now clear that when $\axis{\Rstar}$ is \emph{far enough} from its the value where \eqref{eq:R1tilde_unstable} holds,  $\normSOthree{}{\Rtilde_1}\neq 1$. This motivates the definition of the set $\mathcal{B}$ and results in the following two cases.
 
 \textbf{Case 4}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times (\mathbb{S}^2\backslash \mathcal{B})$. This is the case when $r(0,0)$ is close to its value that satisfies \eqref{eq:R1tilde_unstable}. The jump map changes $r(0,0)$ such that $r(0,1)$ is as far away as possible from its value that satisfies \eqref{eq:R1tilde_unstable}. This results in $(\Rtilde(0,1), q(0,1), r(0,1))\in C_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 5. 
 
-\textbf{Case 5}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times \overline{\mathcal{B}}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. $r(0,0)\in \overline{\mathcal{B}}$ ensures that the rotated observer never fails in this domain of operation. Since $c_1 > \normSOthree{\Rstar}$, there exists a finite time $T>0$ such that $\normSOthree{\Rtilde(T,0)} = c_1$. Now, following \eqref{eq:localExponentialStability}, there exists $d_0$ with $1 - \normSOthree{\Rstar} < d_0 < 1$ such that when $\normSOthree{\Rtilde_1(0,0)}\leq d_0$, every solution to $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated observer error dynamics $\Rtilde_1$ satisfies
+\textbf{Case 5}: ${(\Rtilde^y(0,0), q(0,0), r(0,0))}\in C_1\times\{1\}\times \overline{\mathcal{B}}$. This case employs the rotated observer defined in \eqref{eq:unstable_observer}. $r(0,0)\in \overline{\mathcal{B}}$ ensures that the rotated observer never fails in this domain of operation. Since $c_1 > \normSOthree{}{\Rstar}$, there exists a finite time $T>0$ such that $\normSOthree{}{\Rtilde(T,0)} = c_1$. Now, following \eqref{eq:localExponentialStability}, there exists $d_0$ with $1 - \normSOthree{}{\Rstar} < d_0 < 1$ such that when $\normSOthree{}{\Rtilde_1(0,0)}\leq d_0$, every solution to $(t,0)\mapsto \Rtilde_1(t,0)$ to the rotated observer error dynamics $\Rtilde_1$ satisfies
 \begin{align}\label{eq:R1tilde_exponentialconvergence}
-    \normSOthree{\Rtilde_1(t,0)} &\leq \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{\Rtilde_1(0,0)} \quad \forall t \in \{s\in \R{}_{\geq 0}\mid s \leq T,\:\: (s,j)\in \dom\Rtilde_1\}
+    \normSOthree{}{\Rtilde_1(t,0)} &\leq \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{}{\Rtilde_1(0,0)} \quad \forall t \in \{s\in \R{}_{\geq 0}\mid s \leq T,\:\: (s,j)\in \dom\Rtilde_1\}
 \end{align}
-where $T > 0$ is such that $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 2. We now wish to find upper and lower bounds on $\normSOthree{\Rtilde_1(t,0)}$ in terms of $\normSOthree{\Rtilde(t,0)}$ to prove that the estimation error $\normSOthree{\Rtilde}$ exponentially decreases. We note that $\normSOthree{\Rtilde_1} = \normSOthree{\hat{R}^\top \Rstar R} = \normSOthree{\Rstar R\hat{R}^\top }$ and $\normSOthree{R\hat{R}^\top } = \normSOthree{\Rtilde}$. Let $\Rstar = \mathcal{R}(\theta^*, r)$ and $R\hat{R}^\top  = \mathcal{R}(\Tilde{\theta}, w)$. Now, using Lemma \ref{lemma:normOfProduct} and $0 < \normSOthree{\Rstar} < c_1 < \normSOthree{\Rtilde(t,0)} < 1$ with $t\leq T$,
+where $T > 0$ is such that $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ which leads to Case 2. We now wish to find upper and lower bounds on $\normSOthree{}{\Rtilde_1(t,0)}$ in terms of $\normSOthree{}{\Rtilde(t,0)}$ to prove that the estimation error $\normSOthree{}{\Rtilde}$ exponentially decreases. We note that $\normSOthree{}{\Rtilde_1} = \normSOthree{}{\hat{R}^\top \Rstar R} = \normSOthree{}{\Rstar R\hat{R}^\top }$ and $\normSOthree{}{R\hat{R}^\top } = \normSOthree{}{\Rtilde}$. Let $\Rstar = \mathcal{R}(\theta^*, r)$ and $R\hat{R}^\top  = \mathcal{R}(\Tilde{\theta}, w)$. Now, using Lemma \ref{lemma:normOfProduct} and $0 < \normSOthree{}{\Rstar} < c_1 < \normSOthree{}{\Rtilde(t,0)} < 1$ with $t\leq T$,
 % \begin{align*}
-%     0 < \normSOthree{\Rstar} < c_1 < \normSOthree{\Rtilde} < 1
+%     0 < \normSOthree{}{\Rstar} < c_1 < \normSOthree{}{\Rtilde} < 1
 % \end{align*}
 we get 
 \begin{align}
-    \normSOthree{\Rtilde_1}^2 &= \normSOthree{\Rtilde}^2 + \normSOthree{\Rstar}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 + \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2(r^\top w)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}^2}-1}\brackets{\frac{1}{\normSOthree{\Rstar}^2}-1}} - r^\top w\right]\nonumber\\
-    &\leq \normSOthree{\Rtilde}^2 + \normSOthree{\Rtilde}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 + 2\normSOthree{\Rtilde}^2\sqrt{(1 - \normSOthree{\Rstar}^2)(1 - c_1)}\nonumber\\
-    &\leq \normSOthree{\Rtilde}^2\brackets{2 - \normSOthree{\Rstar}^2 + 2\sqrt{(1-\normSOthree{\Rstar}^2)(1-c_1)}} \label{eq:R1tilde_upperbound}
+    \normSOthree{2}{\Rtilde_1} &= \normSOthree{2}{\Rtilde} + \normSOthree{2}{\Rstar} - \normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar} + \normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar}(r^\top w)\left[2\sqrt{\brackets{\frac{1}{\normSOthree{2}{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{2}{\Rstar}}-1}} - r^\top w\right]\nonumber\\
+    &\leq \normSOthree{2}{\Rtilde} + \normSOthree{2}{\Rtilde} - \normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar} + 2\normSOthree{2}{\Rtilde}\sqrt{(1 - \normSOthree{2}{\Rstar})(1 - c_1)}\nonumber\\
+    &\leq \normSOthree{2}{\Rtilde}\brackets{2 - \normSOthree{2}{\Rstar} + 2\sqrt{(1-\normSOthree{2}{\Rstar})(1-c_1)}} \label{eq:R1tilde_upperbound}
     % \intertext{Since ${(\Rtilde(t,0), q(t,0))}\in C_1\times\{1\}$ for all $t < T$, by construction, $\normSOthree{\Rtilde} \geq c_1$. Furthermore, by definition of $\Rstar$, there exist positive scalars $e_0, f_0$ such that $e_0 < \normSOthree{\Rstar} < f_0 < c_1$. Since $e_0 < c_1$ by construction, this also implies that \textcolor{red}{$\normSOthree{\Rtilde(t,0)} < \normSOthree{\Rstar}$} for $t < T$. This leads to the following. }
     % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde} + \normSOthree{\Rstar} - f_0\normSOthree{\Rtilde} + 2e_0\normSOthree{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}\nonumber\\
     % \normSOthree{\Rtilde_1}&\leq \normSOthree{\Rtilde}\brackets{2 - f_0 + 2e_0\sqrt{\brackets{\frac{1}{c_1}-1}\brackets{\frac{1}{f_0}-1}}} \label{eq:R1tilde_upperbound}\\
-    \intertext{where $\Rtilde \equiv \Rtilde(t,0)$ for brevity. To calculate the lower bound of $\normSOthree{\Rtilde_1}$, it is straightforward to see that $\normSOthree{\Rtilde_1}$ will be the smallest when $r^\top w = -1$. Thus, we have }
-    \normSOthree{\Rtilde_1}^2 &\geq \normSOthree{\Rtilde}^2 + \normSOthree{\Rstar}^2\normSOthree{\Rtilde}^2 - 2\normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 - 2\normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2\sqrt{\brackets{\frac{1}{\normSOthree{\Rtilde}^2}-1}\brackets{\frac{1}{\normSOthree{\Rstar}^2}-1}}\nonumber\\
-    &\geq \normSOthree{\Rtilde}^2 - \normSOthree{\Rstar}^2\normSOthree{\Rtilde}^2 - 2\normSOthree{\Rtilde}^2\sqrt{\brackets{\frac{1}{c_1}-1}{\normSOthree{\Rstar}^2(1 - \normSOthree{\Rstar}^2)}} \nonumber\\
-    &\geq \normSOthree{\Rtilde}^2 - \normSOthree{\Rtilde}^2\normSOthree{\Rstar}^2 - \normSOthree{\Rtilde}^2\sqrt{\frac{1}{c_1}-1} \nonumber\\
-    \normSOthree{\Rtilde_1}^2 &\geq \normSOthree{\Rtilde}^2\brackets{1 - \normSOthree{\Rstar}^2 - \sqrt{\frac{1}{c_1}-1}} \label{eq:R1tilde_lowerbound}
+    \intertext{where $\Rtilde \equiv \Rtilde(t,0)$ for brevity. To calculate the lower bound of $\normSOthree{}{\Rtilde_1}$, it is straightforward to see that $\normSOthree{}{\Rtilde_1}$ will be the smallest when $r^\top w = -1$. Thus, we have }
+    \normSOthree{2}{\Rtilde_1} &\geq \normSOthree{2}{\Rtilde} + \normSOthree{2}{\Rstar}\normSOthree{2}{\Rtilde} - 2\normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar} - 2\normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar}\sqrt{\brackets{\frac{1}{\normSOthree{2}{\Rtilde}}-1}\brackets{\frac{1}{\normSOthree{2}{\Rstar}}-1}}\nonumber\\
+    &\geq \normSOthree{2}{\Rtilde} - \normSOthree{2}{\Rstar}\normSOthree{2}{\Rtilde} - 2\normSOthree{2}{\Rtilde}\sqrt{\brackets{\frac{1}{c_1}-1}{\normSOthree{2}{\Rstar}(1 - \normSOthree{2}{\Rstar})}} \nonumber\\
+    &\geq \normSOthree{2}{\Rtilde} - \normSOthree{2}{\Rtilde}\normSOthree{2}{\Rstar} - \normSOthree{2}{\Rtilde}\sqrt{\frac{1}{c_1}-1} \nonumber\\
+    \normSOthree{2}{\Rtilde_1} &\geq \normSOthree{2}{\Rtilde}\brackets{1 - \normSOthree{2}{\Rstar} - \sqrt{\frac{1}{c_1}-1}} \label{eq:R1tilde_lowerbound}
 \end{align}
 Using \eqref{eq:R1tilde_exponentialconvergence}, \eqref{eq:R1tilde_upperbound} and \eqref{eq:R1tilde_lowerbound} results in
 \begin{align}\label{eq:eq20}
-    \normSOthree{\Rtilde(t,0)} \leq \lambda \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{\Rtilde(0,0)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
+    \normSOthree{}{\Rtilde(t,0)} \leq \lambda \expo{-\overline{k_p}(1-d_0^2)t}\normSOthree{}{\Rtilde(0,0)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
 \begin{flushleft}
 where 
 \begin{align}
-    \textblue{\lambda} &\textblue{\coloneqq \sqrt{{\frac{2 - \normSOthree{\Rstar}^2 + 2\sqrt{(1-\normSOthree{\Rstar}^2)(1-c_1)}}{1 - \normSOthree{\Rstar}^2 - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}}
+    \textblue{\lambda} &\textblue{\coloneqq \sqrt{{\frac{2 - \normSOthree{2}{\Rstar} + 2\sqrt{(1-\normSOthree{2}{\Rstar})(1-c_1)}}{1 - \normSOthree{2}{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}}
 \end{align}
 Note that \ref{item:b-bullet} results in $\textblue{\lambda \in \R{}_{\geq 0}}$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
 \begin{align}\label{eq:eq22}
-    \normSOthree{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
+    \normSOthree{}{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{}{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
 
-Using \eqref{eq:eq20}, \eqref{eq:eq22} and the fact that $\normSOthree{\Rtilde(t,j)} = \normSOthree{\Rtilde(t,k)}$ for all $(t,j), (t,k)\in \dom{\Rtilde}$ results\footnote{\textcolor{red}{I'm wondering if the result in \eqref{eq:C1bounds} is any different than local exponential stability (given that we already have GAS). This is because after enough time has passed (alternatively, once $\normSOthree{\Rtilde}$ enters some neighborhood of $I$), the RHS in \eqref{eq:C1bounds} takes the form in Defintion \ref{eq:localExponentialStability}.}} in 
+Using \eqref{eq:eq20}, \eqref{eq:eq22} and the fact that $\normSOthree{}{\Rtilde(t,j)} = \normSOthree{}{\Rtilde(t,k)}$ for all $(t,j), (t,k)\in \dom{\Rtilde}$ results\footnote{\textcolor{red}{I'm wondering if the result in \eqref{eq:C1bounds} is any different than local exponential stability (given that we already have GAS). This is because after enough time has passed (alternatively, once $\normSOthree{}{\Rtilde}$ enters some neighborhood of $I$), the RHS in \eqref{eq:C1bounds} takes the form in Defintion \ref{eq:localExponentialStability}.}} in 
 % For every ${(\Rtilde(0,0), q(0,0))}\in C_1\times\{1\}$, there exists $T > 0$ such that ${(\Rtilde(T,0), q(T,0))}\in D_1\times\{1\}$ which results in one jump and ${(\Rtilde(T,1), q(T,1))}\in C_0\times\{0\}$. This results in
 \end{flushleft}
 \begin{align}
-    \normSOthree{\Rtilde(t,j)}&\leq \min\{1, \alpha\expo{-\min\{\overline{k_p}(1-d_0^2), k_p(1-c_0^2)\} t}\normSOthree{\Rtilde(0,0)}\} \quad \forall (t,j) \in \dom\Rtilde. \label{eq:C1bounds}
+    \normSOthree{}{\Rtilde(t,j)}&\leq \min\{1, \alpha\expo{-\min\{\overline{k_p}(1-d_0^2), k_p(1-c_0^2)\} t}\normSOthree{}{\Rtilde(0,0)}\} \quad \forall (t,j) \in \dom\Rtilde. \label{eq:C1bounds}
     \end{align}
 where $\alpha \coloneqq \max\{\lambda, \lambda \exp{(-T[\overline{k_p}(1-d_0^2) - k_p(1-c_0^2)])}\}$. Thus, if ${(\Rtilde(0,0), q(0,0), r(0,0))}\in C_0\times\{0\}\times \mathbb{S}^2$ or ${(\Rtilde(0,0), q(0,0), r(0,0))}\in D_1\times\{1\}\times\mathbb{S}^2$, then \eqref{eq:C0bounds} holds. For all other cases, \eqref{eq:C1bounds} holds. This proves \eqref{(4)}.  Further, the system exhibits no jumps in case 1,  one jump in case 2 and case 5, two jumps in case 3 and three jumps in case 4. This proves \eqref{(3)} and concludes the proof.  
 \end{proof}
