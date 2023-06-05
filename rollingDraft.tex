@@ -168,7 +168,7 @@ The two signals are asymptotically independent if they are not asymptotically de
 \end{definition}
 
 \begin{lemma}\label{lemma:1}
-    For any rotation matrix $R\in\SOthree$, the following holds. 
+    For any rotation matrix $R\in\SOthree$, the following holds: 
     \begin{subequations}
     \begin{align}
         \normSOthree{2}{{R}^2} = 4\normSOthree{2}{{R}}\brackets{1 - \normSOthree{2}{{R}}} \label{eq:lemma1_eq1}\\
@@ -275,8 +275,13 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 %     \normSOthree{\Rtilde(0)}\leq \delta(\epsilon) \implies \normSOthree{\Rtilde(t)} \textblue\leq \epsilon \expo{-\lambda t} \normSOthree{\Rtilde(0)}\quad \forall t \geq 0
 % \end{align*}
 
-\begin{definition}{\textcolor{red}{Solution concept}}
-    \textblue{}
+\begin{definition}[\textblue{Solution concept}] 
+    \textblue{
+        An absolutely continuous mapping $t\mapsto (R(t), \Omega(t))$ is said to be a solution to \eqref{eq:CL-rotm} if it satisfies
+    }
+    \begin{align*}
+        \textblue{\dot{R}(t) = f(R(t), \Omega(t)) \quad \forall t\in \dom{(R,\Omega)}}
+    \end{align*}
 \end{definition}
 
 \begin{definition}[\textblue{Local exponential stability}]\label{def:local_lyap_stab}
