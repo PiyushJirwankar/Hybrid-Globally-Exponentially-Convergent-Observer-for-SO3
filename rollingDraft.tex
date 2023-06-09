@@ -81,7 +81,7 @@
 
 \maketitle
 
-The purpose of this work is to {design a complementary filter} for a system evolving on $\SOthree$ \textblue{with \textcolor{red}{at least} globally asymptotically stable error dynamics}. We first consider the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then, we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ and establish robustness of the filter to \textblue{such} noise. 
+The purpose of this work is to {design a complementary filter} for a system evolving on $\SOthree$ \textblue{with globally asymptotically stable error dynamics}. We first consider the nominal case when there is no measurement noise and develop globally asymptotic stability results. \textblue{Then, we} introduce noise in the measurements of the angular velocity $\Omega$ and the rotation matrix $R$ and establish robustness of the filter to \textblue{such} noise. 
 
 \section{Preliminaries}
 
@@ -150,7 +150,7 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
 \begin{definition}[{Distance between two points}]\label{def:dist_between_points}
     {The distance between two points $R_1, R_2\in\SOthree$  is given by $|R_1|_{R_2}$, where }
     \begin{align*}
-        \textcolor{red}{{|R_1|^2_{R_2}} \coloneqq \frac{1}{4}\trace{I - R_2^\top R_1} \quad \forall R_1, R_2 \in \SOthree.}
+        \textblue{{|R_1|^2_{R_2}} \coloneqq \frac{1}{4}\trace{I - R_2^\top R_1} \quad \forall R_1, R_2 \in \SOthree.}
     \end{align*}
 \end{definition}
 
@@ -159,11 +159,11 @@ When $XY = YX$, $\exp(X)\exp{(Y)} = \exp{(X+Y)}$.
 \end{definition}
 
 \begin{definition}[\textblue{Nondegenerate function}]\label{def:nondegenerate_function}
-\textblue{A function $f: \R{n}\times \R{n} \supset A\times B \to \R{}$ is said to be nondegenerate if the Hessian of $f$ is full ranked.}
+\textblue{A function $f: \R{n}\times \R{n} \to \R{}$ is said to be nondegenerate if for every $(x',y')\in \R{n}\times \R{n}$, $\text{rank}(\text{Hess } f(x,y))\vert_{(x,y)=(x',y')} = 2n$; i.e. the Hessian of $f$ evaluated at every point in its domain is full ranked.}
 \end{definition}
 
-\begin{definition}[\textblue{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
-\textblue{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{As mentioned in your previous comments, there will always exist $f$ such that the signals $(x,y)$ are asymptotically independent. But that is fine since we only care about whether $f(x(t), y(t))=0 \:\:\forall t>T$. }} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
+\begin{definition}[\textcolor{red}{Asymptotically Independent Signals \cite{mahony_complementaryFilter}}]
+\textcolor{red}{Two signals $x : \R{} \to M_x$ and $y : \R{} \to M_y$ are \emph{asymptotically dependent} if there exists\footnote{\textcolor{red}{As mentioned in your previous comments, there will always exist $f$ such that the signals $(x,y)$ are asymptotically independent. But that is fine since we only care about whether $f(x(t), y(t))=0 \:\:\forall t>T$. }} a nondegenerate function $f : M_x\times M_y \to \R{}$ and a time $T>0$ such that \[f(x(t), y(t)) = 0 \quad \forall t > T\]
 The two signals are asymptotically independent if they are not asymptotically dependent.      }
 \end{definition}
 
@@ -275,6 +275,10 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
 %     \normSOthree{\Rtilde(0)}\leq \delta(\epsilon) \implies \normSOthree{\Rtilde(t)} \textblue\leq \epsilon \expo{-\lambda t} \normSOthree{\Rtilde(0)}\quad \forall t \geq 0
 % \end{align*}
 
+\begin{definition}[\textblue{Domain of a function}]
+    \textcolor{red}{ADD DEFINITION HERE}
+\end{definition}
+
 \begin{definition}[\textblue{Solution concept}] 
     \textblue{
         An absolutely continuous mapping $t\mapsto (R(t), \Omega(t))$ is said to be a solution to \eqref{eq:CL-rotm} if it satisfies
@@ -284,13 +288,13 @@ Next, we define local exponential stability and {unstable set} for a closed-loop
     \end{align*}
 \end{definition}
 
-\begin{definition}[\textblue{Local exponential stability}]\label{def:local_lyap_stab}
+\begin{definition}[\textblue{Local exponential stability \textcolor{red}{with input}}]\label{def:local_lyap_stab}
 \textblue{The point $\Rstar\in\SOthree$ is locally exponentially stable {for \eqref{eq:CL-rotm}} with an absolutely continuous input $t\mapsto \Omega(t)$ if there exist positive constants $\lambda$, $k$ and $\delta$ such that every solution $t\mapsto (R(t), \Omega(t))$ {to \eqref{eq:CL-rotm}} satisfies}
 \begin{align*}
     \textblue{|R(0)|_{\Rstar}\leq \delta \implies |R(t)|_{\Rstar} \leq  k\expo{-\lambda t} |R(0)|_{\Rstar} \quad \forall t \in \dom{(R,\Omega)}.}
 \end{align*}
 
-\begin{definition}[{Unstable set of a dynamical system}] {A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} with an absolutely continuous $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$.  }
+\begin{definition}[{Unstable set of a dynamical system}] {A set $U\subset \SOthree$ is unstable for \eqref{eq:CL-rotm} if for any $\epsilon$ such that $0 < \epsilon < 1$, every solution $t\mapsto (R(t),\Omega(t))$ to \eqref{eq:CL-rotm} \textblue{with any absolutely continuous} $t\mapsto \Omega(t)$ and $R(0) \in \neighbourhood{\epsilon}{U}\backslash U$ satisfies $R(t)\notin U$ for all $t\in \dom{(R,\Omega)}$. }
     
 \end{definition}
 
