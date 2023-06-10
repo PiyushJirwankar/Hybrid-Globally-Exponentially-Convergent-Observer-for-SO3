@@ -73,8 +73,15 @@
 \newcommand{\biasHat}{\hat{\mathdutchcal{b}}}
 \newcommand{\quotes}[1]{``#1''}
 
+\usepackage{calligra}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\newcommand{\raxis}{\scripty{r}}
+
+
 \title{\textblue{Hybrid Nonlinear Complementary Filters on $\SOthree$}}
-\author{Piyush Jirwankar}
+\author{Piyush Jirwankar $\raxis$}
 \date{\today}
 
 \begin{document}
@@ -339,15 +346,15 @@ Then:
     \item The set $\mathbb{U}_0$ is forward invariant and {unstable} with respect to the system given in \eqref{eq:observer}. \label{item:thm_mahony_bullet1}
     \item {The identity element $I$ is locally exponentially stable for the dynamics of the error $\Rtilde$.}\label{item:thm_mahony_bullet2}
     % \item {The error $\Rtilde$ is locally exponentially stable to the identity element $I$.} 
-    \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{}{\Rtilde^y(0)} \leq k$, every solution $t\mapsto\Rtilde(t)$ to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
+    \item \textblue{For all initial conditions such that ${\hat{R}_0^\top R^y(0) \notin \mathbb{U}_0}$, $\hat{R}(t)$ converges to $R(t)$ and, for each positive $k$ such that $0 < k < 1$ and $\normSOthree{}{\Rtilde^y(0)} \leq k$, \textcolor{red}{every solution $t\mapsto(\Rtilde(t),\Omega(t))$} to the error dynamics satisfies \label{item:thm_mahony_bullet3}}
     \begin{align}\label{eq:localExponentialStability}
-        \normSOthree{}{\Rtilde(t)} \leq \expo{-k_p(1-k^2)t}\normSOthree{}{\Rtilde(0)} \quad \forall t \geq 0.
+        \normSOthree{}{\Rtilde(t)} \leq \expo{-k_p(1-k^2)t}\normSOthree{}{\Rtilde(0)} \quad \textcolor{red}{\forall t \in \dom(\Rtilde,\Omega).}
     \end{align}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    See {\cite[Theorem 4.2]{mahony_complementaryFilter}} for the proof of \ref{item:thm_mahony_bullet1}, \ref{item:thm_mahony_bullet2}. Next, $\Rtilde^y(t) = \Rtilde(t)$ for all $t\geq 0$ due to Assumption \ref{ass:no_meas_noise}. For the proof of \ref{item:thm_mahony_bullet3}, consider a Lyapunov function candidate candidate $V(\Rtilde) = \normSOthree{2}{\Rtilde}$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get 
+    See {\cite[Theorem 4.2]{mahony_complementaryFilter}} for the proof of \ref{item:thm_mahony_bullet1}, \ref{item:thm_mahony_bullet2}. Next, $\Rtilde^y(t) = \Rtilde(t)$ for all $t\in \dom\Rtilde$ due to Assumption \ref{ass:no_meas_noise}. For the proof of \ref{item:thm_mahony_bullet3}, consider a Lyapunov function candidate candidate $V(\Rtilde) = \normSOthree{2}{\Rtilde}$ which is positive definite as shown in Lemma \ref{lemma:lyapfunc}. Now, computing its derivative along the trajectories of $\Rtilde$, we get 
     \begin{align*}
         \dualpairing{\grad{\Rtilde}{V}}{\dot{\Rtilde}} &= 2\normSOthree{}{\Rtilde}\frac{d \normSOthree{}{\Rtilde(t)}}{dt} = -\frac{1}{4}\trace{\dot{\Rtilde}(t)}.\\
         \intertext{Now, since $\dot{\Rtilde} = [R, \Omega_\times] - k_p{\omega(\Rtilde)}_\times\Rtilde$ and using the fact that the trace of the Lie bracket is $0$, we get the following.}
@@ -416,7 +423,7 @@ Then:
 \textblue{where $z$ is the state of the hybrid observer, $v$ is the input and $\zeta$ is the output, $\hat{C}$ and $\hat{D}$ represent the flow set and the jump set for the hybrid observer respectively. }
 \end{definition}
 
-Due to Assumption 1, we have $R^y = R$. Our design approach for the observer with at least GAS error is the following: when {$\Rtilde^y = \Rtilde$} is \emph{close enough} to $I$, the observer is defined by \eqref{eq:observer}. When ${\Rtilde^y}$ is \emph{far enough} from $I$, a different passive complementary filter is defined such that $\Rtilde$ tracks a constant $\Rstar\in\SOthree$ (which is \emph{close} to identity) which brings $\Rtilde$ in a \emph{small enough} neighborhood of $I$ so that the observer \eqref{eq:observer} can be used. Thus, what we desire is the following. For a fixed $\Rstar\in \SOthree$:
+Due to Assumption 1, we have $R^y = R$. Our design approach for the observer with at least GAS error is the following: when {$\Rtilde^y$} is \emph{close enough} to $I$, the observer is defined by \eqref{eq:observer}. When ${\Rtilde^y}$ is \emph{far enough} from $I$, a different passive complementary filter is defined such that $\Rtilde$ tracks a constant $\Rstar\in\SOthree$ (which is \emph{close} to identity) which brings $\Rtilde$ in a \emph{small enough} neighborhood of $I$ so that the observer \eqref{eq:observer} can be used. Thus, what we desire is the following. For a fixed $\Rstar\in \SOthree$:
 \begin{subequations}
 \begin{align}
     R_1 &\coloneqq \Rstar R, && R_1^y \coloneqq \Rstar R^y\\
@@ -618,7 +625,7 @@ where
 \begin{align}
     \textblue{\lambda} &\textblue{\coloneqq \sqrt{{\frac{2 - \normSOthree{2}{\Rstar} + 2\sqrt{(1-\normSOthree{2}{\Rstar})(1-c_1)}}{1 - \normSOthree{2}{\Rstar} - \sqrt{\frac{1}{c_1}-1}}}}. \label{eq:lambda}}
 \end{align}
-Note that \ref{item:b-bullet} results in $\textblue{\lambda \in \R{}_{\geq 0}}$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
+Note that the condition \ref{item:b-bullet} results in $\textblue{\lambda \in \R{}_{\geq 0}}$. Next, since $(\Rtilde(T,0), q(T,0), r(T,0))\in D_1\times \{1\}\times \overline{\mathcal{B}}$ results in $(\Rtilde(T,1), q(T,1), r(T,1))\in C_0\times \{0\}\times \overline{\mathcal{B}}$, we have
 \begin{align}\label{eq:eq22}
     \normSOthree{}{\Rtilde(t,1)} \leq \expo{-k_p(1-c_0^2)(t-T)}\normSOthree{}{\Rtilde(T,1)} \quad \forall t\in \{s\in\R{}_{\geq 0} \mid s > T, (s,j)\in \dom\Rtilde\}
 \end{align}
